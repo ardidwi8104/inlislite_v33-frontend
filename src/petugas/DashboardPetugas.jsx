@@ -149,7 +149,7 @@ export default function DashboardPetugas({ onLogout, onBackToSite }) {
     if (activeMenu === 'anggota-aktif') {
       return <KeanggotaanValidation key="anggota-aktif" role="petugas" initialStatus="active" />;
     }
-    if (['entri-anggota','daftar-anggota','perpanjangan-anggota','import-anggota','keranjang-anggota'].includes(activeMenu)) return <KeanggotaanPage view={activeMenu} />;
+    if (['entri-anggota','daftar-anggota','perpanjangan-anggota','import-anggota','keranjang-anggota'].includes(activeMenu)) return <KeanggotaanPage view={activeMenu} onNavigate={setActiveMenu} />;
     if (['entri-peminjaman','entri-perpanjangan','entri-pengembalian','peminjaman','perpanjangan','pengembalian','pelanggaran'].includes(activeMenu)) return <SirkulasiPage view={activeMenu} />;
     if (['katalog','karantina-katalog','salin-katalog','eksemplar','import-excel','karantina-eksemplar'].includes(activeMenu)) return <KoleksiPage view={activeMenu} />;
     if (activeMenu === 'laporan-katalog') return <LaporanKatalog />;

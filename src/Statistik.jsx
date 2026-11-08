@@ -36,14 +36,17 @@ export default function Statistik({ onPageChange }) {
           </ol>
         </nav>
 
-        <div className="mb-4">
+        <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p
             className="text-uppercase fw-bold mb-2"
             style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}
           >
             Statistik
           </p>
-          <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)' }}>
+          <h1
+            className="mb-2"
+            style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}
+          >
             Statistik perpustakaan
           </h1>
           <p className="text-muted mb-0">Ringkasan data perpustakaan. Pilih salah satu untuk melihat detail.</p>

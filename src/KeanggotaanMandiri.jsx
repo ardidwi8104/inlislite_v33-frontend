@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import CaptchaField, { useCaptcha } from './Captcha';
 
 export default function KeanggotaanMandiri() {
   const [currentStep, setCurrentStep] = useState(1);
   const [samaAlamat, setSamaAlamat] = useState(false);
-  const [captchaCode, setCaptchaCode] = useState('48261');
-  const [captchaInput, setCaptchaInput] = useState('');
+  const captcha = useCaptcha();
+  const [captchaError, setCaptchaError] = useState(false);
   const [verified, setVerified] = useState(false);
   const [pernyataan, setPernyataan] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -79,10 +80,9 @@ export default function KeanggotaanMandiri() {
       alert('Harap setujui pernyataan keabsahan data terlebih dahulu.');
       return;
     }
-    if (captchaInput.trim() !== captchaCode) {
-      alert('Kode CAPTCHA yang dimasukkan tidak sesuai. Silakan coba lagi.');
-      return;
-    }
+    const captchaOk = captcha.validate();
+    setCaptchaError(!captchaOk);
+    if (!captchaOk) return;
 
     // Save to localStorage so petugas/admin can see it
     try {
@@ -738,56 +738,22 @@ export default function KeanggotaanMandiri() {
               </div>
 
               {/* Seksi 6: Keamanan CAPTCHA */}
-              <div className="mb-5 p-4 rounded-3 border" style={{ backgroundColor: '#F8FAFC' }}>
-                <div className="row align-items-center justify-content-center">
-                  <div className="col-md-6 text-center">
-                    <label className="form-label fw-bold mb-2" style={{ color: '#1E293B' }}>
-                      Masukkan angka pada gambar
-                    </label>
-
-                    {/* Box Gambar CAPTCHA */}
-                    <div
-                      className="p-3 rounded-3 d-inline-block position-relative border mb-2 shadow-sm"
-                      style={{
-                        backgroundColor: '#E5E7EB',
-                        letterSpacing: '8px',
-                        userSelect: 'none',
-                        minWidth: '220px',
-                      }}
-                    >
-                      <span
-                        className="fw-bold fs-3 text-dark font-monospace fst-italic"
-                        style={{
-                          textDecoration: 'line-through',
-                          transform: 'rotate(-2deg)',
-                          display: 'inline-block',
-                        }}
-                      >
-                        {captchaCode.split('').join(' ')}
-                      </span>
-                    </div>
-
-                    <div className="small text-muted mb-3" style={{ fontSize: '0.8rem' }}>
-                      Ilustrasi saja, bukan CAPTCHA aktif.
-                    </div>
-
-                    <div className="d-flex justify-content-center">
-                      <input
-                        type="text"
-                        className="form-control text-center font-monospace"
-                        style={{
-                          maxWidth: '260px',
-                          borderRadius: '50rem',
-                          border: '1px solid #94A3B8',
-                        }}
-                        placeholder="Ketik angka CAPTCHA"
-                        value={captchaInput}
-                        onChange={(e) => setCaptchaInput(e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
+              <div className="mb-5">
+                <div className="d-flex align-items-center gap-2 pb-2 mb-3 border-bottom">
+                  <span className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '32px', height: '32px', backgroundColor: '#EFF6FF', color: '#2563EB' }}>
+                    <i className="fa-solid fa-shield-halved"></i>
+                  </span>
+                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>Keamanan CAPTCHA</h5>
                 </div>
+                <CaptchaField
+                  id="captcha-daftar-anggota"
+                  code={captcha.code}
+                  value={captcha.input}
+                  onChange={(v) => { captcha.updateInput(v); setCaptchaError(false); }}
+                  onRefresh={() => { captcha.refresh(); setCaptchaError(false); }}
+                  error={captchaError}
+                  accent="#2563EB"
+                />
               </div>
 
               {/* Seksi 7: Tombol Aksi Utama (Submit Button) */}

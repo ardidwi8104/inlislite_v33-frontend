@@ -61,7 +61,7 @@ export default function Layanan({ onPageChange }) {
     <section className="py-4 py-lg-5" style={{ backgroundColor: '#f8f9fa', minHeight: '80vh' }}>
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
         <div className="row g-4 align-items-end mb-4 mb-lg-5">
-          <div className="col-lg-8">
+          <div className="col-lg-8" style={{ maxWidth: '70ch' }}>
             <p
               className="text-uppercase fw-bold mb-2"
               style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}
@@ -74,7 +74,7 @@ export default function Layanan({ onPageChange }) {
             >
               Layanan perpustakaan
             </h1>
-            <p className="text-muted mb-0" style={{ maxWidth: '62ch' }}>
+            <p className="text-muted mb-0">
               Berbagai jasa yang kami sediakan untuk masyarakat. Pilih layanan untuk melihat
               ketentuan dan alur pengajuannya.
             </p>
