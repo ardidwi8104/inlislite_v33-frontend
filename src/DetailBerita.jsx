@@ -26,6 +26,13 @@ export default function DetailBerita({ slug, onPageChange }) {
           galeri: item.galeri && item.galeri.length ? item.galeri : undefined,
         }));
         allNews = [...mapped, ...newsData];
+        // Hapus duplikat id agar key React unik di sidebar
+        const seenIds = new Set();
+        allNews = allNews.filter((item) => {
+          if (seenIds.has(item.id)) return false;
+          seenIds.add(item.id);
+          return true;
+        });
       }
     }
   } catch (e) {}
@@ -108,9 +115,6 @@ export default function DetailBerita({ slug, onPageChange }) {
                   </span>
                   <span className="d-inline-flex align-items-center gap-1">
                     <i className="fa-regular fa-user text-primary"></i> {currentNews.author || 'admin'}
-                  </span>
-                  <span className="d-inline-flex align-items-center gap-1">
-                    <i className="fa-solid fa-location-dot text-primary"></i> {currentNews.lokasi || 'Penajam'}
                   </span>
                 </div>
 

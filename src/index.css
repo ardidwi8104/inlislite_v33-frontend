@@ -3530,8 +3530,12 @@ small, .small, .text-muted, .text-secondary, .form-text, .badge, .bo-tag, .bo-na
   border-radius: 6px;
   font-size: 0.8rem;
   flex-shrink: 0;
+  text-decoration: none;
 }
 .banner-action:hover { filter: brightness(0.92); }
+.banner-preview { background: #198754; }
+.banner-edit { background: #6f42c1; }
+.banner-delete { background: #dc3545; }
 .banner-action.is-dim { opacity: 0.45; }
 .banner-sort-btn {
   display: inline-flex;

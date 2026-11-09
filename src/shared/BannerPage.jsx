@@ -205,7 +205,7 @@ export default function BannerPage() {
                           href={banner.file}
                           target="_blank"
                           rel="noreferrer"
-                          className="banner-action"
+                          className="banner-action banner-preview"
                           title="Pratinjau Banner"
                         >
                           <i className="fa-solid fa-eye" aria-hidden="true"></i>
@@ -213,7 +213,7 @@ export default function BannerPage() {
                         </a>
                         <button
                           type="button"
-                          className="banner-action"
+                          className="banner-action banner-edit"
                           title="Edit Banner"
                           onClick={() => openEdit(banner)}
                         >
@@ -222,7 +222,7 @@ export default function BannerPage() {
                         </button>
                         <button
                           type="button"
-                          className="banner-action"
+                          className="banner-action banner-delete"
                           title="Hapus Banner"
                           onClick={() => setConfirmDelete(banner.no)}
                         >

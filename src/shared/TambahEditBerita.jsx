@@ -58,7 +58,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
   const todayIso = new Date().toISOString().slice(0, 10);
   const [formTanggal, setFormTanggal] = useState(todayIso);
   const [formJudul, setFormJudul] = useState('');
-  const [formLokasi, setFormLokasi] = useState('Penajam');
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const [blocks, setBlocks] = useState([createNewBlock('text', '')]);
   const [formGaleri, setFormGaleri] = useState([]);
@@ -71,7 +70,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
     if (editing) {
       setFormTanggal(editing.tanggal || todayIso);
       setFormJudul(editing.judul || '');
-      setFormLokasi(editing.lokasi || 'Penajam');
       setThumbnailPreview(editing.thumbnail || null);
       setFormGaleri(editing.galeri ? [...editing.galeri] : []);
       if (editing.blocks && editing.blocks.length > 0) {
@@ -82,7 +80,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
     } else {
       setFormTanggal(todayIso);
       setFormJudul('');
-      setFormLokasi('Penajam');
       setThumbnailPreview(null);
       setFormGaleri([]);
       setBlocks([createNewBlock('text', '')]);
@@ -145,7 +142,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
     if (!thumbnailPreview) next.thumbnail = 'Thumbnail wajib diupload.';
     if (!formTanggal) next.tanggal = 'Tanggal wajib diisi.';
     if (!formJudul.trim()) next.judul = 'Judul wajib diisi.';
-    if (!formLokasi) next.lokasi = 'Lokasi wajib dipilih.';
     setErrors(next);
     if (Object.keys(next).length > 0) return;
     const firstTextBlock = blocks.find((b) => b.type === 'text' && b.content);
@@ -161,7 +157,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
       id: editing ? editing.id : Date.now(),
       judul: formJudul,
       tanggal: formTanggal,
-      lokasi: formLokasi,
       thumbnail: thumbnailPreview || (editing ? editing.thumbnail : '/berita/20260525_1779692444_56ff96b0e43c16323dd6.jpg'),
       blocks: blocks,
       galeri: formGaleri,
@@ -240,30 +235,6 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
               required
             />
             {errors.judul && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.judul}</div>}
-          </div>
-
-          {/* Lokasi */}
-          <div className="mb-4">
-            <label className="form-label fw-bold small text-dark mb-2">Lokasi/Kecamatan <span className="text-danger">*</span></label>
-            <div className="d-flex align-items-center position-relative" style={{ width: '100%' }}>
-              <div className="text-secondary pe-2 flex-shrink-0" style={{ pointerEvents: 'none', display: 'flex', alignItems: 'center', minWidth: '20px' }}>
-                <i className="fa-solid fa-location-dot" style={{ color: '#6c757d', fontSize: '1rem' }}></i>
-              </div>
-              <select
-                className={`form-select rounded-3 py-2 text-dark shadow-none flex-fill ps-4 ${errors.lokasi ? 'is-invalid' : ''}`}
-                style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
-                value={formLokasi}
-                onChange={(e) => setFormLokasi(e.target.value)}
-                required
-              >
-                <option value="Penajam">Penajam</option>
-                <option value="Waru">Waru</option>
-                <option value="Babulu">Babulu</option>
-                <option value="Sepaku">Sepaku</option>
-                <option value="Mitra Perpustakaan">Mitra Perpustakaan</option>
-              </select>
-            </div>
-            {errors.lokasi && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.lokasi}</div>}
           </div>
 
           {/* Konten */}

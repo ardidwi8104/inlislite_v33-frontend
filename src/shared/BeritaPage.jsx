@@ -188,7 +188,6 @@ export default function BeritaPage({ role = 'petugas' }) {
                   <th scope="col" className="text-center" style={{ width: '60px' }}>No.</th>
                   <th scope="col">Judul Berita</th>
                   <th scope="col" style={{ width: '140px' }}>Tanggal</th>
-                  <th scope="col" style={{ width: '150px' }}>Lokasi</th>
                   <th scope="col" className="text-center" style={{ width: '130px' }}>Aksi</th>
                 </tr>
               </thead>
@@ -206,12 +205,6 @@ export default function BeritaPage({ role = 'petugas' }) {
                       )}
                     </td>
                     <td className="text-muted small">{formatShortDisplayDate(row.tanggal)}</td>
-                    <td>
-                      <span className="badge bg-light text-secondary border">
-                        <i className="fa-solid fa-location-dot me-1 text-primary"></i>
-                        {row.lokasi || 'Penajam'}
-                      </span>
-                    </td>
                     <td className="text-center">
                       <div className="d-flex justify-content-center gap-1">
                         <button type="button" className="berita-action berita-action--preview" title="Preview Berita" onClick={() => handleOpenPreview(row)}><i className="fa-solid fa-eye" aria-hidden="true"></i><span className="visually-hidden">Preview</span></button>
@@ -222,7 +215,7 @@ export default function BeritaPage({ role = 'petugas' }) {
                   </tr>
                 ))}
                 {paged.length === 0 && (
-                  <tr><td colSpan={5} className="text-center text-muted py-4">{search ? `Tidak ada berita yang cocok dengan "${search}".` : 'Tidak ada data berita.'}</td></tr>
+                  <tr><td colSpan={4} className="text-center text-muted py-4">{search ? `Tidak ada berita yang cocok dengan "${search}".` : 'Tidak ada data berita.'}</td></tr>
                 )}
               </tbody>
             </table>
