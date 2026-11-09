@@ -1,6 +1,7 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
 import TambahEditBerita from './TambahEditBerita';
+import { newsData } from '../data/beritaData';
 
 /* ---------- helpers ---------- */
 function formatIndonesianDate(dateStr) {
@@ -44,6 +45,61 @@ function saveBerita(items) {
   try { window.localStorage.setItem(BERITA_STORAGE_KEY, JSON.stringify(items)); } catch (e) {}
 }
 
+const MONTH_INDEX = {
+  jan: 0, januari: 0, feb: 1, februari: 1, mar: 2, maret: 2, apr: 3, april: 3,
+  mei: 4, jun: 5, juni: 5, jul: 6, juli: 6, agu: 7, ags: 7, agustus: 7,
+  sep: 8, sept: 8, september: 8, okt: 9, oktober: 9, nov: 10, november: 10,
+  des: 11, desember: 11,
+};
+function parseIndonesianDateToISO(dateStr) {
+  if (!dateStr) return new Date().toISOString().slice(0, 10);
+  const iso = new Date(dateStr);
+  if (!isNaN(iso.getTime()) && /^\d{4}-\d{2}-\d{2}/.test(String(dateStr))) return String(dateStr).slice(0, 10);
+  const m = String(dateStr).trim().match(/^(\d{1,2})\s+([A-Za-z.]+)\s+(\d{4})$/);
+  if (m) {
+    const day = Number(m[1]);
+    const month = MONTH_INDEX[m[2].toLowerCase().replace(/\.$/, '')];
+    const year = Number(m[3]);
+    if (month != null) return new Date(year, month, day).toISOString().slice(0, 10);
+  }
+  if (!isNaN(iso.getTime())) return iso.toISOString().slice(0, 10);
+  return new Date().toISOString().slice(0, 10);
+}
+
+function buildDefaultBerita() {
+  return (newsData || []).map((item, index) => {
+    const tanggal = parseIndonesianDateToISO(item.date);
+    return {
+      id: item.id ?? index + 1,
+      no: index + 1,
+      judul: item.title || '',
+      ket: item.desc || '',
+      urutan: index + 1,
+      status: 'ACTIVE',
+      createdAt: `${tanggal}T08:00:00`,
+      tanggal,
+      lokasi: item.lokasi || 'Penajam',
+      thumbnail: item.thumbnail || item.image || '',
+      blocks: [{ id: item.id ?? index + 1, type: 'text', content: [item.p1, item.p2].filter(Boolean).join('<br/><br/>') || item.desc || '' }],
+      galeri: Array.isArray(item.galeri) ? item.galeri : [],
+      publisher: item.author || 'admin',
+      slug: item.slug || '',
+    };
+  });
+}
+
+function mergeWithDefaults(stored) {
+  const defaults = buildDefaultBerita();
+  if (!Array.isArray(stored) || stored.length === 0) return defaults;
+  const ids = new Set(stored.map((x) => x && x.id));
+  const merged = [...stored];
+  defaults.forEach((item) => {
+    if (!ids.has(item.id)) merged.push(item);
+  });
+  return merged.sort((a, b) => new Date(b.createdAt || b.tanggal || 0) - new Date(a.createdAt || a.tanggal || 0))
+    .map((item, index) => ({ ...item, no: index + 1, urutan: item.urutan ?? index + 1 }));
+}
+
 /* ---------- component ---------- */
 export default function BeritaPage({ role = 'petugas' }) {
   const publisher = role === 'admin' ? 'admin' : 'petugas';
@@ -52,13 +108,9 @@ export default function BeritaPage({ role = 'petugas' }) {
     try {
       const raw = window.localStorage.getItem(BERITA_STORAGE_KEY);
       const parsed = raw ? JSON.parse(raw) : null;
-      if (Array.isArray(parsed) && parsed.length) return parsed;
+      return mergeWithDefaults(Array.isArray(parsed) ? parsed : null);
     } catch (e) {}
-    return [
-      { id: 1, no: 1, judul: 'Sosialisasi INLISLite 3.3', ket: 'Berita ujicoba', urutan: 1, status: 'ACTIVE', createdAt: '2026-10-31T08:00:00', tanggal: '2026-10-31', lokasi: 'Penajam', thumbnail: '/berita/20260525_1779692444_56ff96b0e43c16323dd6.jpg', blocks: [{ id: 1, type: 'text', content: 'Sosialisasi implementasi sistem otomasi perpustakaan INLISLite versi 3.3 telah diselenggarakan dengan lancar.' }], galeri: ['/berita/20260525_1779692444_56ff96b0e43c16323dd6.jpg', '/berita/thumb_20260517_1779015332_7f282eee5b93c76e694d.jpg'], publisher: 'admin' },
-      { id: 2, no: 2, judul: 'FGD Pengelolaan Perpustakaan Khusus Instansi Pemerintah', ket: 'FGD', urutan: 2, status: 'ACTIVE', createdAt: '2025-11-24T09:30:00', tanggal: '2025-11-24', lokasi: 'Penajam', thumbnail: '/berita/thumb_20260517_1779015332_7f282eee5b93c76e694d.jpg', blocks: [{ id: 2, type: 'text', content: 'Fokus Group Discussion (FGD) mengenai integrasi sistem perpustakaan khusus instansi.' }], publisher: 'petugas' },
-      { id: 3, no: 3, judul: 'FGD Pengelolaan Repositori dan Knowledge Management (KM)', ket: 'FGD KM', urutan: 3, status: 'ACTIVE', createdAt: '2025-11-24T10:15:00', tanggal: '2025-11-24', lokasi: 'Penajam', thumbnail: '/berita/20260517_1779015332_7f282eee5b93c76e694d.jpg', blocks: [{ id: 3, type: 'text', content: 'Penguatan knowledge management dan repositori digital lokal.' }], publisher: 'admin' },
-    ];
+    return buildDefaultBerita();
   });
 
   const [showForm, setShowForm] = useState(false);
@@ -97,7 +149,10 @@ export default function BeritaPage({ role = 'petugas' }) {
     if (editing) {
       setData((prev) => prev.map((item) => (item.id === editing.id ? { ...item, ...itemData, updatedAt: new Date().toISOString() } : item)));
     } else {
-      setData((prev) => [{ ...itemData, no: prev.length + 1, urutan: prev.length + 1, createdAt: new Date().toISOString() }, ...prev]);
+      setData((prevList) => {
+        const nextId = prevList.reduce((m, x) => Math.max(m, Number(x.id) || 0), 0) + 1;
+        return [{ ...itemData, id: nextId, no: prevList.length + 1, urutan: prevList.length + 1, createdAt: new Date().toISOString() }, ...prevList];
+      });
     }
     setShowForm(false);
     setEditingItem(null);

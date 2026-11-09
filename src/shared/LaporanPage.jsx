@@ -50,12 +50,21 @@ export default function LaporanPage({ config }) {
 
   return (
     <div style={{fontFamily:'var(--font-sans)'}}>
-      <div className="bo-page-head" style={{marginBottom:12}}>
-        <div>
-          <p className="bo-eyebrow" style={{marginBottom:2}}>Laporan</p>
-          <h1 style={{fontSize:'1.55rem',marginBottom:2}}>{title}</h1>
-          <p style={{fontSize:'.92rem',marginBottom:0}}>{subtitle}{path ? <span className="text-muted"> · {path}</span> : null}</p>
+      <div className="berita-topbar">
+        <div className="d-flex align-items-center gap-3">
+          <span className="berita-topbar-icon" aria-hidden="true"><i className="fa-solid fa-chart-column"></i></span>
+          <div>
+            <h1 className="berita-topbar-title">{title}</h1>
+            <p className="berita-topbar-sub">{subtitle}{path ? ` · ${path}` : ''}</p>
+          </div>
         </div>
+        <nav className="berita-breadcrumb" aria-label="breadcrumb">
+          <a href="#dashboard" onClick={(e) => e.preventDefault()}><i className="fa-solid fa-house" aria-hidden="true"></i> Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span>Laporan</span>
+          <span aria-hidden="true">/</span>
+          <span className="is-active" aria-current="page">{title}</span>
+        </nav>
       </div>
 
       <div className="border rounded-3 mb-2 bg-white overflow-hidden">

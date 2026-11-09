@@ -8,7 +8,7 @@ export default function EntriPengembalian() {
   const [history, setHistory] = useState([
     {
       no: 1,
-      barcode: 'BC-202600201',
+      barcode: 'PPU-2026-00201',
       judul: 'Metodologi Penelitian Kuantitatif',
       peminjam: 'Dewi Lestari',
       tgl_kembali: '2026-11-09',
@@ -17,7 +17,7 @@ export default function EntriPengembalian() {
     },
     {
       no: 2,
-      barcode: 'BC-202600103',
+      barcode: 'PPU-2026-00103',
       judul: 'Pemrograman Web dengan Laravel 10',
       peminjam: 'Rian Pratama',
       tgl_kembali: '2026-11-08',
@@ -37,7 +37,7 @@ export default function EntriPengembalian() {
       barcode: barcodeInput.trim().toUpperCase(),
       judul: 'Laskar Pelangi',
       pengarang: 'Andrea Hirata',
-      peminjam: 'Ahmad Fauzi Rahman (202609001)',
+      peminjam: 'Ahmad Fauzi Rahman (64.09.26.00001)',
       tgl_pinjam: '2026-11-01',
       jatuh_tempo: '2026-11-08',
       hari_terlambat: 1,
@@ -152,7 +152,7 @@ export default function EntriPengembalian() {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Masukkan No. Barcode Buku (contoh: BC-202600101)"
+                      placeholder="Masukkan No. Barcode Buku (contoh: PPU-2026-00101)"
                       value={barcodeInput}
                       onChange={(e) => setBarcodeInput(e.target.value)}
                       autoFocus

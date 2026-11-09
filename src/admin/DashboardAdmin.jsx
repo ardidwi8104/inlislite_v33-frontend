@@ -80,7 +80,7 @@ export default function DashboardAdmin({ onLogout, onBackToSite }) {
     if (activeMenu === 'profil') return <ProfilSaya role="admin" />;
     if (activeMenu === 'user') return <PetugasTable />;
 
-    return <DashboardOverview stats={stats} />;
+    return <DashboardOverview stats={stats} title={meta.title} subtitle={meta.description} />;
   };
 
   return (

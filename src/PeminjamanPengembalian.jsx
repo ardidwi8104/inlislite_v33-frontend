@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 export default function PeminjamanPengembalian({ onPageChange }) {
   const goHome = (e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); };
@@ -16,7 +16,7 @@ export default function PeminjamanPengembalian({ onPageChange }) {
           </ol>
         </nav>
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
-          <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+          <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
             Peminjaman &amp; Pengembalian
           </p>
           <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>

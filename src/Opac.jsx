@@ -11,7 +11,7 @@ export default function Opac({ onPageChange }) {
         <div className="mb-4 mb-lg-5" style={{ maxWidth: '68ch' }}>
           <p
             className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
           >
             Katalog
           </p>
@@ -32,7 +32,7 @@ export default function Opac({ onPageChange }) {
               <div className="card-body p-4 p-lg-5">
                 <p
                   className="text-uppercase fw-bold mb-2"
-                  style={{ color: '#495057', fontSize: '0.6rem', letterSpacing: '0.12em' }}
+                  style={{ color: '#495057', fontSize: '0.75rem', letterSpacing: '0.12em' }}
                 >
                   Status modul
                 </p>

@@ -56,7 +56,7 @@ export default function StatistikPengunjung({ onPageChange }) {
 
         <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
           <div style={{ maxWidth: '70ch' }}>
-            <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+            <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
               Statistik Pengunjung
             </p>
             <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
@@ -166,7 +166,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                       <div className="d-flex align-items-center gap-2">
                         <span className="fw-bold text-dark" style={{ minWidth: '80px' }}>{b.nama}</span>
                         {b.ramai && (
-                          <span className="badge bg-success" style={{ fontSize: '0.65rem' }}>
+                          <span className="badge bg-success" style={{ fontSize: '0.75rem' }}>
                             <i className="fa-solid fa-fire me-1"></i> Ramai
                           </span>
                         )}

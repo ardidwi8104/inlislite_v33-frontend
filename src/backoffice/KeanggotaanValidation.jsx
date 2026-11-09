@@ -378,9 +378,35 @@ export default function KeanggotaanValidation({ role = 'petugas', initialStatus 
                       </td>
                       <td className="font-monospace small">{member.memberNo || '-'}</td>
                       <td className="text-center">
-                        <button type="button" className="btn btn-sm btn-primary" onClick={() => openDetail(member)} title="Periksa data">
-                          <i className="fa-solid fa-clipboard-check"></i>
-                        </button>
+                        <div className="d-inline-flex gap-1">
+                          <button type="button" className="btn btn-sm btn-primary" onClick={() => openDetail(member)} title="Periksa data / kartu anggota">
+                            <i className="fa-solid fa-clipboard-check"></i>
+                          </button>
+                          {member.status === 'active' && (
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-outline-danger"
+                              onClick={async () => {
+                                setPrinting(true);
+                                try {
+                                  await downloadMemberCardPdf(member);
+                                  markMemberCardPrinted(member.id);
+                                  setActionMessage({ type: 'success', text: `Kartu anggota ${member.name} berhasil dibuat (PDF).` });
+                                  refresh();
+                                } catch (e) {
+                                  setActionMessage({ type: 'danger', text: 'Gagal membuat kartu anggota PDF. Silakan coba lagi.' });
+                                } finally {
+                                  setPrinting(false);
+                                }
+                              }}
+                              disabled={printing}
+                              title="Cetak kartu anggota (PDF)"
+                              aria-label={`Cetak kartu anggota PDF ${member.name}`}
+                            >
+                              <i className="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                            </button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -422,16 +448,18 @@ export default function KeanggotaanValidation({ role = 'petugas', initialStatus 
               {selectedMember.status === 'active' && (
                 <button
                   type="button"
-                  className="btn btn-primary fw-semibold d-inline-flex align-items-center gap-2"
+                  className="btn text-white fw-semibold d-inline-flex align-items-center gap-2"
+                  style={{ backgroundColor: '#dc2626', borderColor: '#dc2626' }}
                   onClick={handlePrintCard}
                   disabled={printing}
+                  title="Unduh kartu anggota format PDF"
                 >
                   {printing ? (
                     <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
                   ) : (
                     <i className="fa-solid fa-file-pdf" aria-hidden="true"></i>
                   )}
-                  Cetak Kartu Anggota PDF
+                  {printing ? 'Membuat PDF...' : 'Cetak Kartu Anggota (PDF)'}
                 </button>
               )}
             </>

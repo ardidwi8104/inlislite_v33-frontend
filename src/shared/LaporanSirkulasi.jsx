@@ -1,11 +1,11 @@
 ﻿import LaporanPage from './LaporanPage';
 const config = {
-  title: 'Laporan Peminjaman Buku',
+  title: 'Laporan Sirkulasi',
   subtitle: 'Export Data Peminjaman dengan Multiple Filter',
   path: '/laporan/sirkulasi',
   previewRows: 100,
   showPreviewButton: true,
-  columns: ['Nama Anggota','Nomor Anggota','Nomor Barcode','Judul Buku','Tanggal Peminjaman','Tanggal Jatuh Tempo','Tanggal Pengembalian','Petugas Peminjaman','Petugas Pengembalian','Jenis Kelamin','Status Peminjaman'],
+  columns: ['Nama Anggota','Nomor Anggota','Nomor Barcode Koleksi','Judul Buku','Tanggal Peminjaman','Tanggal Jatuh Tempo','Tanggal Pengembalian','Petugas Peminjaman','Petugas Pengembalian','Jenis Kelamin','Status Peminjaman'],
   filters: [
     { type:'dateRange', label:'Filter Berdasarkan Tanggal Peminjaman', keys:[{key:'pinjam_mulai'},{key:'pinjam_akhir'}] },
     { type:'select', label:'Filter Berdasarkan Status Peminjaman', keys:[{key:'status', label:'Status Peminjaman', placeholder:'-- Semua Status --'}] },

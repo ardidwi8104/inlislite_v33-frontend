@@ -182,7 +182,7 @@ export default function EntriPeminjaman() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Contoh: 202609001 / Nomor KTP"
+                    placeholder="Contoh: 64.09.26.00001 / Nomor KTP"
                     value={noAnggota}
                     onChange={(e) => setNoAnggota(e.target.value)}
                     autoFocus
@@ -255,7 +255,7 @@ export default function EntriPeminjaman() {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Scan atau ketik No. Barcode Buku (contoh: BC-202600101)"
+                        placeholder="Scan atau ketik No. Barcode Buku (contoh: PPU-2026-00101)"
                         value={barcodeInput}
                         onChange={(e) => setBarcodeInput(e.target.value)}
                         autoFocus

@@ -38,7 +38,7 @@ export default function ImportExcel() {
     // Simulate read excel data
     setPreviewRows([
       {
-        barcode: 'BC-202611001',
+        barcode: 'PPU-2026-00001',
         no_induk: 'IND-2026-901',
         judul: 'Algoritma dan Pemrograman Modern',
         pengarang: 'Rinaldi Munir',
@@ -47,7 +47,7 @@ export default function ImportExcel() {
         lokasi: 'Rak 02',
       },
       {
-        barcode: 'BC-202611002',
+        barcode: 'PPU-2026-00002',
         no_induk: 'IND-2026-902',
         judul: 'Basis Data Terdistribusi',
         pengarang: 'Fathansyah',
@@ -56,7 +56,7 @@ export default function ImportExcel() {
         lokasi: 'Rak 02',
       },
       {
-        barcode: 'BC-202611003',
+        barcode: 'PPU-2026-00003',
         no_induk: 'IND-2026-903',
         judul: 'Kecerdasan Buatan dan Implementasinya',
         pengarang: 'Suyanto',

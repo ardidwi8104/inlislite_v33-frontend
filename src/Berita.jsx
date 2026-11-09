@@ -39,7 +39,7 @@ export default function Berita({ onPageChange }) {
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p
             className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
           >
             Kabar perpustakaan
           </p>

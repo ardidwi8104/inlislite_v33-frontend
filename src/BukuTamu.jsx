@@ -298,14 +298,14 @@ export default function BukuTamu() {
             </nav>
 
             {/* Judul & Subjudul */}
-            <div className="" style={{ maxWidth: '70ch' }}>
-              <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+            <div className="mb-1" style={{ maxWidth: '70ch' }}>
+              <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
                 Buku Tamu
               </p>
               <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
                 Buku Kunjungan
               </h1>
-              <p className="text-muted mb-0" style={{ fontSize: '1rem' }}>
+              <p className="text-muted" style={{ fontSize: '1rem' }}>
                 Buku tamu kunjungan perpustakaan
               </p>
             </div>
@@ -820,8 +820,8 @@ export default function BukuTamu() {
                     .composition-grid { display: grid; gap: 0.4rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
                     @media (min-width: 768px) { .composition-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
                     @media (min-width: 1200px) { .composition-grid { grid-template-columns: repeat(var(--composition-cols, 10), minmax(0, 1fr)); } }
-                    .composition-grid .form-label { font-size: 0.68rem; }
-                    .composition-grid .form-control { padding-left: 0.25rem; padding-right: 0.25rem; text-align: center; font-size: 0.82rem; }
+                    .composition-grid .form-label { font-size: 0.8rem; }
+                    .composition-grid .form-control { padding-left: 0.25rem; padding-right: 0.25rem; text-align: center; font-size: 0.9rem; }
                   `}</style>
                   <div className="composition-grid" style={{ '--composition-cols': GROUP_PROFESSIONS.length }}>
                     {GROUP_PROFESSIONS.map((item) => (

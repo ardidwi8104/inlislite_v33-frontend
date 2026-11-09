@@ -159,7 +159,7 @@ export default function DashboardPetugas({ onLogout, onBackToSite }) {
     if (activeMenu === 'laporan-sirkulasi') return <LaporanSirkulasi />;
     if (activeMenu === 'laporan-buku-tamu') return <LaporanBukuTamu />;
     if (activeMenu === 'laporan-baca-ditempat') return <LaporanBacaDitempat />;
-    return <DashboardOverview stats={stats} />;
+    return <DashboardOverview stats={stats} title={meta.title} subtitle={meta.description} />;
   };
 
   return (

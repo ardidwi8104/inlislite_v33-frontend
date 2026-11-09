@@ -78,7 +78,7 @@ function WideStatCard({ bg, label, value, icon }) {
   );
 }
 
-export default function DashboardOverview({ stats = {}, onSendReport }) {
+export default function DashboardOverview({ stats = {}, onSendReport, title = 'Dashboard', subtitle = 'Sistem Manajemen Perpustakaan Digital — Ringkasan data dan aktivitas.' }) {
   /* Prop `stats` tetap diterima agar kompatibel dengan pemanggil
      (DashboardAdmin / DashboardPetugas), namun kartu-kartu di bawah ini
      selalu memakai angka statis sesuai spesifikasi visual. */
@@ -86,47 +86,31 @@ export default function DashboardOverview({ stats = {}, onSendReport }) {
 
   return (
     <div className="bo-dashboard" style={{ fontFamily: 'var(--font-sans)', width: '100%' }}>
-      {/* Header utama */}
-      <div
-        className="bo-dashboard-header bg-white shadow-sm mb-4"
-        style={{ borderRadius: '16px', border: '1px solid #e5e7eb', padding: '20px 22px', width: '100%', boxSizing: 'border-box' }}
-      >
-        <div className="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between gap-3">
-          <div className="d-flex align-items-start gap-3" style={{ minWidth: 0 }}>
-            <div
-              className="d-flex align-items-center justify-content-center text-white flex-shrink-0"
-              style={{ width: '52px', height: '52px', borderRadius: '12px', backgroundColor: '#6c5ce7' }}
-            >
-              <i className="fa-solid fa-gauge-high fs-4" aria-hidden="true"></i>
-            </div>
-            <div style={{ minWidth: 0 }}>
-              <h3 className="fw-bold mb-1" style={{ color: '#1e293b', fontSize: '1.55rem', letterSpacing: '-0.02em' }}>
-                Dashboard
-              </h3>
-              <p className="mb-0" style={{ color: '#6b7280', fontSize: '0.95rem' }}>
-                Sistem Manajemen Perpustakaan Digital
-              </p>
-            </div>
-          </div>
-
-          <div className="bo-dashboard-actions d-flex flex-column align-items-stretch align-items-lg-end gap-2 flex-shrink-0">
-            <button
-              type="button"
-              className="btn text-white fw-semibold d-inline-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow-sm"
-              style={{ backgroundColor: '#10ac84', borderRadius: '12px', border: 'none', whiteSpace: 'nowrap' }}
-              onClick={onSendReport || (() => alert('Laporan perpustakaan berhasil dikirim ke Perpustakaan Nasional RI.'))}
-            >
-              <i className="fa-solid fa-paper-plane" aria-hidden="true"></i> Kirim Laporan
-            </button>
-            <div
-              className="d-flex align-items-start gap-2 px-3 py-2"
-              style={{ backgroundColor: '#fee2e2', color: '#dc2626', fontSize: '0.9rem', borderRadius: '10px', fontWeight: 500, lineHeight: 1.35, maxWidth: '100%' }}
-            >
-              <i className="fa-solid fa-circle-exclamation mt-1 flex-shrink-0" aria-hidden="true"></i>
-              <span>Setiap Perpustakaan Wajib mengirimkan laporan total data setiap bulan</span>
-            </div>
+      <div className="berita-topbar">
+        <div className="d-flex align-items-center gap-3">
+          <span className="berita-topbar-icon" aria-hidden="true"><i className="fa-solid fa-gauge-high"></i></span>
+          <div>
+            <h1 className="berita-topbar-title">{title}</h1>
+            <p className="berita-topbar-sub">{subtitle}</p>
           </div>
         </div>
+        <div className="d-flex flex-column align-items-stretch align-items-lg-end gap-2">
+          <button
+            type="button"
+            className="btn fw-semibold d-inline-flex align-items-center justify-content-center gap-2 px-3 py-2 shadow-sm"
+            style={{ backgroundColor: '#ffffff', color: '#1b3878', borderRadius: '10px', border: 'none', whiteSpace: 'nowrap', fontSize: '0.9rem' }}
+            onClick={onSendReport || (() => alert('Laporan perpustakaan berhasil dikirim ke Perpustakaan Nasional RI.'))}
+          >
+            <i className="fa-solid fa-paper-plane" aria-hidden="true"></i> Kirim Laporan
+          </button>
+        </div>
+      </div>
+      <div
+        className="d-flex align-items-start gap-2 px-3 py-2 mb-4"
+        style={{ backgroundColor: '#fee2e2', color: '#dc2626', fontSize: '0.9rem', borderRadius: '10px', fontWeight: 500, lineHeight: 1.35, border: '1px solid #fecaca' }}
+      >
+        <i className="fa-solid fa-circle-exclamation mt-1 flex-shrink-0" aria-hidden="true"></i>
+        <span>Setiap Perpustakaan Wajib mengirimkan laporan total data setiap bulan</span>
       </div>
 
       {/* Baris 1: 4 kolom */}

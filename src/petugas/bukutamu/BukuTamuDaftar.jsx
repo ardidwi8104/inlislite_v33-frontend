@@ -3,9 +3,9 @@ import { Controls, DataTableFooter } from '../koleksi/helpers';
 
 // Dummy seeds per kategori
 const ANGGOTA_SEED = [
-  { id: 1, tgl: '2026-11-08 09:15:20', nama: 'Ahmad Fauzi Rahman', noAnggota: '202609001', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
-  { id: 2, tgl: '2026-11-08 10:22:11', nama: 'Siti Nurhaliza', noAnggota: '202609004', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
-  { id: 3, tgl: '2026-11-08 11:05:40', nama: 'Budi Santoso', noAnggota: '202609002', perpus: 'Perpustakaan Pusat', ruang: 'Layanan Digital' },
+  { id: 1, tgl: '2026-11-08 09:15:20', nama: 'Ahmad Fauzi Rahman', noAnggota: '64.09.26.00001', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
+  { id: 2, tgl: '2026-11-08 10:22:11', nama: 'Siti Nurhaliza', noAnggota: '64.09.26.00004', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
+  { id: 3, tgl: '2026-11-08 11:05:40', nama: 'Budi Santoso', noAnggota: '64.09.26.00002', perpus: 'Perpustakaan Pusat', ruang: 'Layanan Digital' },
 ];
 
 const BUKAN_ANGGOTA_SEED = [
@@ -103,7 +103,7 @@ export default function BukuTamuDaftar() {
           <button
             type="button"
             className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'anggota' ? 'btn-primary' : 'btn-outline-secondary bg-white'
+              kategori === 'anggota' ? 'btn-primary' : 'btn-outline-primary bg-white'
             }`}
             onClick={() => { setKategori('anggota'); setPage(1); }}
           >
@@ -112,7 +112,7 @@ export default function BukuTamuDaftar() {
           <button
             type="button"
             className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'bukan-anggota' ? 'btn-primary' : 'btn-outline-secondary bg-white'
+              kategori === 'bukan-anggota' ? 'btn-primary' : 'btn-outline-primary bg-white'
             }`}
             onClick={() => { setKategori('bukan-anggota'); setPage(1); }}
           >
@@ -121,7 +121,7 @@ export default function BukuTamuDaftar() {
           <button
             type="button"
             className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'rombongan' ? 'btn-primary' : 'btn-outline-secondary bg-white'
+              kategori === 'rombongan' ? 'btn-primary' : 'btn-outline-primary bg-white'
             }`}
             onClick={() => { setKategori('rombongan'); setPage(1); }}
           >
@@ -182,7 +182,7 @@ export default function BukuTamuDaftar() {
                       <td className="fw-semibold text-dark">{row.nama}</td>
                       <td>
                         <span className="badge bg-light text-primary border font-monospace d-inline-flex align-items-center gap-1">
-                          <i className="fa-solid fa-id-card"></i> {row.noAnggota}
+                          {row.noAnggota}
                         </span>
                       </td>
                       <td className="small text-muted">{row.perpus}</td>

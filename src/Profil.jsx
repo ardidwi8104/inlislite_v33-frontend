@@ -7,7 +7,7 @@ export default function Profil() {
         <div className="mb-4 mb-lg-5" style={{ maxWidth: '70ch' }}>
           <p
             className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
           >
             Profil
           </p>

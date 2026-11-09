@@ -126,7 +126,7 @@ export default function DaftarEksemplar() {
     setEditingItem(null);
     const dateToday = new Date().toISOString().split('T')[0];
     setFormValues({
-      no_barcode: `BC-${Date.now().toString().slice(-8)}`,
+      no_barcode: `PPU-${new Date().getFullYear()}-${String(data.length + 1).padStart(5, '0')}`,
       tgl_pengadaan: dateToday,
       no_induk: `IND-${new Date().getFullYear()}-${String(data.length + 1).padStart(3, '0')}`,
       data_bib: '',
@@ -148,7 +148,7 @@ export default function DaftarEksemplar() {
   const handleSave = (e) => {
     e.preventDefault();
     const next = {};
-    if (!formValues.no_barcode?.trim()) next.no_barcode = 'Nomor Barcode wajib diisi.';
+    if (!formValues.no_barcode?.trim()) next.no_barcode = 'Nomor Barcode Koleksi wajib diisi.';
     if (!formValues.data_bib?.trim()) next.data_bib = 'Data Bibliografis wajib diisi.';
     if (!formValues.no_induk?.trim()) next.no_induk = 'Nomor Induk wajib diisi.';
     setEksemplarErrors(next);
@@ -378,7 +378,7 @@ export default function DaftarEksemplar() {
       >
         <form onSubmit={handleSave} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Barcode <span className="text-danger">*</span></label>
+            <label className="form-label small fw-bold">Nomor Barcode Koleksi <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${eksemplarErrors.no_barcode ? ' is-invalid' : ''}`}

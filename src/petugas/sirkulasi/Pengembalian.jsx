@@ -6,14 +6,14 @@ const STORAGE_KEY = 'inlislite.sirkulasi.pengembalian';
 const INITIAL_DATA = [
   {
     id: 1,
-    no_barcode: 'BC-202600201',
+    no_barcode: 'PPU-2026-00201',
     judul_penerbit: 'Metodologi Penelitian Kuantitatif / Sugiyono (Rajawali Pers)',
     tgl_pinjam_tempo: '2026-10-25 s/d 2026-11-08',
     tgl_kembali: '2026-11-08',
     status: 'Kembali Tepat Waktu',
     lokasi: 'Perpustakaan Utama - Rak 01',
     updated_date: '2026-11-08',
-    no_anggota: '202609002',
+    no_anggota: '64.09.26.00002',
     nama_peminjam: 'Budi Santoso',
   },
 ];

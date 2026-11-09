@@ -5,9 +5,9 @@ const CART_KEY = 'inlislite.anggota.cart.v1';
 const EXT_KEY = 'inlislite.anggota.perpanjangan.v1';
 
 const SEED = [
-  { id: 1, nama: 'Ahmad Fauzi', noAnggota: 'AGT-2026-0001', jenisIdentitas: 'KTP', noIdentitas: '6401010101010001', tempatLahir: 'Penajam', tanggalLahir: '1998-05-12', agama: 'Islam', jenisKelamin: 'Laki-laki', email: 'ahmad.fauzi@mail.com', noHp: '081234567801', noTelp: '', jenisAnggota: 'Umum', tglRegister: '2026-01-10', tglBerakhir: '2027-01-10', statusAnggota: 'Aktif', koleksiPinjam: 'Semua Koleksi', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Merdeka No. 1', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Penajam', kelurahan: 'Nipah-Nipah', rt: '01', rw: '02', pekerjaan: 'Mahasiswa', pendidikan: 'S1', kelas: '-', foto: '' },
-  { id: 2, nama: 'Siti Nurhaliza', noAnggota: 'AGT-2026-0002', jenisIdentitas: 'KTP', noIdentitas: '6401010202020002', tempatLahir: 'Balikpapan', tanggalLahir: '2001-08-20', agama: 'Islam', jenisKelamin: 'Perempuan', email: 'siti.nur@mail.com', noHp: '081234567802', noTelp: '', jenisAnggota: 'Pelajar', tglRegister: '2026-02-15', tglBerakhir: '2027-02-15', statusAnggota: 'Aktif', koleksiPinjam: 'Buku Umum', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Pahlawan No. 5', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Sepaku', kelurahan: 'Sepaku', rt: '03', rw: '01', pekerjaan: 'Pelajar', pendidikan: 'SMA', kelas: 'XII', foto: '' },
-  { id: 3, nama: 'Budi Santoso', noAnggota: 'AGT-2025-0010', jenisIdentitas: 'KTP', noIdentitas: '6401010303030003', tempatLahir: 'Samarinda', tanggalLahir: '1995-11-03', agama: 'Islam', jenisKelamin: 'Laki-laki', email: 'budi.s@mail.com', noHp: '081234567803', noTelp: '', jenisAnggota: 'Umum', tglRegister: '2025-06-01', tglBerakhir: '2026-06-01', statusAnggota: 'Nonaktif', koleksiPinjam: 'Semua Koleksi', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Sudirman No. 8', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Penajam', kelurahan: 'Petung', rt: '02', rw: '04', pekerjaan: 'PNS', pendidikan: 'S1', kelas: '-', foto: '' },
+  { id: 1, nama: 'Ahmad Fauzi', noAnggota: '64.09.26.00001', jenisIdentitas: 'KTP', noIdentitas: '6401010101010001', tempatLahir: 'Penajam', tanggalLahir: '1998-05-12', agama: 'Islam', jenisKelamin: 'Laki-laki', email: 'ahmad.fauzi@mail.com', noHp: '081234567801', noTelp: '', jenisAnggota: 'Umum', tglRegister: '2026-01-10', tglBerakhir: '2027-01-10', statusAnggota: 'Aktif', koleksiPinjam: 'Semua Koleksi', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Merdeka No. 1', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Penajam', kelurahan: 'Nipah-Nipah', rt: '01', rw: '02', pekerjaan: 'Mahasiswa', pendidikan: 'S1', kelas: '-', foto: '' },
+  { id: 2, nama: 'Siti Nurhaliza', noAnggota: '64.09.26.00002', jenisIdentitas: 'KTP', noIdentitas: '6401010202020002', tempatLahir: 'Balikpapan', tanggalLahir: '2001-08-20', agama: 'Islam', jenisKelamin: 'Perempuan', email: 'siti.nur@mail.com', noHp: '081234567802', noTelp: '', jenisAnggota: 'Pelajar', tglRegister: '2026-02-15', tglBerakhir: '2027-02-15', statusAnggota: 'Aktif', koleksiPinjam: 'Buku Umum', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Pahlawan No. 5', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Sepaku', kelurahan: 'Sepaku', rt: '03', rw: '01', pekerjaan: 'Pelajar', pendidikan: 'SMA', kelas: 'XII', foto: '' },
+  { id: 3, nama: 'Budi Santoso', noAnggota: '64.09.25.00010', jenisIdentitas: 'KTP', noIdentitas: '6401010303030003', tempatLahir: 'Samarinda', tanggalLahir: '1995-11-03', agama: 'Islam', jenisKelamin: 'Laki-laki', email: 'budi.s@mail.com', noHp: '081234567803', noTelp: '', jenisAnggota: 'Umum', tglRegister: '2025-06-01', tglBerakhir: '2026-06-01', statusAnggota: 'Nonaktif', koleksiPinjam: 'Semua Koleksi', lokasiPerpustakaan: 'Perpustakaan Utama', alamat: 'Jl. Sudirman No. 8', provinsi: 'Kalimantan Timur', kota: 'Penajam Paser Utara', kecamatan: 'Penajam', kelurahan: 'Petung', rt: '02', rw: '04', pekerjaan: 'PNS', pendidikan: 'S1', kelas: '-', foto: '' },
 ];
 
 function read(key, fallback) {
@@ -28,9 +28,10 @@ export function savePerpanjangan(list) { write(EXT_KEY, list); }
 
 export function nextNoAnggota(list) {
   const year = new Date().getFullYear();
-  const nums = list.map((a) => { const m = String(a.noAnggota || '').match(/(\d+)$/); return m ? parseInt(m[1], 10) : 0; });
-  const next = (Math.max(0, ...nums) + 1).toString().padStart(4, '0');
-  return `AGT-${year}-${next}`;
+  const yy = String(year).slice(-2);
+  const nums = list.map((a) => { const m = String(a.noAnggota || '').match(/\.(\d+)$/); return m ? parseInt(m[1], 10) : 0; });
+  const next = (Math.max(0, ...nums) + 1).toString().padStart(5, '0');
+  return `64.09.${yy}.${next}`;
 }
 
 export function fmtDate(iso) {

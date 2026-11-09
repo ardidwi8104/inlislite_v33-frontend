@@ -9,7 +9,7 @@ export default function EntriPerpanjangan() {
   const [history, setHistory] = useState([
     {
       no: 1,
-      barcode: 'BC-202600101',
+      barcode: 'PPU-2026-00101',
       judul: 'Laskar Pelangi / Andrea Hirata',
       peminjam: 'Ahmad Fauzi Rahman',
       tgl_lama: '2026-11-09',
@@ -18,7 +18,7 @@ export default function EntriPerpanjangan() {
     },
     {
       no: 2,
-      barcode: 'BC-202600102',
+      barcode: 'PPU-2026-00102',
       judul: 'Bumi Manusia / Pramoedya Ananta Toer',
       peminjam: 'Siti Nurhaliza',
       tgl_lama: '2026-11-08',
@@ -38,7 +38,7 @@ export default function EntriPerpanjangan() {
       barcode: barcodeInput.trim().toUpperCase(),
       judul: 'Pemrograman Web dengan Laravel 10',
       penerbit: 'Informatika Bandung',
-      peminjam: 'Budi Santoso (202609002)',
+      peminjam: 'Budi Santoso (64.09.26.00002)',
       tgl_pinjam: '2026-11-02',
       jatuh_tempo_lama: '2026-11-09',
       jatuh_tempo_baru: new Date(Date.now() + durasiHari * 86400000).toISOString().split('T')[0],
@@ -152,7 +152,7 @@ export default function EntriPerpanjangan() {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Masukkan No. Barcode Buku (contoh: BC-202600101)"
+                      placeholder="Masukkan No. Barcode Buku (contoh: PPU-2026-00101)"
                       value={barcodeInput}
                       onChange={(e) => setBarcodeInput(e.target.value)}
                       autoFocus

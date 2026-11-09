@@ -6,14 +6,14 @@ const STORAGE_KEY = 'inlislite.sirkulasi.perpanjangan';
 const INITIAL_DATA = [
   {
     id: 1,
-    no_barcode: 'BC-202600101',
+    no_barcode: 'PPU-2026-00101',
     judul_penerbit: 'Laskar Pelangi / Andrea Hirata (Bentang Pustaka)',
     tgl_perpanjang: '2026-11-08',
     tgl_pinjam_tempo: '2026-11-01 s/d 2026-11-15',
     status: 'Diperpanjang (+7 Hari)',
     lokasi: 'Perpustakaan Utama - Rak 08',
     updated_date: '2026-11-08',
-    no_anggota: '202609003',
+    no_anggota: '64.09.26.00003',
     nama_peminjam: 'Citra Dewi',
   },
 ];
