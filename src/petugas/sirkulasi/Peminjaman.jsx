@@ -118,7 +118,7 @@ export default function Peminjaman() {
               className="berita-btn-add"
               style={{ textDecoration: 'none' }}
             >
-              <i className="fa-solid fa-plus me-1"></i> + Peminjaman
+              <i className="fa-solid fa-plus me-1"></i> Tambah Peminjaman
             </a>
           </div>
         </div>
@@ -132,6 +132,8 @@ export default function Peminjaman() {
                 <tr>
                   <th className="text-center" style={{ width: 44 }}>No.</th>
                   <th style={{ width: 140 }}>No. Barcode</th>
+                  <th style={{ width: 130 }}>Nama Peminjam</th>
+                  <th style={{ width: 100 }}>No. Anggota</th>
                   <th>Penerbit / Judul</th>
                   <th style={{ width: 180 }}>Tgl. Pinjam / Jatuh Tempo</th>
                   <th style={{ width: 120 }}>Tgl. Kembali</th>
@@ -150,12 +152,11 @@ export default function Peminjaman() {
                       </span>
                     </td>
                     <td>
+                      <div className="fw-bold text-dark">{row.nama_peminjam || 'Peminjam'}</div>
+                    </td>
+                    <td className="small text-muted">{row.no_anggota || '000000'}</td>
+                    <td>
                       <div className="fw-bold text-dark">{row.judul_penerbit}</div>
-                      {row.nama_peminjam && (
-                        <div className="small text-muted">
-                          Peminjam: <strong className="text-primary">{row.nama_peminjam}</strong> ({row.no_anggota})
-                        </div>
-                      )}
                     </td>
                     <td className="small">{row.tgl_pinjam_tempo}</td>
                     <td className="small text-muted">{row.tgl_kembali}</td>
@@ -174,7 +175,7 @@ export default function Peminjaman() {
                 ))}
                 {paged.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="text-center text-muted py-4">
+                    <td colSpan={10} className="text-center text-muted py-4">
                       {search ? `Tidak ada data yang cocok dengan "${search}".` : 'No data available in table'}
                     </td>
                   </tr>

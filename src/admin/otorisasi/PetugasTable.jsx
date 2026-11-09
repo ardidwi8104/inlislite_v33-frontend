@@ -15,18 +15,6 @@ export default function PetugasTable() {
 
   const refresh = () => setAccounts(listPetugasAccounts());
 
-  useEffect(() => { setPage(1); }, [search, entries]);
-
-  const filtered = accounts.filter((row) => {
-    const q = search.trim().toLowerCase();
-    if (!q) return true;
-    return [row.username, row.name, row.status].some((v) => String(v || '').toLowerCase().includes(q));
-  });
-  const totalPages = Math.max(1, Math.ceil(filtered.length / entries));
-  const safePage = Math.min(page, totalPages);
-  const startIdx = (safePage - 1) * entries;
-  const paged = filtered.slice(startIdx, startIdx + entries);
-
   const openAdd = () => {
     setError('');
     setModalOpen(true);
@@ -50,6 +38,18 @@ export default function PetugasTable() {
     setModalOpen(false);
     return true;
   };
+
+  useEffect(() => { setPage(1); }, [search, entries]);
+
+  const filtered = accounts.filter((row) => {
+    const q = search.trim().toLowerCase();
+    if (!q) return true;
+    return [row.username, row.name, row.status].some((v) => String(v || '').toLowerCase().includes(q));
+  });
+  const totalPages = Math.max(1, Math.ceil(filtered.length / entries));
+  const safePage = Math.min(page, totalPages);
+  const startIdx = (safePage - 1) * entries;
+  const paged = filtered.slice(startIdx, startIdx + entries);
 
   const remove = (id) => {
     removePetugasAccount(id);
@@ -75,10 +75,10 @@ export default function PetugasTable() {
       </div>
 
       <div aria-labelledby="petugas-table-title">
-        <div className="berita-card-head">
-          <h2 id="petugas-table-title"><i className="fa-solid fa-list-ul" aria-hidden="true"></i> TABEL AKUN PETUGAS</h2>
-          <button type="button" className="berita-btn-add" onClick={openAdd}><i className="fa-solid fa-plus" aria-hidden="true"></i> Tambah Petugas</button>
-        </div>
+          <div className="berita-card-head">
+            <h2 id="petugas-table-title"><i className="fa-solid fa-list-ul" aria-hidden="true"></i> TABEL AKUN PETUGAS</h2>
+            <button type="button" className="berita-btn-add" onClick={openAdd}><i className="fa-solid fa-plus" aria-hidden="true"></i> Tambah Petugas</button>
+          </div>
         <div className="bo-panel-body">
           {error && <div className="alert alert-danger py-2 small mb-3">{error}</div>}
 

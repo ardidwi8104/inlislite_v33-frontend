@@ -13,6 +13,8 @@ const INITIAL_DATA = [
     status: 'Diperpanjang (+7 Hari)',
     lokasi: 'Perpustakaan Utama - Rak 08',
     updated_date: '2026-11-08',
+    no_anggota: '202609003',
+    nama_peminjam: 'Citra Dewi',
   },
 ];
 
@@ -91,7 +93,7 @@ export default function Perpanjangan() {
             className="berita-btn-add"
             style={{ textDecoration: 'none' }}
           >
-            <i className="fa-solid fa-plus me-1"></i> + Perpanjangan
+            <i className="fa-solid fa-plus me-1"></i> Tambah Perpanjangan
           </a>
         </div>
 
@@ -104,6 +106,8 @@ export default function Perpanjangan() {
                 <tr>
                   <th className="text-center" style={{ width: 44 }}>No.</th>
                   <th style={{ width: 140 }}>No. Barcode</th>
+                  <th style={{ width: 130 }}>Nama Peminjam</th>
+                  <th style={{ width: 100 }}>No. Anggota</th>
                   <th>Penerbit / Judul</th>
                   <th style={{ width: 130 }}>Tgl. Perpanjang</th>
                   <th style={{ width: 180 }}>Tgl. Pinjam / Jatuh Tempo</th>
@@ -122,6 +126,10 @@ export default function Perpanjangan() {
                       </span>
                     </td>
                     <td>
+                      <div className="fw-bold text-dark">{row.nama_peminjam || 'Peminjam'}</div>
+                    </td>
+                    <td className="small text-muted">{row.no_anggota || '000000'}</td>
+                    <td>
                       <div className="fw-bold text-dark">{row.judul_penerbit}</div>
                     </td>
                     <td className="small">{row.tgl_perpanjang}</td>
@@ -137,7 +145,7 @@ export default function Perpanjangan() {
                 ))}
                 {paged.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="text-center text-muted py-4">
+                    <td colSpan={10} className="text-center text-muted py-4">
                       {search ? `Tidak ada data yang cocok dengan "${search}".` : 'No data available in table'}
                     </td>
                   </tr>

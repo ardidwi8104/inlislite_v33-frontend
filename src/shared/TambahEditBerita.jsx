@@ -64,6 +64,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
   const [formGaleri, setFormGaleri] = useState([]);
   const fileInputRef = useRef(null);
   const galeriFileRef = useRef(null);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (!show) return;
@@ -140,7 +141,13 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
 
   const handleSave = (e) => {
     e.preventDefault();
-    if (!formJudul.trim()) { alert('Harap isi Judul Berita.'); return; }
+    const next = {};
+    if (!thumbnailPreview) next.thumbnail = 'Thumbnail wajib diupload.';
+    if (!formTanggal) next.tanggal = 'Tanggal wajib diisi.';
+    if (!formJudul.trim()) next.judul = 'Judul wajib diisi.';
+    if (!formLokasi) next.lokasi = 'Lokasi wajib dipilih.';
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
     const firstTextBlock = blocks.find((b) => b.type === 'text' && b.content);
     let rawText = '';
     if (firstTextBlock) {
@@ -171,7 +178,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
   };
 
   return (
-    <Modal show={show} onClose={onClose} title={editing ? 'Edit Berita' : 'Tambah Berita'} icon="fa-regular fa-newspaper" accent="#1b3878" size="xl">
+    <Modal show={show} onClose={onClose} title={editing ? 'Edit Berita' : 'Tambah Berita'} icon="fa-regular fa-newspaper" accent="#1b3878" size="xl" scrollable maxWidth="95vw">
       <div className="py-2" style={{ maxWidth: '100%', margin: 0 }}>
         <form onSubmit={handleSave}>
           {/* Thumbnail */}
@@ -202,29 +209,53 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
               )}
             </div>
                 <div className="text-muted mt-2" style={{ fontSize: '0.875rem' }}>Thumbnail akan ditampilkan sebagai gambar pertama di berita</div>
+              {errors.thumbnail && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.thumbnail}</div>}
           </div>
 
           {/* Tanggal */}
           <div className="mb-4">
-            <label className="form-label fw-bold small text-dark mb-2">Tanggal Berita</label>
-            <input type="date" className="form-control rounded-3 py-2 px-3 fw-medium text-dark shadow-none" style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }} value={formTanggal} onChange={(e) => setFormTanggal(e.target.value)} required />
+            <label className="form-label fw-bold small text-dark mb-2">Tanggal Berita <span className="text-danger">*</span></label>
+            <input
+              type="date"
+              className={`form-control rounded-3 py-2 px-3 fw-medium text-dark ${errors.tanggal ? 'is-invalid' : ''} shadow-none`}
+              style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+              value={formTanggal}
+              onChange={(e) => setFormTanggal(e.target.value)}
+              required
+            />
                 <div className="text-muted mt-1" style={{ fontSize: '0.875rem' }}>Format: {formatIndonesianDate(formTanggal)}</div>
+            {errors.tanggal && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.tanggal}</div>}
           </div>
 
           {/* Judul */}
           <div className="mb-4">
             <label className="form-label fw-bold small text-dark mb-2">Judul Berita <span className="text-danger">*</span></label>
-            <input type="text" className="form-control rounded-3 py-2 px-3 text-dark shadow-none" style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }} placeholder="Masukkan judul berita" value={formJudul} onChange={(e) => setFormJudul(e.target.value)} required />
+            <input
+              type="text"
+              className={`form-control rounded-3 py-2 px-3 text-dark ${errors.judul ? 'is-invalid' : ''} shadow-none`}
+              style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+              placeholder="Masukkan judul berita"
+              value={formJudul}
+              onChange={(e) => setFormJudul(e.target.value)}
+              required
+            />
+            {errors.judul && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.judul}</div>}
           </div>
 
           {/* Lokasi */}
           <div className="mb-4">
             <label className="form-label fw-bold small text-dark mb-2">Lokasi/Kecamatan <span className="text-danger">*</span></label>
-            <div className="position-relative">
-              <div className="position-absolute start-0 top-50 translate-middle-y ps-3 text-secondary" style={{ pointerEvents: 'none' }}>
-                <i className="fa-solid fa-location-dot" style={{ color: '#6c757d' }}></i>
+            <div className="d-flex align-items-center position-relative" style={{ width: '100%' }}>
+              <div className="text-secondary pe-2 flex-shrink-0" style={{ pointerEvents: 'none', display: 'flex', alignItems: 'center', minWidth: '20px' }}>
+                <i className="fa-solid fa-location-dot" style={{ color: '#6c757d', fontSize: '1rem' }}></i>
               </div>
-              <select className="form-select rounded-3 py-2 text-dark shadow-none ps-5" style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }} value={formLokasi} onChange={(e) => setFormLokasi(e.target.value)} required>
+              <select
+                className={`form-select rounded-3 py-2 text-dark shadow-none flex-fill ps-4 ${errors.lokasi ? 'is-invalid' : ''}`}
+                style={{ border: '1px solid #CBD5E1', fontSize: '0.92rem' }}
+                value={formLokasi}
+                onChange={(e) => setFormLokasi(e.target.value)}
+                required
+              >
                 <option value="Penajam">Penajam</option>
                 <option value="Waru">Waru</option>
                 <option value="Babulu">Babulu</option>
@@ -232,6 +263,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
                 <option value="Mitra Perpustakaan">Mitra Perpustakaan</option>
               </select>
             </div>
+            {errors.lokasi && <div className="invalid-feedback" style={{ display: 'block', textAlign: 'left', marginTop: '4px' }}>{errors.lokasi}</div>}
           </div>
 
           {/* Konten */}

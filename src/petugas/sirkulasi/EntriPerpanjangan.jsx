@@ -123,8 +123,8 @@ export default function EntriPerpanjangan() {
         )}
 
         <div className="row g-3">
-          {/* Main Scan Card (Left) */}
-          <div className="col-lg-7">
+          {/* Main Scan Card */}
+          <div className="col-12">
             <div className="card border shadow-sm">
               <div
                 className="card-header py-2 text-white fw-bold d-flex align-items-center gap-2"
@@ -163,8 +163,8 @@ export default function EntriPerpanjangan() {
                   <div className="mb-3 text-start">
                     <label className="form-label small fw-bold text-muted">Pilih Durasi Perpanjangan:</label>
                     <div className="row g-2 text-center">
-                      {[7, 14, 21, 30].map((days) => (
-                        <div key={days} className="col-3">
+                      {[7].map((days) => (
+                        <div key={days} className="col-12">
                           <button
                             type="button"
                             className={`btn w-100 py-2 small fw-bold ${
@@ -215,8 +215,8 @@ export default function EntriPerpanjangan() {
             </div>
           </div>
 
-          {/* Riwayat Terbaru Card (Right) */}
-          <div className="col-lg-5">
+          {/* Riwayat Terbaru Card */}
+          <div className="col-12">
             <div className="card border shadow-sm h-100">
               <div
                 className="card-header py-2 text-white fw-bold d-flex align-items-center justify-content-between"
@@ -235,35 +235,49 @@ export default function EntriPerpanjangan() {
                 </button>
               </div>
               <div className="card-body p-0">
-                <div className="table-responsive">
-                  <table className="table table-bordered table-striped table-sm align-middle mb-0" style={{ fontSize: '0.8rem' }}>
-                    <thead className="table-light">
-                      <tr>
-                        <th style={{ width: 30 }} className="text-center">No</th>
-                        <th>Barcode & Judul</th>
-                        <th style={{ width: 90 }}>Perpanjangan</th>
+              <div className="table-responsive">
+                <table className="table table-bordered align-middle mb-0">
+                  <thead className="table-secondary">
+                    <tr>
+                      <th className="text-center" style={{ width: 44 }}>No.</th>
+                      <th style={{ width: 140 }}>No. Barcode</th>
+                      <th>Judul</th>
+                      <th style={{ width: 130 }}>Peminjam</th>
+                      <th style={{ width: 120 }}>Tgl. Baru</th>
+                      <th style={{ width: 100 }} className="text-center">Durasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {history.slice(0, 5).map((h, i) => (
+                      <tr key={i}>
+                        <td className="text-center fw-semibold">{i + 1}</td>
+                        <td>
+                          <span className="badge bg-light text-primary border font-monospace">
+                            {h.barcode}
+                          </span>
+                        </td>
+                        <td>
+                          <div className="fw-bold text-dark">{h.judul}</div>
+                        </td>
+                        <td className="small text-muted">{h.peminjam}</td>
+                        <td className="small">{h.tgl_baru}</td>
+                        <td className="text-center">
+                          <span className="badge bg-success-subtle text-success border">
+                            {h.durasi}
+                          </span>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {history.slice(0, 5).map((h, i) => (
-                        <tr key={i}>
-                          <td className="text-center fw-bold">{i + 1}</td>
-                          <td>
-                            <span className="badge bg-light text-primary border font-monospace">{h.barcode}</span>
-                            <div className="fw-semibold text-dark text-truncate" style={{ maxWidth: '180px' }}>
-                              {h.judul}
-                            </div>
-                            <span className="text-muted" style={{ fontSize: '0.75rem' }}>{h.peminjam}</span>
-                          </td>
-                          <td>
-                            <span className="badge bg-success-subtle text-success border">+{h.durasi}</span>
-                            <div className="text-muted" style={{ fontSize: '0.7rem' }}>s/d {h.tgl_baru}</div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                    {history.slice(0, 5).length === 0 && (
+                      <tr>
+                        <td colSpan={6} className="text-center text-muted py-4">
+                          Tidak ada data riwayat
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
               </div>
             </div>
           </div>

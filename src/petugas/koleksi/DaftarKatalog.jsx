@@ -35,6 +35,7 @@ export default function DaftarKatalog() {
     pedoman: 'RDA',
     opac: true,
   });
+  const [katalogErrors, setKatalogErrors] = useState({});
 
   useEffect(() => {
     try {
@@ -136,10 +137,12 @@ export default function DaftarKatalog() {
 
   const handleSaveKatalog = (e) => {
     e.preventDefault();
-    if (!formValues.judul) {
-      alert('Judul katalog wajib diisi.');
-      return;
-    }
+    const next = {};
+    if (!formValues.judul?.trim()) next.judul = 'Judul katalog wajib diisi.';
+    if (!formValues.bibid?.trim()) next.bibid = 'BIBID wajib diisi.';
+    if (!formValues.publisher?.trim()) next.publisher = 'Penerbit wajib diisi.';
+    setKatalogErrors(next);
+    if (Object.keys(next).length > 0) return;
 
     if (editingItem) {
       setData((prev) =>
@@ -193,7 +196,7 @@ export default function DaftarKatalog() {
             onClick={() => openAddModal('RDA')}
             title="Tambah Katalog Pedoman RDA"
           >
-            <i className="fa-solid fa-plus" aria-hidden="true"></i> + Tambah Katalog RDA
+            <i className="fa-solid fa-plus" aria-hidden="true"></i> Tambah Katalog RDA
           </button>
           <button
             type="button"
@@ -202,7 +205,7 @@ export default function DaftarKatalog() {
             onClick={() => openAddModal('AACR')}
             title="Tambah Katalog Pedoman AACR"
           >
-            <i className="fa-solid fa-plus" aria-hidden="true"></i> + Tambah Katalog AACR
+            <i className="fa-solid fa-plus" aria-hidden="true"></i> Tambah Katalog AACR
           </button>
         </div>
       </div>
@@ -344,6 +347,7 @@ export default function DaftarKatalog() {
         icon="fa-solid fa-book"
         accent="#2563eb"
         size="lg"
+        maxWidth="95vw"
         footer={
           <>
             <button type="button" className="btn btn-light border fw-semibold" onClick={() => setModalOpen(false)}>
@@ -357,14 +361,15 @@ export default function DaftarKatalog() {
       >
         <form onSubmit={handleSaveKatalog} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label small fw-bold">BIBID</label>
+            <label className="form-label small fw-bold">BIBID <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${katalogErrors.bibid ? ' is-invalid' : ''}`}
               value={formValues.bibid}
               onChange={(e) => setFormValues({ ...formValues, bibid: e.target.value })}
               required
             />
+            {katalogErrors.bibid && <div className="invalid-feedback">{katalogErrors.bibid}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label small fw-bold">Pedoman Katalog</label>
@@ -378,15 +383,16 @@ export default function DaftarKatalog() {
             </select>
           </div>
           <div className="col-12">
-            <label className="form-label small fw-bold">Judul Utama</label>
+            <label className="form-label small fw-bold">Judul Utama <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${katalogErrors.judul ? ' is-invalid' : ''}`}
               placeholder="Masukkan judul buku/koleksi"
               value={formValues.judul}
               onChange={(e) => setFormValues({ ...formValues, judul: e.target.value })}
               required
             />
+            {katalogErrors.judul && <div className="invalid-feedback">{katalogErrors.judul}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label small fw-bold">Edisi / Cetakan</label>
@@ -399,14 +405,15 @@ export default function DaftarKatalog() {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Penerbit & Tempat Terbit</label>
+            <label className="form-label small fw-bold">Penerbit & Tempat Terbit <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${katalogErrors.penerbit ? ' is-invalid' : ''}`}
               placeholder="Contoh: Bentang Pustaka (Yogyakarta)"
               value={formValues.publisher}
               onChange={(e) => setFormValues({ ...formValues, publisher: e.target.value })}
             />
+            {katalogErrors.penerbit && <div className="invalid-feedback">{katalogErrors.penerbit}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label small fw-bold">Deskripsi Fisik</label>

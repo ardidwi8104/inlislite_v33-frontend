@@ -3,6 +3,7 @@ import Modal from '../components/Modal';
 
 export default function TambahEditBanner({ show, editing, onClose, onSave }) {
   const [form, setForm] = useState({ file: '', text: '', width: 0, height: 0 });
+  const [bannerErrors, setBannerErrors] = useState({});
 
   useEffect(() => {
     if (show) {
@@ -31,16 +32,24 @@ export default function TambahEditBanner({ show, editing, onClose, onSave }) {
       icon={editing ? 'fa-pen-to-square' : 'fa-plus'}
       accent="#1b3878"
       size="md"
+      maxWidth="520px"
       footer={
         <>
           <button type="button" className="btn btn-light border fw-semibold" onClick={onClose}>Batal</button>
-          <button type="button" className="btn text-white fw-semibold" style={{ backgroundColor: '#1b3878' }} onClick={() => onSave(form, editing)}>Simpan</button>
+          <button type="button" className="btn text-white fw-semibold" style={{ backgroundColor: '#1b3878' }} onClick={() => {
+            const next = {};
+            if (!form.file) next.file = 'File banner wajib diupload.';
+            setBannerErrors(next);
+            if (Object.keys(next).length > 0) return;
+            onSave(form, editing);
+          }}>Simpan</button>
         </>
       }
     >
       <div className="mb-3">
-        <label className="form-label">Upload Banner</label>
-        <input type="file" accept="image/*" className="form-control" onChange={handleFile} />
+        <label className="form-label">Upload Banner <span className="text-danger">*</span></label>
+        <input type="file" accept="image/*" className={`form-control${bannerErrors.file ? ' is-invalid' : ''}`} onChange={handleFile} />
+        {bannerErrors.file && <div className="invalid-feedback">{bannerErrors.file}</div>}
       </div>
       {form.file && (
         <div className="mb-3">

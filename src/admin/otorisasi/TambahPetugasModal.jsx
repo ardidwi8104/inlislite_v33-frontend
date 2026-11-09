@@ -67,6 +67,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
       icon="fa-user-plus"
       accent="#1b3878"
       size="modal-lg"
+      maxWidth="95vw"
       footer={
         <>
           <button type="button" className="btn btn-light border fw-semibold px-4" onClick={onClose}>Tutup</button>
@@ -78,7 +79,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
     >
       <form id="tambah-petugas-form" onSubmit={submit} noValidate>
         <div className="row g-3">
-          <div className="col-12">
+          <div className="col-12 field-relative">
             <label htmlFor="tp-username" className="form-label small fw-semibold">Username<span className="text-danger">*</span></label>
             <input
               id="tp-username"
@@ -101,7 +102,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
             <input id="tp-nama-belakang" type="text" className="form-control" placeholder="Nama Belakang" value={form.namaBelakang} onChange={(e) => set('namaBelakang', e.target.value)} />
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6 field-relative">
             <label htmlFor="tp-email" className="form-label small fw-semibold">Email<span className="text-danger">*</span></label>
             <input
               id="tp-email"
@@ -118,7 +119,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
             <input id="tp-telepon" type="tel" className="form-control" placeholder="No. Telepon" value={form.telepon} onChange={(e) => set('telepon', e.target.value)} />
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6 field-relative">
             <label htmlFor="tp-password" className="form-label small fw-semibold">Password</label>
             <input
               id="tp-password"
@@ -135,7 +136,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
               <div className="form-text">Minimal 8 karakter. Biarkan kosong jika tidak ada perubahan.</div>
             )}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 field-relative">
             <label htmlFor="tp-konfirmasi" className="form-label small fw-semibold">Konfirmasi Password</label>
             <input
               id="tp-konfirmasi"
@@ -150,7 +151,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
           </div>
 
           <div className="col-12">
-            <label htmlFor="tp-lokasi" className="form-label small fw-semibold">Akses Lokasi Perpustakaan</label>
+            <label htmlFor="tp-lokasi" className="form-label small fw-semibold">Akses Lokasi Perpustakaan <span className="text-danger">*</span></label>
             <select
               id="tp-lokasi"
               className="form-select"
@@ -172,6 +173,7 @@ export default function TambahPetugasModal({ show, onClose, onSave }) {
                 ))}
               </div>
             )}
+            {!form.aksesLokasi || form.aksesLokasi.length === 0 ? <div className="invalid-feedback">Akses lokasi wajib dipilih.</div> : null}
           </div>
         </div>
       </form>

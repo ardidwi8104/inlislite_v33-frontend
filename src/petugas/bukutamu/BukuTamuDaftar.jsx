@@ -129,31 +129,24 @@ export default function BukuTamuDaftar() {
           </button>
         </div>
 
-        {/* 4. Card Content Area (Datatable Buku Tamu) */}
-        <div className="card border shadow-sm">
-          <div className="berita-card-head">
-            <h2 id="buku-tamu-title">
-              <i className="fa-solid fa-list-ul" aria-hidden="true"></i> TABEL BUKU TAMU
-            </h2>
-          </div>
+        {/* 4. Table Content Area */}
+        <div className="bo-panel-body">
+          <Controls entries={entries} setEntries={setEntries} search={search} setSearch={setSearch} />
 
-          <div className="p-3">
-            <Controls entries={entries} setEntries={setEntries} search={search} setSearch={setSearch} />
-
-            <div className="table-responsive">
-              <table className="table table-bordered table-hover align-middle mb-0">
-                <thead className="table-secondary">
-                  {kategori === 'anggota' && (
-                    <tr>
-                      <th style={{ width: 45 }} className="text-center">No</th>
-                      <th style={{ width: 170 }}>Tgl. Kunjungan</th>
-                      <th>Nama Anggota</th>
-                      <th style={{ width: 180 }}>Nomor Anggota</th>
-                      <th style={{ width: 180 }}>Lokasi Perpustakaan</th>
-                      <th style={{ width: 150 }}>Lokasi Ruang</th>
-                      <th style={{ width: 70 }} className="text-center">Aksi</th>
-                    </tr>
-                  )}
+          <div className="table-responsive">
+            <table className="table table-bordered align-middle mb-0">
+              <thead className="table-secondary">
+                {kategori === 'anggota' && (
+                  <tr>
+                    <th style={{ width: 45 }} className="text-center">No</th>
+                    <th style={{ width: 170 }}>Tgl. Kunjungan</th>
+                    <th>Nama Anggota</th>
+                    <th style={{ width: 180 }}>Nomor Anggota</th>
+                    <th style={{ width: 180 }}>Lokasi Perpustakaan</th>
+                    <th style={{ width: 150 }}>Lokasi Ruang</th>
+                    <th style={{ width: 70 }} className="text-center">Aksi</th>
+                  </tr>
+                )}
 
                   {kategori === 'bukan-anggota' && (
                     <tr>
@@ -275,8 +268,6 @@ export default function BukuTamuDaftar() {
               totalPages={totalPages}
             />
           </div>
-        </div>
-
       </div>
     </>
   );

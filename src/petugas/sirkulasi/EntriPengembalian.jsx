@@ -123,8 +123,8 @@ export default function EntriPengembalian() {
         )}
 
         <div className="row g-3">
-          {/* Main Scan Card (Left) */}
-          <div className="col-lg-7">
+          {/* Main Scan Card */}
+          <div className="col-12">
             <div className="card border shadow-sm">
               <div
                 className="card-header py-2 text-white fw-bold d-flex align-items-center gap-2"
@@ -201,8 +201,8 @@ export default function EntriPengembalian() {
             </div>
           </div>
 
-          {/* Riwayat Terbaru Card (Right) */}
-          <div className="col-lg-5">
+          {/* Riwayat Terbaru Card */}
+          <div className="col-12">
             <div className="card border shadow-sm h-100">
               <div
                 className="card-header py-2 text-white fw-bold d-flex align-items-center justify-content-between"

@@ -20,7 +20,6 @@ const MENU = [
   { key: 'pengaturan-keanggotaan', label: 'Pengaturan Keanggotaan', icon: 'fa-solid fa-address-book', dropdown: true, children: ['Jenis Anggota', 'Masa Berlaku', 'Kartu Anggota'] },
   { key: 'pengaturan-sirkulasi', label: 'Pengaturan Sirkulasi', icon: 'fa-solid fa-repeat', dropdown: true, children: ['Aturan Pinjam', 'Denda', 'Hari Libur'] },
   { key: 'pengaturan-bukutamu', label: 'Pengaturan Buku Tamu', icon: 'fa-solid fa-tablet-screen-button', dropdown: true, children: ['Formulir', 'Tujuan Kunjungan', 'Tampilan'] },
-  { key: 'otorisasi', label: 'Otorisasi', icon: 'fa-solid fa-users', dropdown: true, children: ['Group', 'User', 'Permission'] },
   { key: 'setelan', label: 'Setelan', icon: 'fa-solid fa-wrench', dropdown: true, children: ['Preferensi Sistem', 'Backup & Restore'] },
 ];
 
@@ -78,9 +77,6 @@ const CHILD_ICONS = {
   'Formulir': 'fa-solid fa-file-pen',
   'Tujuan Kunjungan': 'fa-solid fa-bullseye',
   'Tampilan': 'fa-solid fa-eye',
-  'Group': 'fa-solid fa-users',
-  'User': 'fa-solid fa-user',
-  'Permission': 'fa-solid fa-key',
   'Preferensi Sistem': 'fa-solid fa-sliders',
   'Backup & Restore': 'fa-solid fa-database',
 };

@@ -35,6 +35,7 @@ export default function DaftarEksemplar() {
     status: 'Tersedia',
     lokasi: '',
   });
+  const [eksemplarErrors, setEksemplarErrors] = useState({});
 
   useEffect(() => {
     try {
@@ -146,10 +147,12 @@ export default function DaftarEksemplar() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    if (!formValues.no_barcode || !formValues.data_bib) {
-      alert('No Barcode dan Data Bibliografis wajib diisi.');
-      return;
-    }
+    const next = {};
+    if (!formValues.no_barcode?.trim()) next.no_barcode = 'Nomor Barcode wajib diisi.';
+    if (!formValues.data_bib?.trim()) next.data_bib = 'Data Bibliografis wajib diisi.';
+    if (!formValues.no_induk?.trim()) next.no_induk = 'Nomor Induk wajib diisi.';
+    setEksemplarErrors(next);
+    if (Object.keys(next).length > 0) return;
 
     if (editingItem) {
       setData((prev) =>
@@ -361,6 +364,7 @@ export default function DaftarEksemplar() {
         icon="fa-solid fa-barcode"
         accent="#2563eb"
         size="lg"
+        maxWidth="95vw"
         footer={
           <>
             <button type="button" className="btn btn-light border fw-semibold" onClick={() => setModalOpen(false)}>
@@ -374,35 +378,38 @@ export default function DaftarEksemplar() {
       >
         <form onSubmit={handleSave} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Barcode</label>
+            <label className="form-label small fw-bold">Nomor Barcode <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${eksemplarErrors.no_barcode ? ' is-invalid' : ''}`}
               value={formValues.no_barcode}
               onChange={(e) => setFormValues({ ...formValues, no_barcode: e.target.value })}
               required
             />
+            {eksemplarErrors.no_barcode && <div className="invalid-feedback">{eksemplarErrors.no_barcode}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Induk</label>
+            <label className="form-label small fw-bold">Nomor Induk <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${eksemplarErrors.no_induk ? ' is-invalid' : ''}`}
               value={formValues.no_induk}
               onChange={(e) => setFormValues({ ...formValues, no_induk: e.target.value })}
               required
             />
+            {eksemplarErrors.no_induk && <div className="invalid-feedback">{eksemplarErrors.no_induk}</div>}
           </div>
           <div className="col-12">
-            <label className="form-label small fw-bold">Data Bibliografis (Judul / Pengarang / Penerbit)</label>
+            <label className="form-label small fw-bold">Data Bibliografis (Judul / Pengarang / Penerbit) <span className="text-danger">*</span></label>
             <input
               type="text"
-              className="form-control form-control-sm"
+              className={`form-control form-control-sm${eksemplarErrors.data_bib ? ' is-invalid' : ''}`}
               placeholder="Contoh: Laskar Pelangi / Andrea Hirata (Bentang Pustaka, 2018)"
               value={formValues.data_bib}
               onChange={(e) => setFormValues({ ...formValues, data_bib: e.target.value })}
               required
             />
+            {eksemplarErrors.data_bib && <div className="invalid-feedback">{eksemplarErrors.data_bib}</div>}
           </div>
           <div className="col-md-6">
             <label className="form-label small fw-bold">Tanggal Pengadaan</label>

@@ -13,6 +13,8 @@ const INITIAL_DATA = [
     status: 'Kembali Tepat Waktu',
     lokasi: 'Perpustakaan Utama - Rak 01',
     updated_date: '2026-11-08',
+    no_anggota: '202609002',
+    nama_peminjam: 'Budi Santoso',
   },
 ];
 
@@ -91,7 +93,7 @@ export default function Pengembalian() {
             className="berita-btn-add"
             style={{ textDecoration: 'none' }}
           >
-            <i className="fa-solid fa-plus me-1"></i> + Pengembalian
+            <i className="fa-solid fa-plus me-1"></i> Tambah Pengembalian
           </a>
         </div>
 
@@ -104,6 +106,8 @@ export default function Pengembalian() {
                 <tr>
                   <th className="text-center" style={{ width: 44 }}>No.</th>
                   <th style={{ width: 140 }}>No. Barcode</th>
+                  <th style={{ width: 130 }}>Nama Peminjam</th>
+                  <th style={{ width: 100 }}>No. Anggota</th>
                   <th>Penerbit / Judul</th>
                   <th style={{ width: 180 }}>Tgl. Pinjam / Jatuh Tempo</th>
                   <th style={{ width: 130 }}>Tgl. Kembali</th>
@@ -122,10 +126,14 @@ export default function Pengembalian() {
                       </span>
                     </td>
                     <td>
+                      <div className="fw-bold text-dark">{row.nama_peminjam || 'Peminjam'}</div>
+                    </td>
+                    <td className="small text-muted">{row.no_anggota || '000000'}</td>
+                    <td>
                       <div className="fw-bold text-dark">{row.judul_penerbit}</div>
                     </td>
                     <td className="small">{row.tgl_pinjam_tempo}</td>
-                    <td className="small">{row.tgl_kembali}</td>
+                    <td className="small text-muted">{row.tgl_kembali}</td>
                     <td className="text-center">
                       <span className="badge bg-success-subtle text-success border">
                         {row.status}
@@ -137,7 +145,7 @@ export default function Pengembalian() {
                 ))}
                 {paged.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="text-center text-muted py-4">
+                    <td colSpan={10} className="text-center text-muted py-4">
                       {search ? `Tidak ada data yang cocok dengan "${search}".` : 'No data available in table'}
                     </td>
                   </tr>

@@ -12,6 +12,8 @@ export default function Modal({
   size = 'lg',
   bodyClassName = '',
   closeLabel = 'Tutup',
+  scrollable = false,
+  maxWidth,
 }) {
   useEffect(() => {
     if (!show) return undefined;
@@ -36,10 +38,11 @@ export default function Modal({
         style={{ zIndex: 1055 }}
       >
         <div
-          className={`modal-dialog modal-dialog-centered modal-dialog-scrollable ${size}`}
+          className={`modal-dialog modal-dialog-centered ${scrollable ? 'modal-dialog-scrollable' : ''} ${size}`}
           onClick={(event) => event.stopPropagation()}
+          style={maxWidth ? { maxWidth, width: 'auto' } : undefined}
         >
-          <div className="modal-content border-0 shadow-lg" style={{ borderRadius: '1rem', overflow: 'hidden' }}>
+          <div className="modal-content border-0 shadow-lg" style={{ borderRadius: '1rem', overflow: 'visible' }}>
             <div
               className="modal-header border-0 text-white py-3 px-4"
               style={{ background: `linear-gradient(135deg, ${accent} 0%, #14245a 100%)` }}
