@@ -116,6 +116,8 @@ export default function SidebarPetugas({
   setActiveMenu,
   sidebarOpen,
   setSidebarOpen,
+  sidebarCollapsed,
+  setSidebarCollapsed,
   stats = {},
   onLogout,
   onProfile,
@@ -146,8 +148,10 @@ export default function SidebarPetugas({
         <img src="/logo/logo-inlislite-icon.png" alt="" />
         <div>
           <strong>INLISLite</strong>
-          <span>Ruang kerja petugas</span>
         </div>
+        <button type="button" className="bo-sidebar-toggle" onClick={() => setSidebarCollapsed && setSidebarCollapsed(true)} aria-label="Sembunyikan sidebar">
+          <i className="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
         <button type="button" className="bo-sidebar-close" onClick={() => setSidebarOpen(false)} aria-label="Tutup menu">
           <i className="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>

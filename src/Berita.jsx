@@ -144,12 +144,30 @@ export default function Berita({ onPageChange }) {
           )}
         </div>
 
-        {/* Jumlah hasil */}
-        <div className="d-flex justify-content-between align-items-center gap-3 mt-5 pt-3 border-top">
-          <span className="small text-muted">
-            Menampilkan {filteredNews.length} dari {newsData.length} berita
-          </span>
-          <span className="small text-muted">Halaman 1 dari 1</span>
+        {/* Pagination */}
+        <div
+          className="flex justify-center items-center gap-2 mt-10"
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '40px' }}
+        >
+          <button
+            disabled
+            className="text-gray-400 bg-gray-100 px-3 py-1.5 rounded-lg text-sm cursor-not-allowed"
+            style={{ color: '#9ca3af', backgroundColor: '#f3f4f6', padding: '6px 12px', borderRadius: '8px', fontSize: '14px', cursor: 'not-allowed', border: 'none' }}
+          >
+            Prev
+          </button>
+          <button
+            className="bg-blue-900 text-white px-3.5 py-1.5 rounded-lg text-sm font-semibold shadow-sm"
+            style={{ backgroundColor: '#1e3a8a', color: '#ffffff', padding: '6px 14px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, border: 'none', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}
+          >
+            1
+          </button>
+          <button
+            className="text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 px-3 py-1.5 rounded-lg text-sm font-medium"
+            style={{ color: '#374151', backgroundColor: '#ffffff', border: '1px solid #d1d5db', padding: '6px 12px', borderRadius: '8px', fontSize: '14px', fontWeight: 500 }}
+          >
+            Next
+          </button>
         </div>
       </div>
     </section>

@@ -280,24 +280,35 @@ export default function BukuTamu() {
   };
 
   return (
-    <section className="py-4 py-lg-5" style={{ minHeight: '100vh', backgroundColor: '#F0FDF4', fontFamily: 'var(--font-sans)' }}>
+    <section className="py-4 py-lg-5" style={{ minHeight: '100vh', backgroundColor: '#FFFFFF', fontFamily: 'var(--font-sans)' }}>
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
         {/* BAGIAN ATAS: JUDUL & JUMLAH KUNJUNGAN */}
         <div className="card border-0 rounded-4 shadow-sm mb-4 overflow-hidden bg-white">
           <div className="p-4 p-md-5 pb-4">
-            {/* Breadcrumb latar hijau muda */}
-            <div className="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill mb-3" style={{ backgroundColor: '#DCFCE7', color: '#166534', fontSize: '0.85rem' }}>
-              <i className="fa-solid fa-house"></i>
-              <span>Beranda / Buku Tamu / {activeTab === 'anggota' ? 'Anggota' : activeTab === 'nonanggota' ? 'Bukan Anggota' : 'Rombongan'}</span>
-            </div>
+            {/* Breadcrumb */}
+            <nav aria-label="breadcrumb" className="mb-2">
+              <ol className="breadcrumb small mb-2">
+                <li className="breadcrumb-item">
+                  <a href="#home" className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center">
+                    <i className="fa fa-home text-primary me-1"></i> Beranda
+                  </a>
+                </li>
+                <li className="breadcrumb-item active text-muted" aria-current="page">Buku Tamu</li>
+              </ol>
+            </nav>
 
             {/* Judul & Subjudul */}
-            <h1 className="fw-bold mb-1" style={{ color: PRIMARY, fontSize: 'clamp(1.8rem, 3vw, 2.3rem)' }}>
-              Ruang Baca Umum
-            </h1>
-            <p className="text-muted mb-0" style={{ fontSize: '1rem' }}>
-              Perpustakaan Pusat
-            </p>
+            <div className="" style={{ maxWidth: '70ch' }}>
+              <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+                Buku Tamu
+              </p>
+              <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
+                Buku Kunjungan
+              </h1>
+              <p className="text-muted mb-0" style={{ fontSize: '1rem' }}>
+                Buku tamu kunjungan perpustakaan
+              </p>
+            </div>
           </div>
 
           {/* Bilah biru tua penuh di bawahnya */}
@@ -326,7 +337,7 @@ export default function BukuTamu() {
 
         {/* TAB 1: ANGGOTA */}
         {activeTab === 'anggota' && (
-          <div className="card border-0 shadow-sm">
+          <div className="card border-0 shadow-sm mb-4 mb-lg-5">
             <div className="card-body p-4 p-lg-5">
               <div className="text-center mb-4">
                 <h4 className="fw-bold mb-2" style={{ color: PRIMARY }}>
@@ -574,37 +585,38 @@ export default function BukuTamu() {
                   </div>
                 </div>
 
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">Alamat Sesuai Identitas</label>
-                  <textarea
-                    className="form-control"
-                    rows="3"
-                    placeholder="Masukkan alamat lengkap sesuai identitas"
-                    style={{ borderRadius: '0.375rem' }}
-                    value={nonForm.address}
-                    onChange={(event) => updateNonField('address', event.target.value)}
-                  ></textarea>
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">
-                    Tujuan Kunjungan <RequiredMark />
-                  </label>
-                  <select
-                    className={`form-select ${nonErrors.purpose ? 'is-invalid' : ''}`}
-                    style={{ borderRadius: '0.375rem' }}
-                    value={nonForm.purpose}
-                    onChange={(event) => updateNonField('purpose', event.target.value)}
-                  >
-                    <option value="">----- Pilih -----</option>
-                    <option>Membaca</option>
-                    <option>Meminjam Buku</option>
-                    <option>Penelitian</option>
-                    <option>Belajar</option>
-                    <option>Kegiatan Perpustakaan</option>
-                    <option>Lainnya</option>
-                  </select>
-                  <FieldError message={nonErrors.purpose} />
+                <div className="row g-3 mb-4">
+                  <div className="col-md-6">
+                    <label className="form-label fw-semibold">Alamat Sesuai Identitas</label>
+                    <textarea
+                      className="form-control"
+                      rows="3"
+                      placeholder="Masukkan alamat lengkap sesuai identitas"
+                      style={{ borderRadius: '0.375rem' }}
+                      value={nonForm.address}
+                      onChange={(event) => updateNonField('address', event.target.value)}
+                    ></textarea>
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label fw-semibold">
+                      Tujuan Kunjungan <RequiredMark />
+                    </label>
+                    <select
+                      className={`form-select ${nonErrors.purpose ? 'is-invalid' : ''}`}
+                      style={{ borderRadius: '0.375rem' }}
+                      value={nonForm.purpose}
+                      onChange={(event) => updateNonField('purpose', event.target.value)}
+                    >
+                      <option value="">----- Pilih -----</option>
+                      <option>Membaca</option>
+                      <option>Meminjam Buku</option>
+                      <option>Penelitian</option>
+                      <option>Belajar</option>
+                      <option>Kegiatan Perpustakaan</option>
+                      <option>Lainnya</option>
+                    </select>
+                    <FieldError message={nonErrors.purpose} />
+                  </div>
                 </div>
 
                 {/* CAPTCHA sebelum tombol simpan */}
@@ -804,13 +816,21 @@ export default function BukuTamu() {
                       Komposisi Berdasarkan Profesi
                     </h6>
                   </div>
-                  <div className="row g-3">
+                  <style>{`
+                    .composition-grid { display: grid; gap: 0.4rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+                    @media (min-width: 768px) { .composition-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+                    @media (min-width: 1200px) { .composition-grid { grid-template-columns: repeat(var(--composition-cols, 10), minmax(0, 1fr)); } }
+                    .composition-grid .form-label { font-size: 0.68rem; }
+                    .composition-grid .form-control { padding-left: 0.25rem; padding-right: 0.25rem; text-align: center; font-size: 0.82rem; }
+                  `}</style>
+                  <div className="composition-grid" style={{ '--composition-cols': GROUP_PROFESSIONS.length }}>
                     {GROUP_PROFESSIONS.map((item) => (
-                      <div className="col-6 col-md-4 col-lg-2" key={item}>
-                        <label className="form-label small">{item}</label>
+                      <div key={item}>
+                        <label className="form-label mb-1 text-truncate d-block" title={item}>{item}</label>
                         <input
                           type="number"
                           min="0"
+                          placeholder="0"
                           className="form-control form-control-sm"
                           style={{ borderRadius: '0.375rem' }}
                           value={groupForm.profession[item]}
@@ -829,13 +849,14 @@ export default function BukuTamu() {
                       Komposisi Berdasarkan Pendidikan
                     </h6>
                   </div>
-                  <div className="row g-3">
+                  <div className="composition-grid" style={{ '--composition-cols': GROUP_EDUCATIONS.length }}>
                     {GROUP_EDUCATIONS.map((item) => (
-                      <div className="col-6 col-md-4 col-lg-2" key={item}>
-                        <label className="form-label small">{item}</label>
+                      <div key={item}>
+                        <label className="form-label mb-1 text-truncate d-block" title={item}>{item}</label>
                         <input
                           type="number"
                           min="0"
+                          placeholder="0"
                           className="form-control form-control-sm"
                           style={{ borderRadius: '0.375rem' }}
                           value={groupForm.education[item]}

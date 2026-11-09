@@ -54,18 +54,22 @@ export default function StatistikPengunjung({ onPageChange }) {
           </ol>
         </nav>
 
-        <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
-          <div>
-            <h1 className="h3 fw-bold mb-1" style={{ color: '#1E3A8A' }}>
+        <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
+          <div style={{ maxWidth: '70ch' }}>
+            <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+              Statistik Pengunjung
+            </p>
+            <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
               Statistik Pengunjung
             </h1>
             <p className="text-muted small mb-0">
               Rekapitulasi dan pemantauan jumlah pengunjung perpustakaan dengan grafik progress
             </p>
           </div>
-          <div className="d-flex align-items-center gap-2">
-            <label className="small fw-semibold text-muted">Tahun:</label>
+          <div className="d-flex align-items-center gap-2 ms-md-auto flex-shrink-0">
+            <label className="small fw-semibold text-muted" htmlFor="statistik-pengunjung-tahun">Tahun:</label>
             <select
+              id="statistik-pengunjung-tahun"
               className="form-select form-select-sm fw-bold border-primary shadow-sm"
               style={{ width: '110px' }}
               value={selectedTahun}

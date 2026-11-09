@@ -18,7 +18,7 @@ const CHILD_ICONS = {
   'Backup & Restore': 'fa-solid fa-database',
 };
 
-export default function SidebarAdmin({ activeMenu, setActiveMenu, sidebarOpen, setSidebarOpen, onLogout, onProfile }) {
+export default function SidebarAdmin({ activeMenu, setActiveMenu, sidebarOpen, setSidebarOpen, sidebarCollapsed, setSidebarCollapsed, onLogout, onProfile }) {
   const [avatar] = useBackofficeAvatar('admin');
   const [open, setOpen] = useState({ otorisasi: true });
   const [showLogout, setShowLogout] = useState(false);
@@ -32,8 +32,10 @@ export default function SidebarAdmin({ activeMenu, setActiveMenu, sidebarOpen, s
         <img src="/logo/logo-inlislite-icon.png" alt="" />
         <div>
           <strong>INLISLite</strong>
-          <span>Ruang kerja admin</span>
         </div>
+        <button type="button" className="bo-sidebar-toggle" onClick={() => setSidebarCollapsed && setSidebarCollapsed(true)} aria-label="Sembunyikan sidebar">
+          <i className="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
         <button type="button" className="bo-sidebar-close" onClick={() => setSidebarOpen(false)} aria-label="Tutup menu">
           <i className="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>

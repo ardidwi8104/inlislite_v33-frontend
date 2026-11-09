@@ -32,6 +32,7 @@ export default function DashboardAdmin({ onLogout, onBackToSite }) {
     return m || 'dashboard';
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [stats, setStats] = useState(() => getLibraryStats());
 
   const [timeStr, setTimeStr] = useState('');
@@ -83,7 +84,7 @@ export default function DashboardAdmin({ onLogout, onBackToSite }) {
   };
 
   return (
-    <div className="backoffice">
+    <div className={`backoffice${sidebarCollapsed ? ' is-collapsed' : ''}`}>
       {sidebarOpen ? (
         <button
           type="button"
@@ -98,12 +99,14 @@ export default function DashboardAdmin({ onLogout, onBackToSite }) {
         setActiveMenu={setActiveMenu}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={setSidebarCollapsed}
         onLogout={onLogout}
         onProfile={() => setActiveMenu('profil')}
       />
 
       <div className="bo-main">
-        <BackofficeHeader role="ADMIN" onLogout={onLogout} onMenu={() => setSidebarOpen(true)} onProfile={() => setActiveMenu('profil')} />
+        <BackofficeHeader role="ADMIN" onLogout={onLogout} onMenu={() => { if (sidebarCollapsed) setSidebarCollapsed(false); else setSidebarOpen(true); }} onProfile={() => setActiveMenu('profil')} />
 
         <main className="bo-content">
           {renderContent()}

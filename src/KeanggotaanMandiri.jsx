@@ -113,23 +113,26 @@ export default function KeanggotaanMandiri() {
       <div className="container-fluid" style={{ maxWidth: '1200px' }}>
         
         {/* 2. Header Utama (Bagian Atas) */}
-        <div className="bg-white rounded-3 shadow-sm p-4 mb-4 text-center border">
-          <div className="d-inline-flex align-items-center justify-content-center gap-3">
-            <span
-              className="d-inline-flex align-items-center justify-content-center rounded-circle"
-              style={{ width: '48px', height: '48px', backgroundColor: '#EFF6FF', color: '#2563EB', fontSize: '1.5rem' }}
-            >
-              <i className="fa-solid fa-user-plus"></i>
-            </span>
-            <div className="text-start">
-              <h1 className="h3 fw-bold mb-0" style={{ color: '#2563EB' }}>
-                Pendaftaran Anggota
-              </h1>
-              <p className="mb-0 small" style={{ color: '#64748B' }}>
-                Daftarkan diri Anda sebagai anggota perpustakaan
-              </p>
-            </div>
-          </div>
+        <nav aria-label="breadcrumb" className="mb-2">
+          <ol className="breadcrumb small mb-2">
+            <li className="breadcrumb-item">
+              <a href="#home" className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center">
+                <i className="fa fa-home text-primary me-1"></i> Beranda
+              </a>
+            </li>
+            <li className="breadcrumb-item active text-muted" aria-current="page">Pendaftaran Anggota</li>
+          </ol>
+        </nav>
+        <div className="mb-4 mb-lg-5" style={{ maxWidth: '70ch' }}>
+          <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.66rem', letterSpacing: '0.14em' }}>
+            Pendaftaran Anggota
+          </p>
+          <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
+            Pendaftaran Anggota
+          </h1>
+          <p className="text-muted mb-0">
+            Daftarkan diri Anda sebagai anggota perpustakaan
+          </p>
         </div>
 
         {/* 3. Indikator Tahapan / Progress Bar Stepper */}
@@ -280,9 +283,8 @@ export default function KeanggotaanMandiri() {
                   </h5>
                 </div>
 
-                <div className="row g-3">
-                  {/* Baris 1: No. Identitas & Jenis Identitas */}
-                  <div className="col-md-6">
+                <div className="row g-3 align-items-start">
+                  <div className="col-12 col-md-6 col-xl-3">
                     <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
                       No. Identitas <span style={{ color: '#EF4444' }}>*</span>
                     </label>
@@ -305,7 +307,7 @@ export default function KeanggotaanMandiri() {
                     </span>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-12 col-md-6 col-xl-3">
                     <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
                       Jenis Identitas <span style={{ color: '#EF4444' }}>*</span>
                     </label>
@@ -323,8 +325,7 @@ export default function KeanggotaanMandiri() {
                     </select>
                   </div>
 
-                  {/* Baris 2: Email & Tombol Verifikasi */}
-                  <div className="col-md-6">
+                  <div className="col-12 col-md-6 col-xl-3">
                     <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
                       Email <span style={{ color: '#EF4444' }}>*</span>
                     </label>
@@ -347,10 +348,11 @@ export default function KeanggotaanMandiri() {
                     </span>
                   </div>
 
-                  <div className="col-md-6 d-flex align-items-center pt-md-2">
+                  <div className="col-12 col-md-6 col-xl-3">
+                    <label className="form-label small fw-bold d-none d-xl-block" style={{ color: '#1E293B' }}>&nbsp;</label>
                     <button
                       type="button"
-                      className="btn fw-semibold w-100 d-inline-flex align-items-center justify-content-center gap-2 py-2 mt-md-2"
+                      className="btn fw-semibold w-100 d-inline-flex align-items-center justify-content-center gap-2 py-2"
                       style={{
                         borderColor: '#2563EB',
                         color: '#2563EB',

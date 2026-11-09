@@ -58,7 +58,7 @@ export default function DetailBerita({ slug, onPageChange }) {
     : [currentNews.image, currentNews.image, currentNews.image]).slice(0, 3);
 
   return (
-    <div className="py-4" style={{ backgroundColor: '#F8FAFC', minHeight: '85vh', color: '#1E293B' }}>
+    <div className="py-4" style={{ backgroundColor: '#F8FAFC', minHeight: '85vh', color: '#1b3878' }}>
       <div className="container-fluid px-3 px-md-5" style={{ maxWidth: '1200px' }}>
         
         {/* 1. Breadcrumb (Navigasi Atas) */}
@@ -82,8 +82,8 @@ export default function DetailBerita({ slug, onPageChange }) {
                 Berita
               </a>
             </li>
-            <li className="breadcrumb-item active fw-bold text-dark" aria-current="page">
-              Detail Berita
+            <li className="breadcrumb-item active fw-bold text-primary" aria-current="page">
+              {currentNews.title}
             </li>
           </ol>
         </nav>
@@ -126,6 +126,7 @@ export default function DetailBerita({ slug, onPageChange }) {
                     style={{ borderRadius: '6px' }}
                     onClick={() => setDropdownBagikanOpen(!dropdownBagikanOpen)}
                   >
+                    <i className="fa-solid fa-share-nodes me-1"></i>
                     <span>Bagikan</span>
                     <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.75rem' }}></i>
                   </button>
@@ -150,12 +151,12 @@ export default function DetailBerita({ slug, onPageChange }) {
               </div>
 
               {/* C. Judul Berita (Article Title) */}
-              <h1 className="h2 fw-bold text-dark mb-4" style={{ lineHeight: 1.35 }}>
+              <h1 className="h2 fw-bold text-primary mb-4" style={{ lineHeight: 1.35 }}>
                 {currentNews.title}
               </h1>
 
               {/* D. Isi Artikel (Article Body) */}
-              <div className="article-body text-dark lh-lg mb-5" style={{ fontSize: '1.02rem' }}>
+              <div className="article-body text-primary lh-lg mb-5" style={{ fontSize: '1.02rem' }}>
                 {currentNews.blocks && currentNews.blocks.length > 0 ? (
                   currentNews.blocks.map((b, idx) => (
                     <div key={idx} className="mb-3" dangerouslySetInnerHTML={{ __html: b.content }} />
@@ -170,7 +171,7 @@ export default function DetailBerita({ slug, onPageChange }) {
 
               {/* E. Galeri Foto (Photo Gallery Section) */}
               <div className="galeri-section mb-5 pt-3 border-top">
-                <h5 className="fw-bold text-dark mb-3">Galeri Foto</h5>
+                <h5 className="fw-bold text-primary mb-3">Galeri Foto</h5>
                 <div className="row g-3">
                   {gallery.map((imgSrc, i) => (
                     <div key={i} className="col-4">
@@ -194,7 +195,8 @@ export default function DetailBerita({ slug, onPageChange }) {
                   <span className="small fw-bold text-muted me-1">Bagikan:</span>
                   <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(currentNews.title)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-success border" style={{ width: '34px', height: '34px' }} title="WhatsApp"><i className="fa-brands fa-whatsapp"></i></a>
                   <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-primary border" style={{ width: '34px', height: '34px' }} title="Facebook"><i className="fa-brands fa-facebook-f"></i></a>
-                  <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(currentNews.title)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-dark border" style={{ width: '34px', height: '34px' }} title="X / Twitter"><i className="fa-brands fa-x-twitter"></i></a>
+                  <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center border" style={{ width: '34px', height: '34px', color: '#E1306C' }} title="Instagram"><i className="fa-brands fa-instagram"></i></a>
+                  <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(currentNews.title)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-primary border" style={{ width: '34px', height: '34px' }} title="X / Twitter"><i className="fa-brands fa-x-twitter"></i></a>
                   <a href={`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(currentNews.title)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-info border" style={{ width: '34px', height: '34px' }} title="Telegram"><i className="fa-brands fa-telegram"></i></a>
                   <button type="button" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-secondary border" style={{ width: '34px', height: '34px' }} title="Salin Tautan" onClick={handleCopyLink}><i className="fa-solid fa-link"></i></button>
                 </div>
@@ -210,8 +212,8 @@ export default function DetailBerita({ slug, onPageChange }) {
           <div className="col-lg-4">
             <div className="bg-white rounded-3 p-4 shadow-sm border">
               <div className="pb-3 mb-3 border-bottom">
-                <h5 className="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
-                  <i className="fa-solid fa-book-bookmark text-primary"></i> Berita Lainnya
+                <h5 className="fw-bold mb-0 text-primary d-flex align-items-center gap-2">
+                  <i className="fa-solid fa-newspaper text-primary"></i> Berita Lainnya
                 </h5>
               </div>
               <div className="d-flex flex-column gap-3">
@@ -233,7 +235,7 @@ export default function DetailBerita({ slug, onPageChange }) {
                       <div className="small text-muted mb-1" style={{ fontSize: '0.78rem' }}>
                         <i className="fa-regular fa-calendar text-primary me-1"></i> {item.date}
                       </div>
-                      <h6 className="fw-bold mb-0 text-dark" style={{ fontSize: '0.88rem', lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                      <h6 className="fw-bold mb-0 text-primary" style={{ fontSize: '0.88rem', lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                         {item.title}
                       </h6>
                     </div>

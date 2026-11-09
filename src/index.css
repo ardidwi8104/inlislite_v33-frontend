@@ -1370,6 +1370,24 @@ video {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.bo-sidebar-toggle {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0;
+  color: #cfd8e1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+}
+
+.bo-sidebar-toggle:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 .bo-sidebar-body {
   flex: 1 1 auto;
   padding: 1.1rem 0.85rem;
@@ -1496,8 +1514,9 @@ video {
 
 .bo-sidebar-avatar i {
   color: var(--brass-soft);
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   line-height: 1;
+  margin-left: -6px;
 }
 
 .bo-sidebar-user strong {
@@ -3569,3 +3588,21 @@ table thead th {
   vertical-align: middle;
 }
 
+
+@media (min-width: 992px) {
+  .bo-sidebar-toggle {
+    display: grid;
+  }
+
+  .backoffice.is-collapsed .bo-sidebar {
+    flex: 0 0 0;
+    width: 0;
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: flex-basis 0.22s ease, width 0.22s ease, transform 0.22s ease;
+  }
+
+  .backoffice.is-collapsed .bo-menu-button {
+    display: inline-flex;
+  }
+}
