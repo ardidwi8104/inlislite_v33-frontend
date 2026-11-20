@@ -285,18 +285,6 @@ export default function BukuTamu() {
         {/* BAGIAN ATAS: JUDUL & JUMLAH KUNJUNGAN */}
         <div className="card border-0 rounded-4 shadow-sm mb-4 overflow-hidden bg-white">
           <div className="p-4 p-md-5 pb-4">
-            {/* Breadcrumb */}
-            <nav aria-label="breadcrumb" className="mb-2">
-              <ol className="breadcrumb small mb-2">
-                <li className="breadcrumb-item">
-                  <a href="#home" className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center">
-                    <i className="fa fa-home text-primary me-1"></i> Beranda
-                  </a>
-                </li>
-                <li className="breadcrumb-item active text-muted" aria-current="page">Buku Tamu</li>
-              </ol>
-            </nav>
-
             {/* Judul & Subjudul */}
             <div className="mb-1" style={{ maxWidth: '70ch' }}>
               <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>

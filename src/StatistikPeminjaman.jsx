@@ -14,35 +14,8 @@ export default function StatistikPeminjaman({ onPageChange }) {
     <section className="py-4" style={{ backgroundColor: '#F8FAFC', minHeight: '85vh', color: '#1E293B' }}>
       <div className="container-fluid px-3 px-md-5" style={{ maxWidth: '1240px' }}>
         
-        {/* 3.1 Breadcrumb & Header Halaman */}
-        <nav aria-label="breadcrumb" className="mb-3">
-          <ol className="breadcrumb small mb-1">
-            <li className="breadcrumb-item">
-              <a
-                href="#home"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); }}
-                className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center"
-              >
-                <i className="fa-solid fa-house me-1"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                href="#statistik"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('statistik'); }}
-                className="text-decoration-none text-primary fw-medium"
-              >
-                Statistik
-              </a>
-            </li>
-            <li className="breadcrumb-item active text-muted" aria-current="page">
-              Statistik Peminjaman
-            </li>
-          </ol>
-        </nav>
-
         <div className="mb-4">
-          <h1 className="h3 fw-bold mb-1" style={{ color: '#1E3A8A' }}>
+          <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
             Statistik Peminjaman & Pengembalian
           </h1>
           <p className="text-muted small mb-0">

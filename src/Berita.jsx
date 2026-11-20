@@ -19,22 +19,6 @@ export default function Berita({ onPageChange }) {
   return (
     <section className="py-4" style={{ backgroundColor: '#f8f9fa', minHeight: '80vh' }}>
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
-        {/* Breadcrumb */}
-        <nav aria-label="breadcrumb" className="mb-2">
-          <ol className="breadcrumb small mb-2">
-            <li className="breadcrumb-item">
-              <a
-                href="#home"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); }}
-                className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center"
-              >
-                <i className="fa fa-home text-primary me-1"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item active text-muted" aria-current="page">Berita</li>
-          </ol>
-        </nav>
-
         {/* Page Title */}
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p

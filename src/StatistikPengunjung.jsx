@@ -27,33 +27,6 @@ export default function StatistikPengunjung({ onPageChange }) {
     <section className="py-4" style={{ backgroundColor: '#F8FAFC', minHeight: '85vh', color: '#1E293B' }}>
       <div className="container-fluid px-3 px-md-5" style={{ maxWidth: '1240px' }}>
         
-        {/* 2.1 Breadcrumb & Header Halaman */}
-        <nav aria-label="breadcrumb" className="mb-3">
-          <ol className="breadcrumb small mb-1">
-            <li className="breadcrumb-item">
-              <a
-                href="#home"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); }}
-                className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center"
-              >
-                <i className="fa-solid fa-house me-1"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                href="#statistik"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('statistik'); }}
-                className="text-decoration-none text-primary fw-medium"
-              >
-                Statistik
-              </a>
-            </li>
-            <li className="breadcrumb-item active text-muted" aria-current="page">
-              Statistik Pengunjung
-            </li>
-          </ol>
-        </nav>
-
         <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
           <div style={{ maxWidth: '70ch' }}>
             <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>

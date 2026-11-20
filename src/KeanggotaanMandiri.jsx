@@ -112,17 +112,6 @@ export default function KeanggotaanMandiri() {
     <div className="w-100 py-4 px-3 px-md-4" style={{ backgroundColor: '#F8FAFC', minHeight: '100vh', color: '#1E293B' }}>
       <div className="container-fluid" style={{ maxWidth: '1200px' }}>
         
-        {/* 2. Header Utama (Bagian Atas) */}
-        <nav aria-label="breadcrumb" className="mb-2">
-          <ol className="breadcrumb small mb-2">
-            <li className="breadcrumb-item">
-              <a href="#home" className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center">
-                <i className="fa fa-home text-primary me-1"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item active text-muted" aria-current="page">Pendaftaran Anggota</li>
-          </ol>
-        </nav>
         <div className="mb-4 mb-lg-5" style={{ maxWidth: '70ch' }}>
           <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
             Pendaftaran Anggota

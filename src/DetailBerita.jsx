@@ -61,33 +61,6 @@ export default function DetailBerita({ slug, onPageChange }) {
     <div className="py-4" style={{ backgroundColor: '#F8FAFC', minHeight: '85vh', color: '#1b3878' }}>
       <div className="container-fluid px-3 px-md-5" style={{ maxWidth: '1200px' }}>
         
-        {/* 1. Breadcrumb (Navigasi Atas) */}
-        <nav aria-label="breadcrumb" className="mb-4">
-          <ol className="breadcrumb small mb-0 text-muted">
-            <li className="breadcrumb-item">
-              <a
-                href="#home"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); }}
-                className="text-decoration-none text-muted d-inline-flex align-items-center"
-              >
-                <i className="fa-solid fa-house me-1 text-primary"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                href="#berita"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('berita'); }}
-                className="text-decoration-none text-muted"
-              >
-                Berita
-              </a>
-            </li>
-            <li className="breadcrumb-item active fw-bold text-primary" aria-current="page">
-              {currentNews.title}
-            </li>
-          </ol>
-        </nav>
-
         {/* 2. Layout Grid 2 Kolom (Main Content & Sidebar) */}
         <div className="row g-4">
           

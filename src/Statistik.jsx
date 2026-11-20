@@ -37,26 +37,13 @@ export default function Statistik({ onPageChange }) {
         className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5"
         style={{ width: '100%', maxWidth: 'none', marginLeft: 0, marginRight: 0, paddingLeft: '1rem', paddingRight: '1rem' }}
       >
-        {/* Breadcrumb */}
-        <nav aria-label="breadcrumb" className="mb-2">
-          <ol className="breadcrumb small mb-2">
-            <li className="breadcrumb-item">
-              <a
-                href="#home"
-                onClick={(e) => { e.preventDefault(); if (onPageChange) onPageChange('home'); }}
-                className="text-decoration-none text-primary fw-medium d-inline-flex align-items-center"
-              >
-                <i className="fa fa-home text-primary me-1"></i> Beranda
-              </a>
-            </li>
-            <li className="breadcrumb-item active text-muted" aria-current="page">Statistik</li>
-          </ol>
-        </nav>
-
         {/* Title */}
+        <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+          Statistik
+        </p>
         <h1
-          className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2"
-          style={{ fontSize: '1.875rem', fontWeight: 700, color: '#1b3878', marginBottom: '0.5rem' }}
+          className="mb-2"
+          style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', fontWeight: 700, color: '#1b3878', marginBottom: '0.5rem' }}
         >
           Statistik Perpustakaan
         </h1>
