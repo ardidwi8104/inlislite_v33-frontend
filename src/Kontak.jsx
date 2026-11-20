@@ -23,7 +23,7 @@ export default function Kontak() {
               className="text-uppercase fw-bold mb-2"
               style={{ color: ACCENT, fontSize: '0.78rem', letterSpacing: '0.12em' }}
             >
-              Hubungi Kami
+              Kontak
             </p>
             <h1
               className="mb-2"

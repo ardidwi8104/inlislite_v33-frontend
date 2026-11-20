@@ -43,7 +43,7 @@ export default function Galeri({ onPageChange }) {
             className="text-uppercase fw-bold mb-2"
             style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
           >
-            Dokumentasi
+             Galeri
           </p>
           <h1
             className="mb-2"

@@ -25,7 +25,7 @@ export default function Berita({ onPageChange }) {
             className="text-uppercase fw-bold mb-2"
             style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
           >
-            Kabar perpustakaan
+             Berita
           </p>
           <h1
             className="mb-2"

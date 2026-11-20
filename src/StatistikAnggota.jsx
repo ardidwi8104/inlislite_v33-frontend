@@ -20,7 +20,7 @@ export default function StatistikAnggota({ onPageChange }) {
         
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
-            Statistik Anggota
+            Statistik
           </p>
           <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
             Statistik Anggota
