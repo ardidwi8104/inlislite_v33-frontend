@@ -29,7 +29,12 @@ function loadBeritaGaleri() {
 
 export default function Galeri({ onPageChange }) {
   const beritaGaleri = React.useMemo(loadBeritaGaleri, []);
-  const allGallery = [...beritaGaleri, ...galleryData];
+  const seenImages = new Set();
+  const allGallery = [...beritaGaleri, ...galleryData].filter((item) => {
+    if (!item?.image || seenImages.has(item.image)) return false;
+    seenImages.add(item.image);
+    return true;
+  });
   return (
     <section className="py-4" style={{ backgroundColor: '#f8f9fa', minHeight: '80vh' }}>
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">

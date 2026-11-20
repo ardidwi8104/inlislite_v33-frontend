@@ -4,38 +4,8 @@ import { newsData } from './data/beritaData';
 export default function DetailBerita({ slug, onPageChange }) {
   const [dropdownBagikanOpen, setDropdownBagikanOpen] = useState(false);
 
-  // Ambil list berita lengkap dari localStorage atau fallback
-  let allNews = newsData;
-  try {
-    const raw = window.localStorage.getItem('inlislite.berita.v1');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        const mapped = parsed.map((item) => ({
-          id: item.id,
-          slug: item.slug || (item.judul ? item.judul.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : `berita-${item.id}`),
-          title: item.judul,
-          date: item.tanggal ? new Date(item.tanggal).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) : '25 Mei 2026',
-          author: item.publisher || 'admin',
-          image: item.thumbnail || item.image || '/berita/20260525_1779692444_56ff96b0e43c16323dd6.jpg',
-          desc: item.ket || item.desc || '',
-          lokasi: item.lokasi || 'Penajam',
-          blocks: item.blocks || [],
-          p1: item.p1,
-          p2: item.p2,
-          galeri: item.galeri && item.galeri.length ? item.galeri : undefined,
-        }));
-        allNews = [...mapped, ...newsData];
-        // Hapus duplikat id agar key React unik di sidebar
-        const seenIds = new Set();
-        allNews = allNews.filter((item) => {
-          if (seenIds.has(item.id)) return false;
-          seenIds.add(item.id);
-          return true;
-        });
-      }
-    }
-  } catch (e) {}
+  // Ambil list berita lengkap hanya dari data dummy JS (agar tidak terdobel)
+  const allNews = newsData;
 
   const fallback = newsData[0];
   // Temukan berita yang sedang aktif
