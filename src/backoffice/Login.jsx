@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CaptchaField, { useCaptcha } from '../Captcha';
 import { listPetugasAccounts } from '../lib/libraryStore';
 

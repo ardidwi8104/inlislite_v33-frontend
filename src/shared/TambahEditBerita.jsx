@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Modal from '../components/Modal';
 
 let blockIdCounter = 100;
@@ -178,7 +178,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
         <form onSubmit={handleSave}>
           {/* Thumbnail */}
           <div className="mb-4">
-            <label className="form-label fw-bold small text-dark mb-2">Thumbnail Berita <span className="text-danger">*</span></label>
+            <label className="form-label fw-semibold small text-dark mb-2">Thumbnail Berita <span className="text-danger">*</span></label>
             <div className="border rounded-4 p-4 text-center position-relative d-flex flex-column align-items-center justify-content-center" style={{ border: '2px dashed #CBD5E1', backgroundColor: '#FAFCFE', minHeight: '210px', cursor: 'pointer', transition: 'all 0.2s' }} onClick={() => fileInputRef.current?.click()}>
               <input ref={fileInputRef} type="file" accept="image/png, image/jpeg, image/jpg" className="d-none" onChange={handleThumbnailChange} />
               {thumbnailPreview ? (
@@ -199,7 +199,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
                   </div>
                   <div className="fw-semibold text-dark mb-1" style={{ fontSize: '0.95rem' }}>Klik untuk upload thumbnail</div>
                   <div className="text-muted small mb-3" style={{ fontSize: '0.8rem' }}>PNG, JPG hingga 10MB</div>
-                  <button type="button" className="btn px-4 py-2 text-white fw-bold rounded-3 shadow-sm" style={{ backgroundColor: '#1b3878', fontSize: '0.85rem' }}>Pilih File</button>
+                  <button type="button" className="btn px-4 py-2 text-white fw-semibold rounded-3 shadow-sm" style={{ backgroundColor: '#1b3878', fontSize: '0.85rem' }}>Pilih File</button>
                 </>
               )}
             </div>
@@ -209,7 +209,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
 
           {/* Tanggal */}
           <div className="mb-4">
-            <label className="form-label fw-bold small text-dark mb-2">Tanggal Berita <span className="text-danger">*</span></label>
+            <label className="form-label fw-semibold small text-dark mb-2">Tanggal Berita <span className="text-danger">*</span></label>
             <input
               type="date"
               className={`form-control rounded-3 py-2 px-3 fw-medium text-dark ${errors.tanggal ? 'is-invalid' : ''} shadow-none`}
@@ -224,7 +224,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
 
           {/* Judul */}
           <div className="mb-4">
-            <label className="form-label fw-bold small text-dark mb-2">Judul Berita <span className="text-danger">*</span></label>
+            <label className="form-label fw-semibold small text-dark mb-2">Judul Berita <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control rounded-3 py-2 px-3 text-dark ${errors.judul ? 'is-invalid' : ''} shadow-none`}
@@ -241,14 +241,14 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
           <div className="mb-4">
             <div className="d-flex flex-column flex-sm-row sm-align-items-center justify-content-between gap-2 mb-2">
               <div>
-                <label className="form-label fw-bold small text-dark mb-0">Konten Berita <span className="text-danger">*</span></label>
+                <label className="form-label fw-semibold small text-dark mb-0">Konten Berita <span className="text-danger">*</span></label>
                 <div className="text-muted" style={{ fontSize: '0.875rem' }}>Susun konten dengan teks dan gambar. Ringkasan otomatis diambil dari teks pertama.</div>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <button type="button" onClick={addTextBlock} className="btn btn-sm px-3 py-1.5 rounded-3 fw-bold text-white d-flex align-items-center gap-1 shadow-sm" style={{ backgroundColor: '#1b3878', fontSize: '0.9rem' }}>
-                  <span className="fw-bold fs-6">T</span> Teks
+                <button type="button" onClick={addTextBlock} className="btn btn-sm px-3 py-1.5 rounded-3 fw-semibold text-white d-flex align-items-center gap-1 shadow-sm" style={{ backgroundColor: '#1b3878', fontSize: '0.9rem' }}>
+                  <span className="fw-semibold fs-6">T</span> Teks
                 </button>
-                <button type="button" onClick={addImageBlock} className="btn btn-sm px-3 py-1.5 rounded-3 fw-bold text-white d-flex align-items-center gap-1 shadow-sm" style={{ backgroundColor: '#0e7490', border: 'none', fontSize: '0.9rem' }}>
+                <button type="button" onClick={addImageBlock} className="btn btn-sm px-3 py-1.5 rounded-3 fw-semibold text-white d-flex align-items-center gap-1 shadow-sm" style={{ backgroundColor: '#0e7490', border: 'none', fontSize: '0.9rem' }}>
                   <i className="fa-regular fa-image"></i> Gambar
                 </button>
               </div>
@@ -260,7 +260,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
                 return (
                   <div key={block.id} className="border rounded-4 bg-white shadow-sm overflow-hidden" style={{ borderColor: '#dee2e6' }}>
                     <div className="d-flex align-items-center justify-content-between px-3 py-2 bg-light border-bottom" style={{ fontSize: '0.85rem' }}>
-                      <div className="d-flex align-items-center gap-2 fw-bold text-secondary">
+                      <div className="d-flex align-items-center gap-2 fw-semibold text-secondary">
                         {block.type === 'text' ? (<><i className="fa-regular fa-file-lines text-primary"></i><span>Blok Teks #{textIndex}</span></>) : (<><i className="fa-regular fa-image text-warning"></i><span>Blok Gambar #{imageIndex}</span></>)}
                       </div>
                       <div className="d-flex align-items-center gap-2">
@@ -274,7 +274,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
                         {block.type === 'text' ? (
                           <div>
                             <div className="d-flex flex-wrap align-items-center gap-1 p-2 rounded-3 mb-2 bg-white border" style={{ borderColor: '#dee2e6' }}>
-                              <button type="button" className="btn btn-sm btn-light border-0 fw-bold px-2 py-1 text-secondary" title="Bold" onClick={() => executeCommand('bold')}>B</button>
+                              <button type="button" className="btn btn-sm btn-light border-0 fw-semibold px-2 py-1 text-secondary" title="Bold" onClick={() => executeCommand('bold')}>B</button>
                               <button type="button" className="btn btn-sm btn-light border-0 fst-italic px-2 py-1 text-secondary" title="Italic" onClick={() => executeCommand('italic')}>I</button>
                               <button type="button" className="btn btn-sm btn-light border-0 text-decoration-underline px-2 py-1 text-secondary" title="Underline" onClick={() => executeCommand('underline')}>U</button>
                               <div className="vr mx-1 my-auto" style={{ height: '18px' }}></div>
@@ -286,7 +286,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
                               <button type="button" className="btn btn-sm btn-light border-0 px-2 py-1 text-secondary" title="Numbered List" onClick={() => executeCommand('insertOrderedList')}><i className="fa-solid fa-list-ol"></i></button>
                               <div className="vr mx-1 my-auto" style={{ height: '18px' }}></div>
                               <button type="button" className="btn btn-sm btn-light border-0 small px-2 py-1 text-secondary" title="Lowercase" onClick={() => { const sel = window.getSelection(); if (sel && sel.toString()) document.execCommand('insertText', false, sel.toString().toLowerCase()); }}>abc</button>
-                              <button type="button" className="btn btn-sm btn-light border-0 small px-2 py-1 text-secondary fw-bold" title="Uppercase" onClick={() => { const sel = window.getSelection(); if (sel && sel.toString()) document.execCommand('insertText', false, sel.toString().toUpperCase()); }}>ABC</button>
+                              <button type="button" className="btn btn-sm btn-light border-0 small px-2 py-1 text-secondary fw-semibold" title="Uppercase" onClick={() => { const sel = window.getSelection(); if (sel && sel.toString()) document.execCommand('insertText', false, sel.toString().toUpperCase()); }}>ABC</button>
                               <div className="vr mx-1 my-auto" style={{ height: '18px' }}></div>
                               <button type="button" className="btn btn-sm btn-light border-0 px-2 py-1 text-secondary" title="Align Left" onClick={() => executeCommand('justifyLeft')}><i className="fa-solid fa-align-left"></i></button>
                               <button type="button" className="btn btn-sm btn-light border-0 px-2 py-1 text-secondary" title="Align Center" onClick={() => executeCommand('justifyCenter')}><i className="fa-solid fa-align-center"></i></button>
@@ -334,7 +334,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
           {/* 6. GALERI BERITA (maksimal 10 foto) */}
           <div className="mb-4">
             <div className="d-flex align-items-center justify-content-between gap-2 mb-2">
-              <label className="form-label fw-bold small text-dark mb-0">
+              <label className="form-label fw-semibold small text-dark mb-0">
                 Galeri <span className="text-muted fw-normal">(foto tampil di halaman Galeri publik)</span>
               </label>
               <span className="small text-muted">{formGaleri.length}/10 foto</span>
@@ -344,7 +344,7 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
               <div className="border rounded-3 p-4 text-center bg-light" style={{ borderStyle: 'dashed', borderColor: '#CBD5E1', cursor: 'pointer' }} onClick={() => galeriFileRef.current?.click()}>
                 <i className="fa-regular fa-images text-muted mb-2" style={{ fontSize: '2rem' }}></i>
                 <div className="fw-semibold text-secondary small mb-1">Klik untuk tambah foto galeri</div>
-                <div className="text-muted small">JPG, PNG, GIF â€” maksimal 10 foto.</div>
+                <div className="text-muted small">JPG, PNG, GIF — maksimal 10 foto.</div>
               </div>
             ) : (
               <div className="row g-2">
@@ -370,8 +370,8 @@ export default function TambahEditBerita({ show, editing, publisher, onClose, on
 
           {/* Tombol aksi */}
           <div className="d-flex gap-3 pt-3 border-top mt-4">
-            <button type="button" className="btn flex-fill py-2.5 fw-bold rounded-3 text-secondary" style={{ backgroundColor: '#dee2e6', border: 'none', fontSize: '0.95rem' }} onClick={onClose}>Batal</button>
-            <button type="submit" className="btn flex-fill py-2.5 fw-bold text-white rounded-3 shadow-sm" style={{ backgroundColor: '#1b3878', border: 'none', fontSize: '0.95rem' }}>Simpan Berita</button>
+            <button type="button" className="btn flex-fill py-2.5 fw-semibold rounded-3 text-secondary" style={{ backgroundColor: '#dee2e6', border: 'none', fontSize: '0.95rem' }} onClick={onClose}>Batal</button>
+            <button type="submit" className="btn flex-fill py-2.5 fw-semibold text-white rounded-3 shadow-sm" style={{ backgroundColor: '#1b3878', border: 'none', fontSize: '0.95rem' }}>Simpan Berita</button>
           </div>
         </form>
       </div>

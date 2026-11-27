@@ -18,7 +18,7 @@ export default function Header() {
         </a>
 
         <div className="site-header-title">
-          <span style={{ fontWeight: 700 }}>Perpustakaan Daerah</span>
+          <span style={{ fontWeight: 600 }}>Perpustakaan Daerah</span>
           <strong style={{ fontWeight: 600 }}>Kabupaten Penajam Paser Utara</strong>
         </div>
 

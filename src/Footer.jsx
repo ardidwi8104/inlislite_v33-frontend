@@ -1,4 +1,4 @@
-ï»¿import React from 'react';
+import React from 'react';
 
 export default function Footer() {
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
                   style={{ maxHeight: '46px', maxWidth: '100%', objectFit: 'contain' }}
                 />
               </div>
-              <h3 className="fw-bold text-white mb-0" style={{ fontSize: '1.4rem', lineHeight: 1.2 }}>
+              <h3 className="fw-semibold text-white mb-0" style={{ fontSize: '1.4rem', lineHeight: 1.2 }}>
                 Perpustakaan<br />Mitra
               </h3>
             </div>
@@ -43,7 +43,7 @@ export default function Footer() {
                   key={i}
                   href={s.href}
                   className="d-inline-flex align-items-center justify-content-center rounded-circle footer-social text-decoration-none"
-                  style={{ width: 38, height: 38, backgroundColor: 'rgba(255,255,255,0.1)', color: '#fff', transition: 'all .2s ease' }}
+                  style={{ width: 38, height: 38, backgroundColor: 'rgba(255,255,255,0.1)', color: '#fff', transition: 'color .2s ease, background-color .2s ease, border-color .2s ease' }}
                   aria-label={s.icon}
                 >
                   <i className={s.icon} style={{ fontSize: '.95rem' }}></i>
@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* Kolom 2: Layanan */}
           <div className="col-lg-4 col-md-6">
-            <h4 className="fw-bold text-white mb-3" style={{ fontSize: '1.15rem' }}>Layanan</h4>
+            <h4 className="fw-semibold text-white mb-3" style={{ fontSize: '1.15rem' }}>Layanan</h4>
             <ul className="list-unstyled d-flex flex-column gap-2 mb-0" style={{ fontSize: '0.9rem' }}>
               {[
                 'Daftar Anggota Online',
@@ -77,7 +77,7 @@ export default function Footer() {
 
           {/* Kolom 3: Kontak & Lokasi */}
           <div className="col-lg-4 col-md-6">
-            <h4 className="fw-bold text-white mb-3" style={{ fontSize: '1.15rem' }}>Kontak &amp; Lokasi</h4>
+            <h4 className="fw-semibold text-white mb-3" style={{ fontSize: '1.15rem' }}>Kontak &amp; Lokasi</h4>
             <ul className="list-unstyled d-flex flex-column gap-3 mb-0" style={{ fontSize: '0.9rem' }}>
               <li className="d-flex gap-3">
                 <i className="fa-solid fa-location-dot flex-shrink-0" style={{ color: '#38BDF8', fontSize: '1.05rem', width: 20, textAlign: 'center', marginTop: 2 }}></i>
@@ -94,9 +94,9 @@ export default function Footer() {
               <li className="d-flex gap-3">
                 <i className="fa-regular fa-clock flex-shrink-0" style={{ color: '#38BDF8', fontSize: '1.05rem', width: 20, textAlign: 'center', marginTop: 2 }}></i>
                 <div style={{ color: '#94A3B8' }}>
-                  <div className="fw-bold text-white" style={{ fontSize: '0.9rem' }}>Jam Operasional:</div>
-                  <div>â€¢ Senin â€“ Jumat: Pukul 08.00 â€“ 19.00 WITA</div>
-                  <div>â€¢ Sabtu â€“ Minggu: Pukul 09.00 â€“ 15.30 WITA</div>
+                  <div className="fw-semibold text-white" style={{ fontSize: '0.9rem' }}>Jam Operasional:</div>
+                  <div>• Senin – Jumat: Pukul 08.00 – 19.00 WITA</div>
+                  <div>• Sabtu – Minggu: Pukul 09.00 – 15.30 WITA</div>
                   <div className="fst-italic mt-1" style={{ fontSize: '0.8rem' }}>*Perpustakaan tutup pada hari Libur Nasional dan Cuti Bersama.</div>
                 </div>
               </li>
@@ -107,7 +107,7 @@ export default function Footer() {
         <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '24px 0 24px', opacity: 1 }} />
 
         <div className="text-center" style={{ color: '#94A3B8', fontSize: '0.875rem' }}>
-          Â© 2026 Perpustakaan Mitra. All rights reserved.
+          © 2026 Perpustakaan Mitra. All rights reserved.
         </div>
       </div>
     </footer>

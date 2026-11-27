@@ -77,7 +77,7 @@ export default function ProfilSaya({ role = 'admin' }) {
                 {avatar ? <img src={avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <i className="fa-solid fa-user fa-2x text-primary"></i>}
               </div>
               <div>
-                <h4 className="fw-bold text-white mb-0">{profile.name}</h4>
+                <h4 className="fw-semibold text-white mb-0">{profile.name}</h4>
                 <span className="badge bg-light text-dark">{profile.username}</span>
               </div>
             </div>

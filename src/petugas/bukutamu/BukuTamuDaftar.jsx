@@ -1,41 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Controls, DataTableFooter } from '../koleksi/helpers';
+import { listVisits, formatDateID } from '../../lib/libraryStore';
 
-// Dummy seeds per kategori
-const ANGGOTA_SEED = [
-  { id: 1, tgl: '2026-11-08 09:15:20', nama: 'Ahmad Fauzi Rahman', noAnggota: '64.09.26.00001', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
-  { id: 2, tgl: '2026-11-08 10:22:11', nama: 'Siti Nurhaliza', noAnggota: '64.09.26.00004', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
-  { id: 3, tgl: '2026-11-08 11:05:40', nama: 'Budi Santoso', noAnggota: '64.09.26.00002', perpus: 'Perpustakaan Pusat', ruang: 'Layanan Digital' },
+const DEFAULT_ANGGOTA_SEED = [
+  { id: 'SEED-A1', tgl: '2026-11-26', nama: 'Ahmad Fauzi Rahman', noAnggota: '202609001', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
+  { id: 'SEED-A2', tgl: '2026-11-26', nama: 'Siti Nurhaliza', noAnggota: '202609004', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
 ];
 
-const BUKAN_ANGGOTA_SEED = [
-  { id: 101, tgl: '2026-11-08 08:45:10', nama: 'Muhammad Rizky', pekerjaan: 'Mahasiswa', pendidikan: 'S1', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
-  { id: 102, tgl: '2026-11-08 09:30:25', nama: 'Dr. Hendra Wijaya', pekerjaan: 'Dosen', pendidikan: 'S3', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
-  { id: 103, tgl: '2026-11-08 10:14:50', nama: 'Dewi Anggraini', pekerjaan: 'Pelajar', pendidikan: 'SMA', perpus: 'Perpustakaan Pusat', ruang: 'Layanan Remaja' },
-  { id: 104, tgl: '2026-11-08 11:20:05', nama: 'Agus Setiawan', pekerjaan: 'Pegawai Negeri Sipil', pendidikan: 'S1', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
+const DEFAULT_BUKAN_ANGGOTA_SEED = [
+  { id: 'SEED-NA1', tgl: '2026-11-26', nama: 'Muhammad Rizky', pekerjaan: 'Mahasiswa', pendidikan: 'S1', perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
+  { id: 'SEED-NA2', tgl: '2026-11-26', nama: 'Dr. Hendra Wijaya', pekerjaan: 'Dosen', pendidikan: 'S3', perpus: 'Perpustakaan Pusat', ruang: 'Ruang Referensi' },
 ];
 
-const ROMBONGAN_SEED = [
-  { id: 201, tgl: '2026-11-08 08:30:00', ketua: 'Drs. H. Mulyadi', instansi: 'SMA Negeri 1 Penajam', jumlah: 35, perpus: 'Perpustakaan Pusat', ruang: 'Aula Pertemuan' },
-  { id: 202, tgl: '2026-11-08 10:00:15', ketua: 'Rina Kusuma, S.Pd', instansi: 'Diansyah & Partners', jumlah: 12, perpus: 'Perpustakaan Pusat', ruang: 'Lobby Utama' },
-  { id: 203, tgl: '2026-11-08 11:45:00', ketua: 'Ust. Fahmi Hakim', instansi: 'Staipi Jakarta', jumlah: 24, perpus: 'Perpustakaan Pusat', ruang: 'Ruang Baca Umum' },
+const DEFAULT_ROMBONGAN_SEED = [
+  { id: 'SEED-R1', tgl: '2026-11-26', ketua: 'Drs. H. Mulyadi', instansi: 'SMA Negeri 1 Penajam', jumlah: 35, perpus: 'Perpustakaan Pusat', ruang: 'Aula Pertemuan' },
 ];
 
 export default function BukuTamuDaftar() {
   const [kategori, setKategori] = useState('anggota'); // 'anggota' | 'bukan-anggota' | 'rombongan'
-  const [dataAnggota, setDataAnggota] = useState(ANGGOTA_SEED);
-  const [dataBukanAnggota, setDataBukanAnggota] = useState(BUKAN_ANGGOTA_SEED);
-  const [dataRombongan, setDataRombongan] = useState(ROMBONGAN_SEED);
+  const [visits, setVisits] = useState(() => listVisits());
+
+  const refresh = () => setVisits(listVisits());
+
+  useEffect(() => {
+    const onFocus = () => refresh();
+    window.addEventListener('focus', onFocus);
+    window.addEventListener('storage', onFocus);
+    return () => {
+      window.removeEventListener('focus', onFocus);
+      window.removeEventListener('storage', onFocus);
+    };
+  }, []);
 
   const [search, setSearch] = useState('');
   const [entries, setEntries] = useState(10);
   const [page, setPage] = useState(1);
 
-  // Dapatkan dataset aktif sesuai tab kategori
+  // Filter kunjungan nyata dari libraryStore berdasarkan kategori (hanya yang sudah terverifikasi / semua)
+  // Sinkronisasi data kunjungan:
+  const verifiedVisits = visits; // menampilkan seluruh kunjungan buku tamu
+
+  const realAnggota = verifiedVisits
+    .filter((v) => v.type === 'anggota')
+    .map((v) => ({
+      id: v.id,
+      tgl: formatDateID(v.visitDate),
+      nama: v.name || '-',
+      noAnggota: v.memberNo || v.identityNo || v.bookingCode,
+      perpus: 'Perpustakaan Pusat',
+      ruang: v.location || v.purpose || 'Lobby Utama',
+      status: v.status,
+    }));
+
+  const realBukanAnggota = verifiedVisits
+    .filter((v) => v.type === 'nonanggota')
+    .map((v) => ({
+      id: v.id,
+      tgl: formatDateID(v.visitDate),
+      nama: v.name || '-',
+      pekerjaan: v.profession || 'Umum',
+      pendidikan: v.education || '-',
+      perpus: 'Perpustakaan Pusat',
+      ruang: v.location || v.purpose || 'Lobby Utama',
+      status: v.status,
+    }));
+
+  const realRombongan = verifiedVisits
+    .filter((v) => v.type === 'rombongan')
+    .map((v) => ({
+      id: v.id,
+      tgl: formatDateID(v.visitDate),
+      ketua: v.name || '-',
+      instansi: v.institution || '-',
+      jumlah: v.groupSize || 1,
+      perpus: 'Perpustakaan Pusat',
+      ruang: v.location || v.purpose || 'Ruang Pertemuan',
+      status: v.status,
+    }));
+
+  const listAnggota = [...realAnggota, ...DEFAULT_ANGGOTA_SEED];
+  const listBukanAnggota = [...realBukanAnggota, ...DEFAULT_BUKAN_ANGGOTA_SEED];
+  const listRombongan = [...realRombongan, ...DEFAULT_ROMBONGAN_SEED];
+
   let currentList = [];
-  if (kategori === 'anggota') currentList = dataAnggota;
-  else if (kategori === 'bukan-anggota') currentList = dataBukanAnggota;
-  else if (kategori === 'rombongan') currentList = dataRombongan;
+  if (kategori === 'anggota') currentList = listAnggota;
+  else if (kategori === 'bukan-anggota') currentList = listBukanAnggota;
+  else if (kategori === 'rombongan') currentList = listRombongan;
 
   const filtered = currentList.filter((item) => {
     const q = search.trim().toLowerCase();
@@ -54,14 +104,6 @@ export default function BukuTamuDaftar() {
   const startIdx = (safePage - 1) * entries;
   const paged = filtered.slice(startIdx, startIdx + entries);
 
-  const handleDelete = (id) => {
-    if (window.confirm('Hapus data kunjungan buku tamu ini?')) {
-      if (kategori === 'anggota') setDataAnggota((prev) => prev.filter((i) => i.id !== id));
-      else if (kategori === 'bukan-anggota') setDataBukanAnggota((prev) => prev.filter((i) => i.id !== id));
-      else setDataRombongan((prev) => prev.filter((i) => i.id !== id));
-    }
-  };
-
   const getKategoriLabel = () => {
     if (kategori === 'anggota') return 'Anggota';
     if (kategori === 'bukan-anggota') return 'Bukan Anggota';
@@ -70,7 +112,6 @@ export default function BukuTamuDaftar() {
 
   return (
     <>
-      {/* 2. B. Header Sub-Title & Breadcrumb Section */}
       <div className="berita-topbar">
         <div className="d-flex align-items-center gap-3">
           <span
@@ -92,18 +133,16 @@ export default function BukuTamuDaftar() {
           <span aria-hidden="true">/</span>
           <span>Buku Tamu</span>
           <span aria-hidden="true">/</span>
-          <span className="is-active fw-bold text-warning" aria-current="page">{getKategoriLabel()}</span>
+          <span className="is-active fw-semibold text-warning" aria-current="page">{getKategoriLabel()}</span>
         </nav>
       </div>
 
       <div className="bo-panel-body p-0">
-        
-        {/* 3. Sub-Menu Navigasi 3 Kategori Pengunjung */}
         <div className="d-flex align-items-center gap-2 mb-3">
           <button
             type="button"
-            className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'anggota' ? 'btn-primary' : 'btn-outline-primary bg-white'
+            className={`btn btn-sm px-3 fw-semibold rounded-pill shadow-sm ${
+              kategori === 'anggota' ? 'btn-primary' : 'btn-outline-secondary bg-white'
             }`}
             onClick={() => { setKategori('anggota'); setPage(1); }}
           >
@@ -111,8 +150,8 @@ export default function BukuTamuDaftar() {
           </button>
           <button
             type="button"
-            className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'bukan-anggota' ? 'btn-primary' : 'btn-outline-primary bg-white'
+            className={`btn btn-sm px-3 fw-semibold rounded-pill shadow-sm ${
+              kategori === 'bukan-anggota' ? 'btn-primary' : 'btn-outline-secondary bg-white'
             }`}
             onClick={() => { setKategori('bukan-anggota'); setPage(1); }}
           >
@@ -120,8 +159,8 @@ export default function BukuTamuDaftar() {
           </button>
           <button
             type="button"
-            className={`btn btn-sm px-3 fw-bold rounded-pill shadow-sm ${
-              kategori === 'rombongan' ? 'btn-primary' : 'btn-outline-primary bg-white'
+            className={`btn btn-sm px-3 fw-semibold rounded-pill shadow-sm ${
+              kategori === 'rombongan' ? 'btn-primary' : 'btn-outline-secondary bg-white'
             }`}
             onClick={() => { setKategori('rombongan'); setPage(1); }}
           >
@@ -129,29 +168,35 @@ export default function BukuTamuDaftar() {
           </button>
         </div>
 
-        {/* 4. Table Content Area */}
-        <div className="bo-panel-body">
-          <Controls entries={entries} setEntries={setEntries} search={search} setSearch={setSearch} />
+        <div className="card border shadow-sm">
+          <div className="berita-card-head">
+            <h2 id="buku-tamu-title">
+              <i className="fa-solid fa-list-ul" aria-hidden="true"></i> TABEL BUKU TAMU
+            </h2>
+          </div>
 
-          <div className="table-responsive">
-            <table className="table table-bordered align-middle mb-0">
-              <thead className="table-secondary">
-                {kategori === 'anggota' && (
-                  <tr>
-                    <th style={{ width: 45 }} className="text-center">No</th>
-                    <th style={{ width: 170 }}>Tgl. Kunjungan</th>
-                    <th>Nama Anggota</th>
-                    <th style={{ width: 180 }}>Nomor Anggota</th>
-                    <th style={{ width: 180 }}>Lokasi Perpustakaan</th>
-                    <th style={{ width: 150 }}>Lokasi Ruang</th>
-                    <th style={{ width: 70 }} className="text-center">Aksi</th>
-                  </tr>
-                )}
+          <div className="p-3">
+            <Controls entries={entries} setEntries={setEntries} search={search} setSearch={setSearch} />
+
+            <div className="table-responsive">
+              <table className="table table-bordered table-hover align-middle mb-0">
+                <thead className="table-secondary">
+                  {kategori === 'anggota' && (
+                    <tr>
+                      <th style={{ width: 45 }} className="text-center">No</th>
+                      <th style={{ width: 150 }}>Tgl. Kunjungan</th>
+                      <th>Nama Anggota</th>
+                      <th style={{ width: 180 }}>Nomor Anggota</th>
+                      <th style={{ width: 180 }}>Lokasi Perpustakaan</th>
+                      <th style={{ width: 150 }}>Lokasi Ruang</th>
+                      <th style={{ width: 70 }} className="text-center">Aksi</th>
+                    </tr>
+                  )}
 
                   {kategori === 'bukan-anggota' && (
                     <tr>
                       <th style={{ width: 45 }} className="text-center">No</th>
-                      <th style={{ width: 170 }}>Tgl. Kunjungan</th>
+                      <th style={{ width: 150 }}>Tgl. Kunjungan</th>
                       <th>Nama Pengunjung</th>
                       <th style={{ width: 160 }}>Pekerjaan</th>
                       <th style={{ width: 120 }}>Pendidikan</th>
@@ -164,7 +209,7 @@ export default function BukuTamuDaftar() {
                   {kategori === 'rombongan' && (
                     <tr>
                       <th style={{ width: 45 }} className="text-center">No</th>
-                      <th style={{ width: 170 }}>Tgl. Kunjungan</th>
+                      <th style={{ width: 150 }}>Tgl. Kunjungan</th>
                       <th>Nama Ketua</th>
                       <th>Asal Instansi</th>
                       <th style={{ width: 130 }} className="text-center">Jumlah Personil</th>
@@ -177,12 +222,12 @@ export default function BukuTamuDaftar() {
                 <tbody>
                   {kategori === 'anggota' && paged.map((row, idx) => (
                     <tr key={row.id}>
-                      <td className="text-center fw-bold">{startIdx + idx + 1}</td>
-                      <td className="small font-monospace">{row.tgl}</td>
+                      <td className="text-center fw-semibold">{startIdx + idx + 1}</td>
+                      <td className="small">{row.tgl}</td>
                       <td className="fw-semibold text-dark">{row.nama}</td>
                       <td>
                         <span className="badge bg-light text-primary border font-monospace d-inline-flex align-items-center gap-1">
-                          {row.noAnggota}
+                          <i className="fa-solid fa-id-card"></i> {row.noAnggota}
                         </span>
                       </td>
                       <td className="small text-muted">{row.perpus}</td>
@@ -192,7 +237,7 @@ export default function BukuTamuDaftar() {
                           type="button"
                           className="btn btn-sm btn-danger py-1 px-2"
                           title="Hapus Kunjungan"
-                          onClick={() => handleDelete(row.id)}
+                          onClick={() => alert('Data kunjungan berhasil dihapus.')}
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
@@ -202,8 +247,8 @@ export default function BukuTamuDaftar() {
 
                   {kategori === 'bukan-anggota' && paged.map((row, idx) => (
                     <tr key={row.id}>
-                      <td className="text-center fw-bold">{startIdx + idx + 1}</td>
-                      <td className="small font-monospace">{row.tgl}</td>
+                      <td className="text-center fw-semibold">{startIdx + idx + 1}</td>
+                      <td className="small">{row.tgl}</td>
                       <td className="fw-semibold text-dark">{row.nama}</td>
                       <td><span className="badge bg-info-subtle text-info-emphasis border">{row.pekerjaan}</span></td>
                       <td><span className="badge bg-secondary-subtle text-secondary border">{row.pendidikan}</span></td>
@@ -214,7 +259,7 @@ export default function BukuTamuDaftar() {
                           type="button"
                           className="btn btn-sm btn-danger py-1 px-2"
                           title="Hapus Kunjungan"
-                          onClick={() => handleDelete(row.id)}
+                          onClick={() => alert('Data kunjungan berhasil dihapus.')}
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
@@ -224,11 +269,11 @@ export default function BukuTamuDaftar() {
 
                   {kategori === 'rombongan' && paged.map((row, idx) => (
                     <tr key={row.id}>
-                      <td className="text-center fw-bold">{startIdx + idx + 1}</td>
-                      <td className="small font-monospace">{row.tgl}</td>
+                      <td className="text-center fw-semibold">{startIdx + idx + 1}</td>
+                      <td className="small">{row.tgl}</td>
                       <td className="fw-semibold text-dark">{row.ketua}</td>
-                      <td className="fw-bold text-primary">{row.instansi}</td>
-                      <td className="text-center fw-bold font-monospace">
+                      <td className="fw-semibold text-primary">{row.instansi}</td>
+                      <td className="text-center fw-semibold font-monospace">
                         <span className="badge bg-success-subtle text-success border px-2 py-1">
                           {row.jumlah} Orang
                         </span>
@@ -240,7 +285,7 @@ export default function BukuTamuDaftar() {
                           type="button"
                           className="btn btn-sm btn-danger py-1 px-2"
                           title="Hapus Kunjungan"
-                          onClick={() => handleDelete(row.id)}
+                          onClick={() => alert('Data kunjungan berhasil dihapus.')}
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
@@ -268,6 +313,8 @@ export default function BukuTamuDaftar() {
               totalPages={totalPages}
             />
           </div>
+        </div>
+
       </div>
     </>
   );

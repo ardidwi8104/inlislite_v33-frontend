@@ -63,8 +63,8 @@ export default function Layanan({ onPageChange }) {
         <div className="row g-4 align-items-end mb-4 mb-lg-5">
           <div className="col-lg-8" style={{ maxWidth: '70ch' }}>
             <p
-              className="text-uppercase fw-bold mb-2"
-              style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
+              className="fw-semibold mb-2"
+              style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}
             >
               Layanan
             </p>
@@ -84,7 +84,7 @@ export default function Layanan({ onPageChange }) {
               className="d-flex align-items-center justify-content-lg-end gap-3 pt-3 pt-lg-0"
               style={{ borderTop: '1px solid #dee2e6' }}
             >
-              <span className="text-uppercase fw-bold" style={{ color: '#495057', fontSize: '0.75rem', letterSpacing: '0.12em' }}>
+              <span className="fw-semibold" style={{ color: '#495057', fontSize: '0.75rem', letterSpacing: '0.02em' }}>
                 Tersedia
               </span>
               <strong style={{ color: '#1b3878' }}>{services.length} layanan</strong>

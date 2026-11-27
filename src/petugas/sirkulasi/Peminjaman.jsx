@@ -152,11 +152,11 @@ export default function Peminjaman() {
                       </span>
                     </td>
                     <td>
-                      <div className="fw-bold text-dark">{row.nama_peminjam || 'Peminjam'}</div>
+                      <div className="fw-semibold text-dark">{row.nama_peminjam || 'Peminjam'}</div>
                     </td>
                     <td className="small text-muted">{row.no_anggota || '000000'}</td>
                     <td>
-                      <div className="fw-bold text-dark">{row.judul_penerbit}</div>
+                      <div className="fw-semibold text-dark">{row.judul_penerbit}</div>
                     </td>
                     <td className="small">{row.tgl_pinjam_tempo}</td>
                     <td className="small text-muted">{row.tgl_kembali}</td>

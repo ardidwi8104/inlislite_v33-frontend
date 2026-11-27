@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 const MONTHS = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const YEARS = Array.from({length: 8}, (_,i)=> String(2026 - i));
@@ -55,7 +55,7 @@ export default function LaporanPage({ config }) {
           <span className="berita-topbar-icon" aria-hidden="true"><i className="fa-solid fa-chart-column"></i></span>
           <div>
             <h1 className="berita-topbar-title">{title}</h1>
-            <p className="berita-topbar-sub">{subtitle}{path ? ` · ${path}` : ''}</p>
+            <p className="berita-topbar-sub">{subtitle}{path ? ` � ${path}` : ''}</p>
           </div>
         </div>
         <nav className="berita-breadcrumb" aria-label="breadcrumb">

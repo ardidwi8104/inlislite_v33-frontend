@@ -256,7 +256,7 @@ export default function DaftarKatalog() {
                     <span className="badge bg-light text-dark border font-monospace">{row.bibid}</span>
                   </td>
                   <td>
-                    <div className="fw-bold text-dark">{row.judul}</div>
+                    <div className="fw-semibold text-dark">{row.judul}</div>
                   </td>
                   <td className="small text-muted">{row.edisi || '-'}</td>
                   <td className="small">{row.publisher || '-'}</td>
@@ -361,7 +361,7 @@ export default function DaftarKatalog() {
       >
         <form onSubmit={handleSaveKatalog} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label small fw-bold">BIBID <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">BIBID <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${katalogErrors.bibid ? ' is-invalid' : ''}`}
@@ -372,7 +372,7 @@ export default function DaftarKatalog() {
             {katalogErrors.bibid && <div className="invalid-feedback">{katalogErrors.bibid}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Pedoman Katalog</label>
+            <label className="form-label small fw-semibold">Pedoman Katalog</label>
             <select
               className="form-select form-select-sm"
               value={formValues.pedoman}
@@ -383,7 +383,7 @@ export default function DaftarKatalog() {
             </select>
           </div>
           <div className="col-12">
-            <label className="form-label small fw-bold">Judul Utama <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">Judul Utama <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${katalogErrors.judul ? ' is-invalid' : ''}`}
@@ -395,7 +395,7 @@ export default function DaftarKatalog() {
             {katalogErrors.judul && <div className="invalid-feedback">{katalogErrors.judul}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Edisi / Cetakan</label>
+            <label className="form-label small fw-semibold">Edisi / Cetakan</label>
             <input
               type="text"
               className="form-control form-control-sm"
@@ -405,7 +405,7 @@ export default function DaftarKatalog() {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Penerbit & Tempat Terbit <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">Penerbit & Tempat Terbit <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${katalogErrors.penerbit ? ' is-invalid' : ''}`}
@@ -416,7 +416,7 @@ export default function DaftarKatalog() {
             {katalogErrors.penerbit && <div className="invalid-feedback">{katalogErrors.penerbit}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Deskripsi Fisik</label>
+            <label className="form-label small fw-semibold">Deskripsi Fisik</label>
             <input
               type="text"
               className="form-control form-control-sm"
@@ -426,7 +426,7 @@ export default function DaftarKatalog() {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Panggil (Call Number)</label>
+            <label className="form-label small fw-semibold">Nomor Panggil (Call Number)</label>
             <input
               type="text"
               className="form-control form-control-sm"
@@ -436,7 +436,7 @@ export default function DaftarKatalog() {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Jumlah Eksemplar Awal</label>
+            <label className="form-label small fw-semibold">Jumlah Eksemplar Awal</label>
             <input
               type="number"
               min="0"
@@ -454,7 +454,7 @@ export default function DaftarKatalog() {
                 checked={formValues.opac}
                 onChange={(e) => setFormValues({ ...formValues, opac: e.target.checked })}
               />
-              <label className="form-check-label small fw-bold" htmlFor="opacSwitch">
+              <label className="form-check-label small fw-semibold" htmlFor="opacSwitch">
                 Tampilkan di OPAC Publik
               </label>
             </div>
@@ -482,7 +482,7 @@ export default function DaftarKatalog() {
               <tbody>
                 <tr>
                   <td className="text-muted" style={{ width: '140px' }}>BIBID</td>
-                  <td className="fw-bold font-monospace">{detailItem.bibid}</td>
+                  <td className="fw-semibold font-monospace">{detailItem.bibid}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">Judul</td>

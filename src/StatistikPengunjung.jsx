@@ -29,7 +29,7 @@ export default function StatistikPengunjung({ onPageChange }) {
         
         <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
           <div style={{ maxWidth: '70ch' }}>
-            <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+            <p className="fw-semibold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}>
               Statistik
             </p>
             <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
@@ -43,7 +43,7 @@ export default function StatistikPengunjung({ onPageChange }) {
             <label className="small fw-semibold text-muted" htmlFor="statistik-pengunjung-tahun">Tahun:</label>
             <select
               id="statistik-pengunjung-tahun"
-              className="form-select form-select-sm fw-bold border-primary shadow-sm"
+              className="form-select form-select-sm fw-semibold border-primary shadow-sm"
               style={{ width: '110px' }}
               value={selectedTahun}
               onChange={(e) => setSelectedTahun(e.target.value)}
@@ -66,7 +66,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                 <i className="fa-solid fa-users"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">1.644</h4>
+                <h4 className="fw-semibold mb-0 text-dark">1.644</h4>
                 <div className="text-muted small">Total Tahun {selectedTahun}</div>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                 <i className="fa-solid fa-calendar-day"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">42</h4>
+                <h4 className="fw-semibold mb-0 text-dark">42</h4>
                 <div className="text-muted small">Pengunjung Hari Ini</div>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                 <i className="fa-solid fa-calendar-days"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">355</h4>
+                <h4 className="fw-semibold mb-0 text-dark">355</h4>
                 <div className="text-muted small">Pengunjung Bulan Ini</div>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                 <i className="fa-solid fa-chart-line"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">294</h4>
+                <h4 className="fw-semibold mb-0 text-dark">294</h4>
                 <div className="text-muted small">Rata-rata Per Bulan</div>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function StatistikPengunjung({ onPageChange }) {
           <div className="col-lg-8">
             <div className="bg-white rounded-3 p-4 shadow-sm border h-100">
               <div className="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom">
-                <h5 className="fw-bold mb-0" style={{ color: '#1E3A8A' }}>
+                <h5 className="fw-semibold mb-0" style={{ color: '#1E3A8A' }}>
                   <i className="fa-solid fa-chart-simple text-primary me-2"></i> Grafik Progress Pengunjung Per Bulan
                 </h5>
                 <span className="badge bg-primary-subtle text-primary border font-monospace">
@@ -137,7 +137,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                   <div key={b.no}>
                     <div className="d-flex justify-content-between align-items-center small mb-1">
                       <div className="d-flex align-items-center gap-2">
-                        <span className="fw-bold text-dark" style={{ minWidth: '80px' }}>{b.nama}</span>
+                        <span className="fw-semibold text-dark" style={{ minWidth: '80px' }}>{b.nama}</span>
                         {b.ramai && (
                           <span className="badge bg-success" style={{ fontSize: '0.75rem' }}>
                             <i className="fa-solid fa-fire me-1"></i> Ramai
@@ -168,7 +168,7 @@ export default function StatistikPengunjung({ onPageChange }) {
           <div className="col-lg-4">
             <div className="bg-white rounded-3 p-4 shadow-sm border h-100 d-flex flex-column justify-content-between">
               <div>
-                <h5 className="fw-bold pb-2 mb-2 border-bottom" style={{ color: '#1E3A8A' }}>
+                <h5 className="fw-semibold pb-2 mb-2 border-bottom" style={{ color: '#1E3A8A' }}>
                   <i className="fa-solid fa-chart-pie text-success me-2"></i> Kategori Pengunjung
                 </h5>
                 <p className="small text-muted mb-3">
@@ -180,7 +180,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                     <div key={idx}>
                       <div className="d-flex justify-content-between align-items-center small mb-1">
                         <span className="fw-semibold text-dark">{cat.label}</span>
-                        <span className="text-muted fw-bold">{cat.count} ({cat.percent}%)</span>
+                        <span className="text-muted fw-semibold">{cat.count} ({cat.percent}%)</span>
                       </div>
                       <div className="progress" style={{ height: '8px', borderRadius: '50rem' }}>
                         <div
@@ -211,7 +211,7 @@ export default function StatistikPengunjung({ onPageChange }) {
         {/* 2.5 Tabel Rekapitulasi Pengunjung */}
         <div className="bg-white rounded-3 shadow-sm border overflow-hidden">
           <div className="p-3 bg-light border-bottom d-flex align-items-center justify-content-between">
-            <h5 className="fw-bold mb-0 text-dark" style={{ fontSize: '1rem' }}>
+            <h5 className="fw-semibold mb-0 text-dark" style={{ fontSize: '1rem' }}>
               <i className="fa-solid fa-table-list text-primary me-2"></i> Tabel Rekapitulasi Pengunjung
             </h5>
             <span className="text-muted small">
@@ -233,7 +233,7 @@ export default function StatistikPengunjung({ onPageChange }) {
               <tbody>
                 {bulans.map((b) => (
                   <tr key={b.no}>
-                    <td className="text-center fw-bold">{b.no}</td>
+                    <td className="text-center fw-semibold">{b.no}</td>
                     <td className="fw-semibold text-dark">{b.nama}</td>
                     <td>
                       <div className="d-flex align-items-center gap-2">
@@ -251,7 +251,7 @@ export default function StatistikPengunjung({ onPageChange }) {
                         {b.status}
                       </span>
                     </td>
-                    <td className="text-center fw-bold text-primary font-monospace">
+                    <td className="text-center fw-semibold text-primary font-monospace">
                       {b.orang} Orang
                     </td>
                   </tr>

@@ -75,13 +75,13 @@ export default function SalinKatalog() {
         )}
 
         <div className="card border shadow-sm mb-4">
-          <div className="card-header bg-light py-2 fw-bold text-dark">
+          <div className="card-header bg-light py-2 fw-semibold text-dark">
             <i className="fa-solid fa-gear me-2 text-primary"></i> Step 1 - Pilih Sumber & Berkas MARC
           </div>
           <div className="card-body p-4">
             <form onSubmit={handlePreview}>
               <div className="mb-3">
-                <label className="form-label fw-bold small text-muted">Format Berkas MARC</label>
+                <label className="form-label fw-semibold small text-muted">Format Berkas MARC</label>
                 <div className="d-flex align-items-center gap-4">
                   <div className="form-check">
                     <input
@@ -115,7 +115,7 @@ export default function SalinKatalog() {
               </div>
 
               <div className="mb-3">
-                <label className="form-label fw-bold small text-muted" htmlFor="fileMarcInput">
+                <label className="form-label fw-semibold small text-muted" htmlFor="fileMarcInput">
                   Pilih Berkas MARC
                 </label>
                 <input
@@ -157,12 +157,12 @@ export default function SalinKatalog() {
         {previewData && (
           <div className="card border shadow-sm">
             <div className="card-header bg-primary text-white d-flex align-items-center justify-content-between py-2">
-              <span className="fw-bold">
+              <span className="fw-semibold">
                 <i className="fa-solid fa-table-list me-2"></i> Hasil Preview Berkas MARC ({previewData.length} Data)
               </span>
               <button
                 type="button"
-                className="btn btn-success btn-sm fw-bold px-3 d-inline-flex align-items-center gap-1 shadow-sm"
+                className="btn btn-success btn-sm fw-semibold px-3 d-inline-flex align-items-center gap-1 shadow-sm"
                 onClick={handleProsesImport}
               >
                 <i className="fa-solid fa-cloud-arrow-down"></i> Proses Impor ke Katalog
@@ -185,11 +185,11 @@ export default function SalinKatalog() {
                   <tbody>
                     {previewData.map((item, idx) => (
                       <tr key={idx}>
-                        <td className="text-center fw-bold">{idx + 1}</td>
+                        <td className="text-center fw-semibold">{idx + 1}</td>
                         <td className="font-monospace text-primary">{item.tag001}</td>
                         <td className="font-monospace">{item.tag020}</td>
                         <td className="fw-semibold">{item.tag100}</td>
-                        <td className="fw-bold text-dark">{item.tag245}</td>
+                        <td className="fw-semibold text-dark">{item.tag245}</td>
                         <td className="small text-muted">{item.tag260}</td>
                         <td className="small">{item.tag300}</td>
                       </tr>

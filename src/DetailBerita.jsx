@@ -94,7 +94,7 @@ export default function DetailBerita({ slug, onPageChange }) {
               </div>
 
               {/* C. Judul Berita (Article Title) */}
-              <h1 className="h2 fw-bold text-primary mb-4" style={{ lineHeight: 1.35 }}>
+              <h1 className="h2 fw-semibold text-primary mb-4" style={{ lineHeight: 1.35 }}>
                 {currentNews.title}
               </h1>
 
@@ -114,7 +114,7 @@ export default function DetailBerita({ slug, onPageChange }) {
 
               {/* E. Galeri Foto (Photo Gallery Section) */}
               <div className="galeri-section mb-5 pt-3 border-top">
-                <h5 className="fw-bold text-primary mb-3">Galeri Foto</h5>
+                <h5 className="fw-semibold text-primary mb-3">Galeri Foto</h5>
                 <div className="row g-3">
                   {gallery.map((imgSrc, i) => (
                     <div key={i} className="col-4">
@@ -135,7 +135,7 @@ export default function DetailBerita({ slug, onPageChange }) {
               {/* F. Footer Artikel (Social Share & Scroll to Top) */}
               <div className="pt-4 border-top d-flex flex-wrap align-items-center justify-content-between gap-3">
                 <div className="d-flex align-items-center gap-2">
-                  <span className="small fw-bold text-muted me-1">Bagikan:</span>
+                  <span className="small fw-semibold text-muted me-1">Bagikan:</span>
                   <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(currentNews.title)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-success border" style={{ width: '34px', height: '34px' }} title="WhatsApp"><i className="fa-brands fa-whatsapp"></i></a>
                   <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center text-primary border" style={{ width: '34px', height: '34px' }} title="Facebook"><i className="fa-brands fa-facebook-f"></i></a>
                   <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="btn btn-light btn-sm rounded-circle d-inline-flex align-items-center justify-content-center border" style={{ width: '34px', height: '34px', color: '#E1306C' }} title="Instagram"><i className="fa-brands fa-instagram"></i></a>
@@ -155,7 +155,7 @@ export default function DetailBerita({ slug, onPageChange }) {
           <div className="col-lg-4">
             <div className="bg-white rounded-3 p-4 shadow-sm border">
               <div className="pb-3 mb-3 border-bottom">
-                <h5 className="fw-bold mb-0 text-primary d-flex align-items-center gap-2">
+                <h5 className="fw-semibold mb-0 text-primary d-flex align-items-center gap-2">
                   <i className="fa-solid fa-newspaper text-primary"></i> Berita Lainnya
                 </h5>
               </div>
@@ -178,7 +178,7 @@ export default function DetailBerita({ slug, onPageChange }) {
                       <div className="small text-muted mb-1" style={{ fontSize: '0.78rem' }}>
                         <i className="fa-regular fa-calendar text-primary me-1"></i> {item.date}
                       </div>
-                      <h6 className="fw-bold mb-0 text-primary" style={{ fontSize: '0.88rem', lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                      <h6 className="fw-semibold mb-0 text-primary" style={{ fontSize: '0.88rem', lineHeight: 1.35, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                         {item.title}
                       </h6>
                     </div>

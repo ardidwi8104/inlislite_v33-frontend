@@ -40,8 +40,8 @@ export default function Galeri({ onPageChange }) {
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p
-            className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
+            className="fw-semibold mb-2"
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}
           >
              Galeri
           </p>

@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
+import { downloadStrukPengembalianPdf } from '../../lib/pdfDocs';
 
 export default function EntriPengembalian() {
   const [barcodeInput, setBarcodeInput] = useState('');
   const [scannedItem, setScannedItem] = useState(null);
   const [successAlert, setSuccessAlert] = useState(false);
+  const [lastReturnedItem, setLastReturnedItem] = useState(null);
 
   const [history, setHistory] = useState([
     {
       no: 1,
-      barcode: 'PPU-2026-00201',
+      barcode: 'BC-202600201',
       judul: 'Metodologi Penelitian Kuantitatif',
       peminjam: 'Dewi Lestari',
-      tgl_kembali: '2026-11-09',
+      tgl_kembali: '2026-11-26',
       denda: 'Rp 0',
       status: 'Tepat Waktu',
     },
     {
       no: 2,
-      barcode: 'PPU-2026-00103',
+      barcode: 'BC-202600103',
       judul: 'Pemrograman Web dengan Laravel 10',
       peminjam: 'Rian Pratama',
-      tgl_kembali: '2026-11-08',
+      tgl_kembali: '2026-11-25',
       denda: 'Rp 2.000',
       status: 'Terlambat 2 Hari',
     },
@@ -37,7 +39,7 @@ export default function EntriPengembalian() {
       barcode: barcodeInput.trim().toUpperCase(),
       judul: 'Laskar Pelangi',
       pengarang: 'Andrea Hirata',
-      peminjam: 'Ahmad Fauzi Rahman (64.09.26.00001)',
+      peminjam: 'Ahmad Fauzi Rahman (202609001)',
       tgl_pinjam: '2026-11-01',
       jatuh_tempo: '2026-11-08',
       hari_terlambat: 1,
@@ -49,7 +51,7 @@ export default function EntriPengembalian() {
   const handleProsesKembali = () => {
     if (!scannedItem) return;
 
-    const newRecord = {
+    const returnRec = {
       no: history.length + 1,
       barcode: scannedItem.barcode,
       judul: `${scannedItem.judul} / ${scannedItem.pengarang}`,
@@ -59,9 +61,9 @@ export default function EntriPengembalian() {
       status: scannedItem.hari_terlambat > 0 ? `Terlambat ${scannedItem.hari_terlambat} Hari` : 'Tepat Waktu',
     };
 
-    setHistory([newRecord, ...history]);
+    setHistory([returnRec, ...history]);
+    setLastReturnedItem(returnRec);
 
-    // Save to pengembalian localStorage
     try {
       const raw = window.localStorage.getItem('inlislite.sirkulasi.pengembalian');
       const list = raw ? JSON.parse(raw) : [];
@@ -81,6 +83,15 @@ export default function EntriPengembalian() {
     setSuccessAlert(true);
     setScannedItem(null);
     setBarcodeInput('');
+  };
+
+  const handleDownloadStrukKembali = async () => {
+    if (!lastReturnedItem) return;
+    try {
+      await downloadStrukPengembalianPdf(lastReturnedItem);
+    } catch (err) {
+      alert('Gagal mengunduh struk pengembalian PDF.');
+    }
   };
 
   return (
@@ -108,26 +119,36 @@ export default function EntriPengembalian() {
 
       <div className="bo-panel-body p-0">
         {successAlert && (
-          <div className="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2 mb-3" role="alert">
-            <i className="fa-solid fa-circle-check fs-5"></i>
-            <div>
-              <strong>Pengembalian Berhasil!</strong> Buku fisik telah berhasil tercatat kembali ke perpustakaan.
+          <div className="alert alert-success alert-dismissible fade show d-flex align-items-center justify-content-between gap-2 mb-3" role="alert">
+            <div className="d-flex align-items-center gap-2">
+              <i className="fa-solid fa-circle-check fs-5"></i>
+              <div>
+                <strong>Pengembalian Berhasil!</strong> Buku fisik telah berhasil tercatat kembali ke perpustakaan.
+              </div>
             </div>
-            <button
-              type="button"
-              className="btn-close ms-auto"
-              onClick={() => setSuccessAlert(false)}
-              aria-label="Close"
-            ></button>
+            <div className="d-flex align-items-center gap-2">
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-success fw-semibold bg-white"
+                onClick={handleDownloadStrukKembali}
+              >
+                <i className="fa-solid fa-file-pdf me-1"></i> Unduh Struk (PDF)
+              </button>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setSuccessAlert(false)}
+                aria-label="Close"
+              ></button>
+            </div>
           </div>
         )}
 
         <div className="row g-3">
-          {/* Main Scan Card */}
-          <div className="col-12">
+          <div className="col-lg-7">
             <div className="card border shadow-sm">
               <div
-                className="card-header py-2 text-white fw-bold d-flex align-items-center gap-2"
+                className="card-header py-2 text-white fw-semibold d-flex align-items-center gap-2"
                 style={{ backgroundColor: '#1E293B' }}
               >
                 <i className="fa-solid fa-rotate-left text-success"></i> Scan Barcode Buku untuk Pengembalian
@@ -139,7 +160,7 @@ export default function EntriPengembalian() {
                 >
                   <i className="fa-solid fa-barcode"></i>
                 </div>
-                <h6 className="fw-bold text-dark mb-1">Scan atau Masukkan Barcode Buku</h6>
+                <h6 className="fw-semibold text-dark mb-1">Scan atau Masukkan Barcode Buku</h6>
                 <p className="text-muted small mb-3">
                   Posisikan scanner pada barcode buku yang dikembalikan pemustaka.
                 </p>
@@ -152,7 +173,7 @@ export default function EntriPengembalian() {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Masukkan No. Barcode Buku (contoh: PPU-2026-00101)"
+                      placeholder="Masukkan No. Barcode Buku (contoh: BC-202600101)"
                       value={barcodeInput}
                       onChange={(e) => setBarcodeInput(e.target.value)}
                       autoFocus
@@ -178,10 +199,9 @@ export default function EntriPengembalian() {
                   </div>
                 </form>
 
-                {/* Detail Buku Hasil Cek */}
                 {scannedItem && (
                   <div className="text-start p-3 bg-light rounded border small">
-                    <div className="fw-bold text-primary mb-1">{scannedItem.judul}</div>
+                    <div className="fw-semibold text-primary mb-1">{scannedItem.judul}</div>
                     <div className="text-muted">Peminjam: <strong className="text-dark">{scannedItem.peminjam}</strong></div>
                     <div className="text-muted">Jatuh Tempo: <span className="badge bg-secondary">{scannedItem.jatuh_tempo}</span></div>
                     <div className="text-muted mt-1">
@@ -201,11 +221,10 @@ export default function EntriPengembalian() {
             </div>
           </div>
 
-          {/* Riwayat Terbaru Card */}
-          <div className="col-12">
+          <div className="col-lg-5">
             <div className="card border shadow-sm h-100">
               <div
-                className="card-header py-2 text-white fw-bold d-flex align-items-center justify-content-between"
+                className="card-header py-2 text-white fw-semibold d-flex align-items-center justify-content-between"
                 style={{ backgroundColor: '#1E293B' }}
               >
                 <span>
@@ -233,7 +252,7 @@ export default function EntriPengembalian() {
                     <tbody>
                       {history.slice(0, 5).map((h, i) => (
                         <tr key={i}>
-                          <td className="text-center fw-bold">{i + 1}</td>
+                          <td className="text-center fw-semibold">{i + 1}</td>
                           <td>
                             <span className="badge bg-light text-primary border font-monospace">{h.barcode}</span>
                             <div className="fw-semibold text-dark text-truncate" style={{ maxWidth: '180px' }}>

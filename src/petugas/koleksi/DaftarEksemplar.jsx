@@ -269,7 +269,7 @@ export default function DaftarEksemplar() {
                     <span className="badge bg-light text-dark border font-monospace">{row.no_induk}</span>
                   </td>
                   <td>
-                    <div className="fw-bold text-dark">{row.data_bib}</div>
+                    <div className="fw-semibold text-dark">{row.data_bib}</div>
                   </td>
                   <td className="text-center">
                     <span className="badge bg-info-subtle text-info border">{row.drm || 'Bebas'}</span>
@@ -378,7 +378,7 @@ export default function DaftarEksemplar() {
       >
         <form onSubmit={handleSave} className="row g-3">
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Barcode Koleksi <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">Nomor Barcode Koleksi <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${eksemplarErrors.no_barcode ? ' is-invalid' : ''}`}
@@ -389,7 +389,7 @@ export default function DaftarEksemplar() {
             {eksemplarErrors.no_barcode && <div className="invalid-feedback">{eksemplarErrors.no_barcode}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Nomor Induk <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">Nomor Induk <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${eksemplarErrors.no_induk ? ' is-invalid' : ''}`}
@@ -400,7 +400,7 @@ export default function DaftarEksemplar() {
             {eksemplarErrors.no_induk && <div className="invalid-feedback">{eksemplarErrors.no_induk}</div>}
           </div>
           <div className="col-12">
-            <label className="form-label small fw-bold">Data Bibliografis (Judul / Pengarang / Penerbit) <span className="text-danger">*</span></label>
+            <label className="form-label small fw-semibold">Data Bibliografis (Judul / Pengarang / Penerbit) <span className="text-danger">*</span></label>
             <input
               type="text"
               className={`form-control form-control-sm${eksemplarErrors.data_bib ? ' is-invalid' : ''}`}
@@ -412,7 +412,7 @@ export default function DaftarEksemplar() {
             {eksemplarErrors.data_bib && <div className="invalid-feedback">{eksemplarErrors.data_bib}</div>}
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Tanggal Pengadaan</label>
+            <label className="form-label small fw-semibold">Tanggal Pengadaan</label>
             <input
               type="date"
               className="form-control form-control-sm"
@@ -421,7 +421,7 @@ export default function DaftarEksemplar() {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label small fw-bold">Lokasi Penyimpanan / Rak</label>
+            <label className="form-label small fw-semibold">Lokasi Penyimpanan / Rak</label>
             <input
               type="text"
               className="form-control form-control-sm"
@@ -431,7 +431,7 @@ export default function DaftarEksemplar() {
             />
           </div>
           <div className="col-md-4">
-            <label className="form-label small fw-bold">Status Ketersediaan</label>
+            <label className="form-label small fw-semibold">Status Ketersediaan</label>
             <select
               className="form-select form-select-sm"
               value={formValues.status}
@@ -444,7 +444,7 @@ export default function DaftarEksemplar() {
             </select>
           </div>
           <div className="col-md-4">
-            <label className="form-label small fw-bold">Aksesibilitas OPAC</label>
+            <label className="form-label small fw-semibold">Aksesibilitas OPAC</label>
             <select
               className="form-select form-select-sm"
               value={formValues.opac}
@@ -455,7 +455,7 @@ export default function DaftarEksemplar() {
             </select>
           </div>
           <div className="col-md-4">
-            <label className="form-label small fw-bold">Digital Right Management (DRM)</label>
+            <label className="form-label small fw-semibold">Digital Right Management (DRM)</label>
             <select
               className="form-select form-select-sm"
               value={formValues.drm}
@@ -488,7 +488,7 @@ export default function DaftarEksemplar() {
               <tbody>
                 <tr>
                   <td className="text-muted" style={{ width: '140px' }}>No. Barcode</td>
-                  <td className="fw-bold font-monospace text-primary">{detailItem.no_barcode}</td>
+                  <td className="fw-semibold font-monospace text-primary">{detailItem.no_barcode}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">No. Induk</td>
@@ -496,7 +496,7 @@ export default function DaftarEksemplar() {
                 </tr>
                 <tr>
                   <td className="text-muted">Data Bibliografis</td>
-                  <td className="fw-bold text-dark">{detailItem.data_bib}</td>
+                  <td className="fw-semibold text-dark">{detailItem.data_bib}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">Tanggal Pengadaan</td>

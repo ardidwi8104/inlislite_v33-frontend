@@ -1,4 +1,4 @@
-﻿import LaporanPage from './LaporanPage';
+import LaporanPage from './LaporanPage';
 const config = {
   title: 'Laporan Sirkulasi',
   subtitle: 'Export Data Peminjaman dengan Multiple Filter',

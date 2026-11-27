@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import { loadAnggota, loadPerpanjangan, savePerpanjangan, useTable, Controls, TableFooter, Topbar } from './store.jsx';
 
@@ -81,7 +81,7 @@ export default function PerpanjanganAnggota() {
             <label className="form-label fw-semibold small">Anggota *</label>
             <select className="form-select" value={form.anggotaId} onChange={(e) => setForm({ ...form, anggotaId: e.target.value })} required>
               <option value="">Pilih anggota...</option>
-              {anggota.map((a) => <option key={a.id} value={a.id}>{a.nama} — {a.noAnggota}</option>)}
+              {anggota.map((a) => <option key={a.id} value={a.id}>{a.nama} � {a.noAnggota}</option>)}
             </select>
           </div>
           <div className="col-12">

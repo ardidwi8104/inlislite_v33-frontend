@@ -51,7 +51,7 @@ export default function PetugasBacaDitempat() {
     <tr key={r.id}>
       <td className="text-center fw-semibold">{t.startIdx + idx + 1}</td>
       <td>{r.tgl}</td>
-      <td className="fw-bold text-dark">{r.nama}</td>
+      <td className="fw-semibold text-dark">{r.nama}</td>
       <td><span className="badge bg-info text-dark">{r.noAnggota}</span></td>
       <td><span className="badge bg-info text-dark">{r.barcode}</span></td>
       <td>{r.perpus}</td>
@@ -71,7 +71,7 @@ export default function PetugasBacaDitempat() {
     <tr key={r.id}>
       <td className="text-center fw-semibold">{t.startIdx + idx + 1}</td>
       <td>{r.tgl}</td>
-      <td className="fw-bold text-dark">{r.nama}</td>
+      <td className="fw-semibold text-dark">{r.nama}</td>
       <td><span className="badge bg-info text-dark">{r.barcode}</span></td>
       <td>{r.perpus}</td>
       <td>{r.ruang}</td>

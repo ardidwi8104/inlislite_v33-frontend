@@ -35,7 +35,7 @@ export default function BackofficeHeader({ role = 'ADMIN', onLogout, onMenu, onP
           <span>Menu</span>
         </button>
         <div className="bo-topbar-title">
-          <span style={{ fontSize: '1.15rem', fontWeight: 700 }}>Ruang kerja {role.toLowerCase()}</span>
+          <span style={{ fontSize: '1.15rem', fontWeight: 600 }}>Ruang kerja {role.toLowerCase()}</span>
         </div>
       </div>
 

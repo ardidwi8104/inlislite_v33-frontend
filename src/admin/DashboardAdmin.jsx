@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SidebarAdmin from './SidebarAdmin';
 import BackofficeHeader from '../backoffice/BackofficeHeader';
 import BeritaPage from '../shared/BeritaPage';
@@ -41,7 +41,7 @@ export default function DashboardAdmin({ onLogout, onBackToSite }) {
       const now = new Date();
       const datePart = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
       const timePart = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      setTimeStr(`${datePart} Â· ${timePart} WIB`);
+      setTimeStr(`${datePart} · ${timePart} WIB`);
     };
     updateTime();
     const timer = setInterval(updateTime, 1000);

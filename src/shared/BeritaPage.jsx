@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
 import TambahEditBerita from './TambahEditBerita';
 import { newsData } from '../data/beritaData';
@@ -179,7 +179,7 @@ export default function BeritaPage({ role = 'petugas' }) {
                 <span className="d-inline-flex align-items-center gap-1"><i className="fa-solid fa-pen-to-square text-primary"></i> Diedit {formatRelativeTime(previewItem.updatedAt)}</span>
               )}
             </div>
-            <h3 className="fw-bold mb-3 text-dark">{previewItem.judul}</h3>
+            <h3 className="fw-semibold mb-3 text-dark">{previewItem.judul}</h3>
             <div className="text-secondary lh-lg" style={{ fontSize: '0.95rem' }}>
               {(previewItem.blocks || []).map((b, idx) => {
                 if (b.type === 'text') return <div key={idx} className="mb-3" dangerouslySetInnerHTML={{ __html: b.content }} />;
@@ -251,7 +251,7 @@ export default function BeritaPage({ role = 'petugas' }) {
                   <tr key={row.id}>
                     <td className="text-center fw-semibold">{startIdx + idx + 1}</td>
                     <td>
-                      <div className="fw-bold text-dark">{row.judul}</div>
+                      <div className="fw-semibold text-dark">{row.judul}</div>
                       {row.updatedAt && new Date(row.updatedAt) > new Date(row.createdAt || row.tanggal) && (
                         <div className="small text-muted d-flex align-items-center gap-1 mt-1">
                           <i className="fa-solid fa-pen-to-square" style={{ fontSize: '0.7rem' }} aria-hidden="true"></i>

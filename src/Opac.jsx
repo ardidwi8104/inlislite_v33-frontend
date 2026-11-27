@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { katalogBuku } from './data/katalogData';
 
 const NAVY = '#1E3A6E';
@@ -105,7 +105,7 @@ export default function Opac({ onPageChange }) {
           <h1
             style={{
               color: '#FFFFFF',
-              fontWeight: 700,
+              fontWeight: 600,
               fontSize: 'clamp(2rem, 3vw, 2.5rem)',
               margin: '0 0 10px',
               display: 'inline-flex',
@@ -269,7 +269,7 @@ export default function Opac({ onPageChange }) {
                   backgroundColor: NAVY,
                   padding: '12px 16px',
                   color: '#FFFFFF',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
                   gap: '10px',
@@ -287,7 +287,7 @@ export default function Opac({ onPageChange }) {
                     padding: '16px 18px',
                   }}
                 >
-                  <div style={{ fontSize: '1.5rem', fontWeight: 700, color: TEXT_DARK, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 600, color: TEXT_DARK, lineHeight: 1.1 }}>
                     {katalogBuku.length}
                   </div>
                   <div style={{ fontSize: '0.8rem', color: TEXT_MUTED, marginTop: '4px' }}>Total Katalog</div>
@@ -308,7 +308,7 @@ export default function Opac({ onPageChange }) {
               }}
             >
               <i className="fa-solid fa-bars" aria-hidden="true" style={{ color: NAVY }}></i>
-              <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: TEXT_DARK }}>Koleksi Terbaru</h2>
+              <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600, color: TEXT_DARK }}>Koleksi Terbaru</h2>
             </div>
 
             <div
@@ -337,7 +337,7 @@ export default function Opac({ onPageChange }) {
                     aria-hidden="true"
                     style={{ fontSize: '3.5rem', color: TEXT_MUTED }}
                   ></i>
-                  <div style={{ fontWeight: 700, color: TEXT_DARK, fontSize: '1.15rem', marginTop: '16px' }}>
+                  <div style={{ fontWeight: 600, color: TEXT_DARK, fontSize: '1.15rem', marginTop: '16px' }}>
                     Mulai temukan koleksi
                   </div>
                   <button
@@ -398,7 +398,7 @@ export default function Opac({ onPageChange }) {
                           <i className="fa-solid fa-book"></i>
                         </div>
                         <div style={{ minWidth: 0 }}>
-                          <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700, color: TEXT_DARK, lineHeight: 1.3, overflowWrap: 'anywhere' }}>
+                          <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600, color: TEXT_DARK, lineHeight: 1.3, overflowWrap: 'anywhere' }}>
                             {b.judul}
                           </h3>
                           <div style={{ fontSize: '0.85rem', color: TEXT_MUTED, marginTop: '2px', overflowWrap: 'anywhere' }}>{b.pengarang}</div>
@@ -449,13 +449,13 @@ export default function Opac({ onPageChange }) {
           <div style={{ color: TEXT_MUTED, fontSize: '0.85rem' }}>
             <i className="fa-solid fa-list-ul" aria-hidden="true" style={{ color: '#3B82F6', marginRight: '8px' }}></i>
             <span>
-              Total <strong style={{ fontWeight: 700 }}>{hasil.length}</strong> koleksi ditemukan
+              Total <strong style={{ fontWeight: 600 }}>{hasil.length}</strong> koleksi ditemukan
             </span>
           </div>
           <div style={{ color: TEXT_MUTED, fontSize: '0.85rem', marginTop: '6px' }}>
             <i className="fa-solid fa-bolt" aria-hidden="true" style={{ color: '#F59E0B', marginRight: '8px' }}></i>
             <span>
-              Waktu muat: <strong style={{ fontWeight: 700 }}>{muatWaktu}</strong> detik
+              Waktu muat: <strong style={{ fontWeight: 600 }}>{muatWaktu}</strong> detik
             </span>
           </div>
         </div>

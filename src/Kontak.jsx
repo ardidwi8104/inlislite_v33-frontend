@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 const PRIMARY = '#1b3878';
 const ACCENT = '#0e7490';
@@ -20,8 +20,8 @@ export default function Kontak() {
         <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
           <div className="mb-4" style={{ maxWidth: '70ch' }}>
             <p
-              className="text-uppercase fw-bold mb-2"
-              style={{ color: ACCENT, fontSize: '0.78rem', letterSpacing: '0.12em' }}
+              className="fw-semibold mb-2"
+              style={{ color: ACCENT, fontSize: '0.78rem', letterSpacing: '0.02em' }}
             >
               Kontak
             </p>
@@ -45,7 +45,7 @@ export default function Kontak() {
               <div className="card border-0 shadow-sm h-100 rounded-4">
                 <div className="card-body p-4 p-lg-5 d-flex flex-column justify-content-between">
                   <div>
-                    <h2 className="h4 fw-bold mb-4 pb-3 border-bottom" style={{ color: '#111827' }}>
+                    <h2 className="h4 fw-semibold mb-4 pb-3 border-bottom" style={{ color: '#111827' }}>
                       Informasi Kontak
                     </h2>
 
@@ -59,7 +59,7 @@ export default function Kontak() {
                           <i className="fa-solid fa-location-dot fs-5"></i>
                         </span>
                         <div>
-                          <h3 className="h6 fw-bold mb-1" style={{ color: '#111827' }}>Alamat Kantor</h3>
+                          <h3 className="h6 fw-semibold mb-1" style={{ color: '#111827' }}>Alamat Kantor</h3>
                           <p className="text-muted mb-0" style={{ lineHeight: 1.7 }}>
                             Jl. KORPRI KM. 9, Kelurahan Nipah-Nipah, Kecamatan Penajam, Kabupaten Penajam Paser Utara, Kalimantan Timur
                           </p>
@@ -75,7 +75,7 @@ export default function Kontak() {
                           <i className="fa-brands fa-facebook-f fs-5"></i>
                         </span>
                         <div>
-                          <h3 className="h6 fw-bold mb-1" style={{ color: '#111827' }}>Facebook Resmi</h3>
+                          <h3 className="h6 fw-semibold mb-1" style={{ color: '#111827' }}>Facebook Resmi</h3>
                           <a
                             href="https://www.facebook.com/perpustakaankab/"
                             target="_blank"
@@ -97,7 +97,7 @@ export default function Kontak() {
                           <i className="fa-solid fa-bullhorn fs-5"></i>
                         </span>
                         <div>
-                          <h3 className="h6 fw-bold mb-1" style={{ color: '#111827' }}>Layanan Pengaduan Official</h3>
+                          <h3 className="h6 fw-semibold mb-1" style={{ color: '#111827' }}>Layanan Pengaduan Official</h3>
                           <p className="text-muted small mb-1">Kirim laporan atau aspirasi Anda melalui SP4N-LAPOR!:</p>
                           <a
                             href="https://www.lapor.go.id/instansi/dinas-perpustakaan-dan-arsip-kabupaten-penajam-paser-utara/done"
@@ -145,7 +145,7 @@ export default function Kontak() {
           <div className="card border-0 shadow-sm rounded-4">
             <div className="card-body p-4 p-lg-5">
               <div className="mx-auto" style={{ maxWidth: 860 }}>
-                <h2 className="h4 fw-bold mb-2 text-center" style={{ color: '#111827' }}>Kirim Pesan</h2>
+                <h2 className="h4 fw-semibold mb-2 text-center" style={{ color: '#111827' }}>Kirim Pesan</h2>
                 <p className="text-muted text-center mb-4">Punya pertanyaan atau saran? Silakan isi formulir di bawah ini.</p>
 
                 {sent && (

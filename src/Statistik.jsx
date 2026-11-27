@@ -38,12 +38,12 @@ export default function Statistik({ onPageChange }) {
         style={{ width: '100%', maxWidth: 'none', marginLeft: 0, marginRight: 0, paddingLeft: '1rem', paddingRight: '1rem' }}
       >
         {/* Title */}
-        <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+        <p className="fw-semibold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}>
           Statistik
         </p>
         <h1
           className="mb-2"
-          style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', fontWeight: 700, color: '#1b3878', marginBottom: '0.5rem' }}
+          style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', fontWeight: 600, color: '#1b3878', marginBottom: '0.5rem' }}
         >
           Statistik Perpustakaan
         </h1>
@@ -78,7 +78,7 @@ export default function Statistik({ onPageChange }) {
               ></i>
               <h3
                 className="font-bold text-lg text-slate-800 mb-2"
-                style={{ fontWeight: 700, fontSize: '1.125rem', color: '#1e293b', marginBottom: '0.5rem' }}
+                style={{ fontWeight: 600, fontSize: '1.125rem', color: '#1e293b', marginBottom: '0.5rem' }}
               >
                 {it.title}
               </h3>

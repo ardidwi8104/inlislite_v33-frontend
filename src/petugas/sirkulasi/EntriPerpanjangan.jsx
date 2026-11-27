@@ -127,7 +127,7 @@ export default function EntriPerpanjangan() {
           <div className="col-12">
             <div className="card border shadow-sm">
               <div
-                className="card-header py-2 text-white fw-bold d-flex align-items-center gap-2"
+                className="card-header py-2 text-white fw-semibold d-flex align-items-center gap-2"
                 style={{ backgroundColor: '#1E293B' }}
               >
                 <i className="fa-solid fa-rotate-right text-primary"></i> Scan Barcode Buku untuk Perpanjangan
@@ -139,7 +139,7 @@ export default function EntriPerpanjangan() {
                 >
                   <i className="fa-solid fa-barcode"></i>
                 </div>
-                <h6 className="fw-bold text-dark mb-1">Scan atau Masukkan Barcode Buku</h6>
+                <h6 className="fw-semibold text-dark mb-1">Scan atau Masukkan Barcode Buku</h6>
                 <p className="text-muted small mb-3">
                   Posisikan scanner pada barcode buku atau ketik manual nomor barcode.
                 </p>
@@ -161,13 +161,13 @@ export default function EntriPerpanjangan() {
 
                   {/* Durasi Perpanjangan Selection Cards */}
                   <div className="mb-3 text-start">
-                    <label className="form-label small fw-bold text-muted">Pilih Durasi Perpanjangan:</label>
+                    <label className="form-label small fw-semibold text-muted">Pilih Durasi Perpanjangan:</label>
                     <div className="row g-2 text-center">
                       {[7].map((days) => (
                         <div key={days} className="col-12">
                           <button
                             type="button"
-                            className={`btn w-100 py-2 small fw-bold ${
+                            className={`btn w-100 py-2 small fw-semibold ${
                               durasiHari === days
                                 ? 'btn-primary shadow-sm'
                                 : 'btn-outline-secondary'
@@ -203,7 +203,7 @@ export default function EntriPerpanjangan() {
                 {/* Detail Buku Hasil Cek */}
                 {scannedItem && (
                   <div className="text-start p-3 bg-light rounded border small">
-                    <div className="fw-bold text-primary mb-1">{scannedItem.judul}</div>
+                    <div className="fw-semibold text-primary mb-1">{scannedItem.judul}</div>
                     <div className="text-muted">Peminjam: <strong className="text-dark">{scannedItem.peminjam}</strong></div>
                     <div className="text-muted">Jatuh Tempo Lama: <span className="badge bg-secondary">{scannedItem.jatuh_tempo_lama}</span></div>
                     <div className="text-muted mt-1">
@@ -219,7 +219,7 @@ export default function EntriPerpanjangan() {
           <div className="col-12">
             <div className="card border shadow-sm h-100">
               <div
-                className="card-header py-2 text-white fw-bold d-flex align-items-center justify-content-between"
+                className="card-header py-2 text-white fw-semibold d-flex align-items-center justify-content-between"
                 style={{ backgroundColor: '#1E293B' }}
               >
                 <span>
@@ -257,7 +257,7 @@ export default function EntriPerpanjangan() {
                           </span>
                         </td>
                         <td>
-                          <div className="fw-bold text-dark">{h.judul}</div>
+                          <div className="fw-semibold text-dark">{h.judul}</div>
                         </td>
                         <td className="small text-muted">{h.peminjam}</td>
                         <td className="small">{h.tgl_baru}</td>

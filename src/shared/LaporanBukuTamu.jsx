@@ -1,4 +1,4 @@
-﻿import LaporanPage from './LaporanPage';
+import LaporanPage from './LaporanPage';
 const config = {
   title: 'Laporan Buku Tamu',
   subtitle: 'Daftar Semua Kunjungan',

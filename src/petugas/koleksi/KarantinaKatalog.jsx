@@ -182,7 +182,7 @@ export default function KarantinaKatalog() {
                     </span>
                   </td>
                   <td>
-                    <div className="fw-bold text-dark">{row.judul}</div>
+                    <div className="fw-semibold text-dark">{row.judul}</div>
                     <span className="badge bg-warning text-dark mt-1" style={{ fontSize: '0.7rem' }}>
                       <i className="fa-solid fa-triangle-exclamation me-1"></i>Dalam Karantina
                     </span>
@@ -277,7 +277,7 @@ export default function KarantinaKatalog() {
               <tbody>
                 <tr>
                   <td className="text-muted" style={{ width: '140px' }}>BIBID</td>
-                  <td className="fw-bold font-monospace text-danger">{detailItem.bibid}</td>
+                  <td className="fw-semibold font-monospace text-danger">{detailItem.bibid}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">Judul</td>

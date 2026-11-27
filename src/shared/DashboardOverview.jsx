@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 /* ------------------------------------------------------------------------ */
 /* Dashboard: Sistem Manajemen Perpustakaan Digital                          */
@@ -56,7 +56,7 @@ function StatCard({ bg, label, value, icon }) {
       <div style={{ fontSize: '0.98rem', fontWeight: 600, opacity: 0.95, marginBottom: '4px', paddingRight: '64px', lineHeight: 1.3 }}>
         {label}
       </div>
-      <div style={{ fontSize: '2rem', fontWeight: 700, lineHeight: 1.05 }}>{value}</div>
+      <div style={{ fontSize: '2rem', fontWeight: 600, lineHeight: 1.05 }}>{value}</div>
       <div style={{ position: 'absolute', top: '16px', right: '16px', ...iconBox(54) }}>
         <i className={icon} aria-hidden="true"></i>
       </div>
@@ -73,12 +73,12 @@ function WideStatCard({ bg, label, value, icon }) {
         </span>
         <div style={{ fontSize: '1rem', fontWeight: 600, lineHeight: 1.3 }}>{label}</div>
       </div>
-      <div style={{ fontSize: '2.1rem', fontWeight: 700, lineHeight: 1.05 }}>{value}</div>
+      <div style={{ fontSize: '2.1rem', fontWeight: 600, lineHeight: 1.05 }}>{value}</div>
     </div>
   );
 }
 
-export default function DashboardOverview({ stats = {}, onSendReport, title = 'Dashboard', subtitle = 'Sistem Manajemen Perpustakaan Digital — Ringkasan data dan aktivitas.' }) {
+export default function DashboardOverview({ stats = {}, onSendReport, title = 'Dashboard', subtitle = 'Sistem Manajemen Perpustakaan Digital � Ringkasan data dan aktivitas.' }) {
   /* Prop `stats` tetap diterima agar kompatibel dengan pemanggil
      (DashboardAdmin / DashboardPetugas), namun kartu-kartu di bawah ini
      selalu memakai angka statis sesuai spesifikasi visual. */

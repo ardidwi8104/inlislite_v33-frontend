@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const isDesktop = () =>
   typeof window !== 'undefined' && window.matchMedia('(min-width: 992px)').matches;

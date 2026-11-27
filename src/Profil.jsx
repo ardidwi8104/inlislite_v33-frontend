@@ -6,8 +6,8 @@ export default function Profil() {
       <div className="container-fluid px-2 px-sm-3 px-md-4 px-lg-5">
         <div className="mb-4 mb-lg-5" style={{ maxWidth: '70ch' }}>
           <p
-            className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
+            className="fw-semibold mb-2"
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}
           >
             Profil
           </p>
@@ -25,7 +25,7 @@ export default function Profil() {
         <div className="row g-4">
           <div className="col-lg-6 col-md-12">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Sejarah Dinas Perpustakaan
               </div>
               <div className="card-body">
@@ -37,13 +37,13 @@ export default function Profil() {
           </div>
           <div className="col-lg-6 col-md-12">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Visi &amp; Misi
               </div>
               <div className="card-body">
-                <h6 className="fw-bold mb-2" style={{ color: '#1b3878' }}>Visi</h6>
+                <h6 className="fw-semibold mb-2" style={{ color: '#1b3878' }}>Visi</h6>
                 <p className="text-muted mb-3 small">Terwujudnya masyarakat yang cerdas, berkarakter, dan berwawasan melalui akses literasi yang merata dan berkelanjutan.</p>
-                <h6 className="fw-bold mb-2" style={{ color: '#1b3878' }}>Misi</h6>
+                <h6 className="fw-semibold mb-2" style={{ color: '#1b3878' }}>Misi</h6>
                 <ul className="list-unstyled small text-muted">
                   <li className="mb-2">Meningkatkan minat baca dan literasi masyarakat.</li>
                   <li className="mb-2">Menyediakan koleksi buku yang beragam dan aktual.</li>
@@ -57,7 +57,7 @@ export default function Profil() {
         <div className="row g-4 mt-4">
           <div className="col-lg-4 col-md-6">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Tugas Pokok dan Fungsi
               </div>
               <div className="card-body">
@@ -71,7 +71,7 @@ export default function Profil() {
           </div>
           <div className="col-lg-4 col-md-6">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Struktur Organisasi
               </div>
               <div className="card-body">
@@ -81,7 +81,7 @@ export default function Profil() {
           </div>
           <div className="col-lg-4 col-md-6">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Kepala Dinas &amp; Pegawai
               </div>
               <div className="card-body">
@@ -94,7 +94,7 @@ export default function Profil() {
         <div className="row g-4 mt-4">
           <div className="col-lg-6 col-md-12">
             <div className="card h-100 shadow-sm border-0">
-              <div className="card-header bg-white border-0 fw-bold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
+              <div className="card-header bg-white border-0 fw-semibold" style={{ color: '#1b3878', fontSize: '1.2rem' }}>
                 Sarana dan Prasarana
               </div>
               <div className="card-body">

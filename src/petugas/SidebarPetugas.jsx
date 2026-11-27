@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import LogoutConfirmPopup from '../shared/LogoutConfirmPopup';
 import Modal from '../components/Modal';
 import { useBackofficeAvatar } from '../backoffice/useBackofficeAvatar';

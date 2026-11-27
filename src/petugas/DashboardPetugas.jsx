@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SidebarPetugas from './SidebarPetugas';
 import BackofficeHeader from '../backoffice/BackofficeHeader';
 import KeanggotaanValidation from '../backoffice/KeanggotaanValidation';
@@ -86,7 +86,7 @@ export default function DashboardPetugas({ onLogout, onBackToSite }) {
       const now = new Date();
       const datePart = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
       const timePart = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      setTimeStr(`${datePart} Â· ${timePart} WIB`);
+      setTimeStr(`${datePart} · ${timePart} WIB`);
     };
     updateTime();
     const timer = setInterval(updateTime, 1000);

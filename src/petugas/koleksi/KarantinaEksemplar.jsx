@@ -190,7 +190,7 @@ export default function KarantinaEksemplar() {
                     <span className="badge bg-light text-dark border font-monospace">{row.no_induk}</span>
                   </td>
                   <td>
-                    <div className="fw-bold text-dark">{row.data_bib}</div>
+                    <div className="fw-semibold text-dark">{row.data_bib}</div>
                     <span className="badge bg-danger-subtle text-danger border mt-1" style={{ fontSize: '0.7rem' }}>
                       <i className="fa-solid fa-triangle-exclamation me-1"></i>Eksemplar Rusak / Karantina
                     </span>
@@ -273,7 +273,7 @@ export default function KarantinaEksemplar() {
               <tbody>
                 <tr>
                   <td className="text-muted" style={{ width: '140px' }}>No. Barcode</td>
-                  <td className="fw-bold font-monospace text-danger">{detailItem.no_barcode}</td>
+                  <td className="fw-semibold font-monospace text-danger">{detailItem.no_barcode}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">No. Induk</td>
@@ -281,7 +281,7 @@ export default function KarantinaEksemplar() {
                 </tr>
                 <tr>
                   <td className="text-muted">Data Bibliografis</td>
-                  <td className="fw-bold text-dark">{detailItem.data_bib}</td>
+                  <td className="fw-semibold text-dark">{detailItem.data_bib}</td>
                 </tr>
                 <tr>
                   <td className="text-muted">Status Eksemplar</td>

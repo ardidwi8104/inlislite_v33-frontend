@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Topbar } from './store.jsx';
 
 export default function ImportAnggota() {

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { loadCart, saveCart, loadAnggota, saveAnggota, fmtDate, useTable, Controls, TableFooter, Topbar } from './store.jsx';
 
 export default function KeranjangAnggota() {

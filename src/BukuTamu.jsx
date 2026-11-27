@@ -287,7 +287,7 @@ export default function BukuTamu() {
           <div className="p-4 p-md-5 pb-4">
             {/* Judul & Subjudul */}
             <div className="mb-1" style={{ maxWidth: '70ch' }}>
-              <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+              <p className="fw-semibold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}>
                 Buku Tamu
               </p>
               <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
@@ -301,7 +301,7 @@ export default function BukuTamu() {
 
           {/* Bilah biru tua penuh di bawahnya */}
           <div className="w-100 py-3 px-4 px-md-5 d-flex align-items-center justify-content-between text-white" style={{ backgroundColor: PRIMARY }}>
-            <span className="fw-bold fs-5">
+            <span className="fw-semibold fs-5">
               Total Kunjungan Hari ini {totalToday}
             </span>
             <span className="badge bg-white text-dark small px-3 py-1.5 rounded-pill fw-semibold">
@@ -328,7 +328,7 @@ export default function BukuTamu() {
           <div className="card border-0 shadow-sm mb-4 mb-lg-5">
             <div className="card-body p-4 p-lg-5">
               <div className="text-center mb-4">
-                <h4 className="fw-bold mb-2" style={{ color: PRIMARY }}>
+                <h4 className="fw-semibold mb-2" style={{ color: PRIMARY }}>
                   Cari Anggota Perpustakaan
                 </h4>
                 <p className="text-muted mb-0">Masukkan nomor anggota, barcode kartu, atau nomor identitas untuk melanjutkan ke buku tamu</p>
@@ -379,7 +379,7 @@ export default function BukuTamu() {
                             <i className="fa-solid fa-user-check fa-lg"></i>
                           </span>
                           <div>
-                            <div className="fw-bold fs-5" style={{ color: PRIMARY }}>
+                            <div className="fw-semibold fs-5" style={{ color: PRIMARY }}>
                               {foundMember.name}
                             </div>
                             <div className="small text-muted">Anggota aktif</div>
@@ -390,7 +390,7 @@ export default function BukuTamu() {
                       <div className="row g-3 small">
                         <div className="col-sm-6">
                           <div className="text-muted">Nomor Anggota</div>
-                          <div className="fw-bold font-monospace">{foundMember.memberNo}</div>
+                          <div className="fw-semibold font-monospace">{foundMember.memberNo}</div>
                         </div>
                         <div className="col-sm-6">
                           <div className="text-muted">Identitas</div>
@@ -489,7 +489,7 @@ export default function BukuTamu() {
           <div className="card border-0 shadow-sm">
             <div className="card-body p-4 p-lg-5">
               <div className="text-center mb-4">
-                <h4 className="fw-bold mb-2" style={{ color: PRIMARY }}>
+                <h4 className="fw-semibold mb-2" style={{ color: PRIMARY }}>
                   Buku Tamu Non Anggota
                 </h4>
                 <p className="text-muted mb-0">Silakan isi data diri Anda untuk tercatat sebagai pengunjung perpustakaan</p>
@@ -650,7 +650,7 @@ export default function BukuTamu() {
           <div className="card border-0 shadow-sm">
             <div className="card-body p-4 p-lg-5">
               <div className="text-center mb-4">
-                <h4 className="fw-bold mb-2" style={{ color: PRIMARY }}>
+                <h4 className="fw-semibold mb-2" style={{ color: PRIMARY }}>
                   Buku Tamu Rombongan
                 </h4>
                 <p className="text-muted mb-0">Silakan isi data rombongan dan detail anggota untuk tercatat sebagai pengunjung perpustakaan</p>
@@ -666,7 +666,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-user" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Data Penanggung Jawab
                     </h6>
                   </div>
@@ -705,7 +705,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-building" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Data Instansi/Organisasi
                     </h6>
                   </div>
@@ -752,7 +752,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-users" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Jumlah Anggota Rombongan
                     </h6>
                   </div>
@@ -800,7 +800,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-briefcase" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Komposisi Berdasarkan Profesi
                     </h6>
                   </div>
@@ -833,7 +833,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-graduation-cap" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Komposisi Berdasarkan Pendidikan
                     </h6>
                   </div>
@@ -859,7 +859,7 @@ export default function BukuTamu() {
                 <div className="p-4 rounded mb-4" style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}>
                   <div className="d-flex align-items-center gap-2 mb-3">
                     <i className="fa-solid fa-circle-info" style={{ color: PRIMARY }}></i>
-                    <h6 className="fw-bold mb-0" style={{ color: PRIMARY }}>
+                    <h6 className="fw-semibold mb-0" style={{ color: PRIMARY }}>
                       Informasi Tambahan
                     </h6>
                   </div>

@@ -8,7 +8,7 @@ import {
   formatDateTimeID,
   visitQrPayload,
 } from '../lib/libraryStore';
-import { downloadVisitProofPdf } from '../lib/pdfDocs';
+import { downloadVisitProofPng } from '../lib/pdfDocs';
 
 const TYPE_LABELS = {
   anggota: 'Anggota',
@@ -35,7 +35,7 @@ function StatusBadge({ status }) {
 }
 
 export default function VisitProofModal({ show, visit, onClose, onVerified }) {
-  const [pdfError, setPdfError] = useState('');
+  const [downloadError, setDownloadError] = useState('');
   const [downloading, setDownloading] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -53,11 +53,11 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
 
   const handleDownload = async () => {
     setDownloading(true);
-    setPdfError('');
+    setDownloadError('');
     try {
-      await downloadVisitProofPdf(visit);
+      await downloadVisitProofPng(visit);
     } catch (error) {
-      setPdfError('Gagal membuat PDF. Silakan coba lagi.');
+      setDownloadError('Gagal mengunduh bukti gambar. Silakan coba lagi.');
     } finally {
       setDownloading(false);
     }
@@ -70,22 +70,13 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
     <Modal
       show={show}
       onClose={onClose}
-      title={
-        visit.status === 'verified'
-          ? 'Bukti Kunjungan Terverifikasi'
-          : visit.status === 'rejected'
-          ? 'Pengajuan Kunjungan Ditolak'
-          : 'Buku Tamu Berhasil Disimpan'
-      }
-      subtitle={`Kode booking ${visit.bookingCode} · ${formatDateID(visit.visitDate)}`}
+      title="Buku Tamu Berhasil Disimpan"
       icon="fa-ticket-simple"
       accent={visit.status === 'verified' ? '#15803D' : '#1b3878'}
-      size="lg"
+      maxWidth={visit.status === 'pending' ? 960 : undefined}
+      size={visit.status === 'pending' ? 'xl' : 'lg'}
       footer={
         <>
-          <button type="button" className="btn btn-light border fw-semibold" onClick={onClose}>
-            Tutup
-          </button>
           <button
             type="button"
             className="btn btn-primary fw-semibold d-inline-flex align-items-center gap-2"
@@ -95,17 +86,17 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
             {downloading ? (
               <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
             ) : (
-              <i className="fa-solid fa-file-pdf" aria-hidden="true"></i>
+              <i className="fa-solid fa-file-image" aria-hidden="true"></i>
             )}
-            Unduh Bukti PDF
+            Unduh Bukti (PNG)
           </button>
         </>
       }
     >
-      {pdfError && (
+      {downloadError && (
         <div className="alert alert-danger py-2 px-3 small" role="alert">
           <i className="fa-solid fa-circle-exclamation me-2"></i>
-          {pdfError}
+          {downloadError}
         </div>
       )}
 
@@ -122,32 +113,31 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
           ? 'Kunjungan ini sudah diverifikasi petugas dan tercatat sebagai data kunjungan perpustakaan.'
           : visit.status === 'rejected'
           ? `Pengajuan kunjungan ditolak petugas.${visit.rejectedReason ? ` Alasan: ${visit.rejectedReason}` : ''}`
-          : 'Kunjungan belum tercatat. Tunjukkan kode booking, barcode, atau QR Code ini kepada petugas perpustakaan untuk diverifikasi.'}
+          : 'Kunjungan belum tercatat. Tunjukkan kode booking ini kepada petugas perpustakaan untuk diverifikasi.'}
       </div>
 
-      <div className="row g-4 align-items-center">
-        <div className="col-md-7">
+      {visit.status === 'pending' ? (
+        <div className="mb-3">
           <div
-            className="p-3 p-md-4 rounded-4 text-white position-relative overflow-hidden"
+            className="p-4 rounded-4 text-white position-relative overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #1b3878 0%, #14245a 100%)' }}
           >
-            <div className="d-flex justify-content-between align-items-start gap-2 mb-3">
+            <div className="d-flex justify-content-between align-items-start gap-3 mb-2 flex-wrap">
               <div>
-                <div className="small text-white-50 text-uppercase fw-semibold" style={{ letterSpacing: '0.08em' }}>
+                <div className="small text-white-50 fw-semibold" style={{ letterSpacing: '0.02em' }}>
                   Kode Booking
                 </div>
-                <div className="display-5 fw-bold font-monospace" style={{ letterSpacing: '0.15em' }}>
+                <div className="display-4 fw-semibold font-monospace" style={{ letterSpacing: '0.02em', wordBreak: 'break-all' }}>
                   {visit.bookingCode}
+                </div>
+                <div className="small text-white-70 mt-1">
+                  <i className="fa-regular fa-calendar me-1"></i>
+                  {formatDateID(visit.visitDate)}
                 </div>
               </div>
               <span className="badge bg-white text-dark px-3 py-2">{TYPE_LABELS[visit.type] || visit.type}</span>
             </div>
-
-            <div className="rounded-3 bg-white p-2 mb-2">
-              <BarcodeImage value={visit.barcode} height={44} fontSize={11} />
-            </div>
-            <div className="d-flex justify-content-between align-items-center gap-2">
-              <div className="small text-white-50 font-monospace text-break">{visit.barcode}</div>
+            <div className="d-flex justify-content-end">
               <button
                 type="button"
                 className="btn btn-sm btn-light fw-semibold flex-shrink-0"
@@ -155,107 +145,144 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
                 title="Salin kode booking"
               >
                 <i className={`fa-solid ${copied ? 'fa-check text-success' : 'fa-copy'}`}></i>
-                <span className="ms-1 d-none d-sm-inline">{copied ? 'Tersalin' : 'Salin'}</span>
+                <span className="ms-1">{copied ? 'Tersalin' : 'Salin'}</span>
               </button>
             </div>
           </div>
         </div>
+      ) : (
+        <div className="row g-4 align-items-center">
+          <div className="col-md-7">
+            <div
+              className="p-3 p-md-4 rounded-4 text-white position-relative overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #1b3878 0%, #14245a 100%)' }}
+            >
+              <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
+                <div>
+                  <div className="small text-white-50 fw-semibold" style={{ letterSpacing: '0.02em' }}>
+                    Kode Booking
+                  </div>
+                  <div className="display-5 fw-semibold font-monospace" style={{ letterSpacing: '0.02em' }}>
+                    {visit.bookingCode}
+                  </div>
+                  <div className="small text-white-70 mt-1">
+                    <i className="fa-regular fa-calendar me-1"></i>
+                    {formatDateID(visit.visitDate)}
+                  </div>
+                </div>
+                <span className="badge bg-white text-dark px-3 py-2">{TYPE_LABELS[visit.type] || visit.type}</span>
+              </div>
 
-        <div className="col-md-5 text-center">
-          <QRCodeImage value={visitQrPayload(visit)} size={190} alt={`QR Code kunjungan ${visit.bookingCode}`} />
-        </div>
-      </div>
-
-      <div className="row g-3 mt-1">
-        <div className="col-sm-6">
-          <div className="border rounded-3 p-3 h-100 bg-light">
-            <div className="text-muted small">Nama Pengunjung</div>
-            <div className="fw-bold text-dark">{visit.name || '-'}</div>
-          </div>
-        </div>
-        <div className="col-sm-6">
-          <div className="border rounded-3 p-3 h-100 bg-light">
-            <div className="text-muted small">Nomor Identitas / Anggota</div>
-            <div className="fw-bold text-dark">{visit.identityNo || visit.memberNo || '-'}</div>
-          </div>
-        </div>
-        <div className="col-sm-6">
-          <div className="border rounded-3 p-3 h-100 bg-light">
-            <div className="text-muted small">Tanggal / Waktu Pengajuan</div>
-            <div className="fw-semibold text-dark">{formatDateID(visit.visitDate)}</div>
-            <div className="small text-muted">{formatDateTimeID(visit.createdAt)}</div>
-          </div>
-        </div>
-        <div className="col-sm-6">
-          <div className="border rounded-3 p-3 h-100 bg-light">
-            <div className="text-muted small">Tujuan Kunjungan</div>
-            <div className="fw-semibold text-dark">{visit.purpose || '-'}</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row g-3 mt-1">
-        <div className="col-md-6">
-          <div className="border rounded-3 p-3 h-100" style={{ borderColor: '#DBEAFE' }}>
-            <div className="d-flex align-items-center gap-2 mb-2">
-              <span
-                className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                style={{ width: '32px', height: '32px', backgroundColor: '#f8f9fa', color: '#1b3878' }}
-              >
-                <i className="fa-solid fa-user-shield"></i>
-              </span>
-              <div className="fw-bold" style={{ color: '#1b3878' }}>
-                Petugas Jaga
+              <div className="rounded-3 bg-white p-2 mb-2">
+                <BarcodeImage value={visit.barcode} height={44} fontSize={11} />
+              </div>
+              <div className="d-flex justify-content-between align-items-center gap-2">
+                <div className="small text-white-50 font-monospace text-break">{visit.barcode}</div>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-light fw-semibold flex-shrink-0"
+                  onClick={copyCode}
+                  title="Salin kode booking"
+                >
+                  <i className={`fa-solid ${copied ? 'fa-check text-success' : 'fa-copy'}`}></i>
+                  <span className="ms-1 d-none d-sm-inline">{copied ? 'Tersalin' : 'Salin'}</span>
+                </button>
               </div>
             </div>
-            <div className="fw-semibold">{dutyOfficer.name}</div>
-            <div className="small text-muted">{dutyOfficer.jabatan}</div>
-            <div className="small text-muted">NIP: {dutyOfficer.nip}</div>
-            <div className="small text-muted">{dutyOfficer.shift}</div>
+          </div>
+
+          <div className="col-md-5 text-center">
+            <QRCodeImage value={visitQrPayload(visit)} size={190} alt={`QR Code kunjungan ${visit.bookingCode}`} />
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="border rounded-3 p-3 h-100" style={{ borderColor: visit.status === 'verified' ? '#BBF7D0' : '#FDE68A' }}>
-            <div className="d-flex align-items-center gap-2 mb-2">
-              <span
-                className="d-inline-flex align-items-center justify-content-center rounded-circle"
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  backgroundColor: visit.status === 'verified' ? '#f0fff4' : '#fff9db',
-                  color: visit.status === 'verified' ? '#15803D' : '#B45309',
-                }}
-              >
-                <i className="fa-solid fa-user-check"></i>
-              </span>
-              <div className="fw-bold" style={{ color: visit.status === 'verified' ? '#15803D' : '#B45309' }}>
-                Diverifikasi Oleh
+      )}
+
+      {visit.status !== 'pending' && (
+        <>
+          <div className="row g-3 mt-1">
+            <div className="col-sm-6">
+              <div className="border rounded-3 p-3 h-100 bg-light">
+                <div className="text-muted small">Nama Pengunjung</div>
+                <div className="fw-semibold text-dark">{visit.name || '-'}</div>
               </div>
             </div>
-            {verifier ? (
-              <>
-                <div className="fw-semibold">{verifier.name}</div>
-                <div className="small text-muted">{verifier.jabatan}</div>
-                <div className="small text-muted">NIP: {verifier.nip}</div>
-                <div className="small text-muted">{formatDateTimeID(verifier.verifiedAt)}</div>
-                {visit.verificationNote && <div className="small text-muted mt-1">Catatan: {visit.verificationNote}</div>}
-              </>
-            ) : (
-              <>
-                <div className="fw-semibold text-muted">Menunggu verifikasi petugas</div>
-                <div className="small text-muted">Data ini belum masuk sebagai kunjungan sampai diverifikasi.</div>
-              </>
-            )}
+            <div className="col-sm-6">
+              <div className="border rounded-3 p-3 h-100 bg-light">
+                <div className="text-muted small">Nomor Identitas / Anggota</div>
+                <div className="fw-semibold text-dark">{visit.identityNo || visit.memberNo || '-'}</div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="border rounded-3 p-3 h-100 bg-light">
+                <div className="text-muted small">Tanggal / Waktu Pengajuan</div>
+                <div className="fw-semibold text-dark">{formatDateID(visit.visitDate)}</div>
+                <div className="small text-muted">{formatDateTimeID(visit.createdAt)}</div>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="border rounded-3 p-3 h-100 bg-light">
+                <div className="text-muted small">Tujuan Kunjungan</div>
+                <div className="fw-semibold text-dark">{visit.purpose || '-'}</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {visit.status === 'pending' && (
-        <div className="alert alert-info small mt-3 mb-0" role="status">
-          <i className="fa-solid fa-barcode me-2"></i>
-          Untuk validasi, petugas dapat memindai barcode atau memasukkan kode booking <strong>{visit.bookingCode}</strong> pada
-          menu <strong>Backoffice &gt; Buku Tamu</strong>.
-        </div>
+          <div className="row g-3 mt-1">
+            <div className="col-md-6">
+              <div className="border rounded-3 p-3 h-100" style={{ borderColor: '#DBEAFE' }}>
+                <div className="d-flex align-items-center gap-2 mb-2">
+                  <span
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle"
+                    style={{ width: '32px', height: '32px', backgroundColor: '#f8f9fa', color: '#1b3878' }}
+                  >
+                    <i className="fa-solid fa-user-shield"></i>
+                  </span>
+                  <div className="fw-semibold" style={{ color: '#1b3878' }}>
+                    Petugas Jaga
+                  </div>
+                </div>
+                <div className="fw-semibold">{dutyOfficer.name}</div>
+                <div className="small text-muted">{dutyOfficer.jabatan}</div>
+                <div className="small text-muted">NIP: {dutyOfficer.nip}</div>
+                <div className="small text-muted">{dutyOfficer.shift}</div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="border rounded-3 p-3 h-100" style={{ borderColor: visit.status === 'verified' ? '#BBF7D0' : '#FDE68A' }}>
+                <div className="d-flex align-items-center gap-2 mb-2">
+                  <span
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle"
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      backgroundColor: visit.status === 'verified' ? '#f0fff4' : '#fff9db',
+                      color: visit.status === 'verified' ? '#15803D' : '#B45309',
+                    }}
+                  >
+                    <i className="fa-solid fa-user-check"></i>
+                  </span>
+                  <div className="fw-semibold" style={{ color: visit.status === 'verified' ? '#15803D' : '#B45309' }}>
+                    Diverifikasi Oleh
+                  </div>
+                </div>
+                {verifier ? (
+                  <>
+                    <div className="fw-semibold">{verifier.name}</div>
+                    <div className="small text-muted">{verifier.jabatan}</div>
+                    <div className="small text-muted">NIP: {verifier.nip}</div>
+                    <div className="small text-muted">{formatDateTimeID(verifier.verifiedAt)}</div>
+                    {visit.verificationNote && <div className="small text-muted mt-1">Catatan: {visit.verificationNote}</div>}
+                  </>
+                ) : (
+                  <>
+                    <div className="fw-semibold text-muted">Menunggu verifikasi petugas</div>
+                    <div className="small text-muted">Data ini belum masuk sebagai kunjungan sampai diverifikasi.</div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       {onVerified && visit.status === 'verified' && (
@@ -268,4 +295,3 @@ export default function VisitProofModal({ show, visit, onClose, onVerified }) {
     </Modal>
   );
 }
-

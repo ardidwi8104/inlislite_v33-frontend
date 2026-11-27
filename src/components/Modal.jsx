@@ -55,7 +55,7 @@ export default function Modal({
                   <i className={`fa-solid ${icon}`} aria-hidden="true"></i>
                 </span>
                 <div>
-                  <h5 className="modal-title fw-bold mb-0">{title}</h5>
+                  <h5 className="modal-title fw-semibold mb-0">{title}</h5>
                   {subtitle && <div className="small opacity-75 mt-1">{subtitle}</div>}
                 </div>
               </div>

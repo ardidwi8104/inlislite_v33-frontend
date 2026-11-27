@@ -22,8 +22,8 @@ export default function Berita({ onPageChange }) {
         {/* Page Title */}
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
           <p
-            className="text-uppercase fw-bold mb-2"
-            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}
+            className="fw-semibold mb-2"
+            style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}
           >
              Berita
           </p>
@@ -94,7 +94,7 @@ export default function Berita({ onPageChange }) {
                     {news.date}
                   </div>
 
-                  <h6 className="fw-bold mb-2 lh-sm" style={{ color: '#1b3878', fontSize: '0.93rem' }}>
+                  <h6 className="fw-semibold mb-2 lh-sm" style={{ color: '#1b3878', fontSize: '0.93rem' }}>
                     {news.title}
                   </h6>
                   <p className="text-muted small mb-3 flex-grow-1" style={{ fontSize: '0.82rem', lineHeight: '1.5' }}>

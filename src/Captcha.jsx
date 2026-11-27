@@ -182,7 +182,7 @@ export default function CaptchaField({
         </div>
         <div className={stacked ? 'col-12' : 'col-md-7 col-lg-8'}>
           <label htmlFor={id} className={labelClassName} style={{ color: '#495057' }}>
-            <span className="fw-bold" style={{ color: '#1b3878' }}>
+            <span className="fw-semibold" style={{ color: '#1b3878' }}>
               {label}
             </span>
             <span className="ms-1" style={{ color: '#EF4444' }}>

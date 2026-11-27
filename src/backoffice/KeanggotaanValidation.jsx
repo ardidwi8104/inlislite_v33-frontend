@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from '../components/Modal';
 import QRCodeImage from '../components/QRCodeImage';
 import BarcodeImage from '../components/BarcodeImage';
@@ -60,7 +60,7 @@ function MemberCardPreview({ member }) {
     >
       <div className="d-flex justify-content-between align-items-start gap-2">
         <div>
-          <div className="fw-bold" style={{ fontSize: '0.95rem' }}>
+          <div className="fw-semibold" style={{ fontSize: '0.95rem' }}>
             KARTU ANGGOTA PERPUSTAKAAN
           </div>
           <div className="small text-white-50">Perpustakaan Mitra - INLISLite</div>
@@ -72,11 +72,11 @@ function MemberCardPreview({ member }) {
           <div className="text-white-50" style={{ fontSize: '0.875rem' }}>
             NAMA ANGGOTA
           </div>
-          <div className="fw-bold text-truncate">{member.name}</div>
+          <div className="fw-semibold text-truncate">{member.name}</div>
           <div className="text-white-50 mt-2" style={{ fontSize: '0.875rem' }}>
             NO. ANGGOTA
           </div>
-          <div className="fw-bold font-monospace small">{member.memberNo}</div>
+          <div className="fw-semibold font-monospace small">{member.memberNo}</div>
           <div className="text-white-50 mt-2" style={{ fontSize: '0.875rem' }}>
             BERLAKU S.D.
           </div>
@@ -281,7 +281,7 @@ export default function KeanggotaanValidation({ role = 'petugas', initialStatus 
         <div className="p-3 p-md-4">
           <div className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-3">
             <div>
-              <h6 className="fw-bold mb-0" style={{ color: '#1b3878' }}>
+              <h6 className="fw-semibold mb-0" style={{ color: '#1b3878' }}>
                 <i className="fa-solid fa-list-check me-2 text-primary"></i>
                 Daftar Pendaftaran Anggota
               </h6>
@@ -356,7 +356,7 @@ export default function KeanggotaanValidation({ role = 'petugas', initialStatus 
                   members.map((member) => (
                     <tr key={member.id}>
                       <td>
-                        <div className="fw-bold font-monospace" style={{ color: '#0e7490' }}>
+                        <div className="fw-semibold font-monospace" style={{ color: '#0e7490' }}>
                           {member.registrationCode}
                         </div>
                         <div className="small text-muted font-monospace">{member.barcode}</div>
@@ -564,7 +564,7 @@ export default function KeanggotaanValidation({ role = 'petugas', initialStatus 
                   <i className="fa-solid fa-user-check me-1"></i>
                   {selectedMember.status === 'rejected' ? 'Ditolak oleh' : 'Diverifikasi oleh'}
                 </div>
-                {selectedMember.verification.name} Â· NIP {selectedMember.verification.nip}
+                {selectedMember.verification.name} · NIP {selectedMember.verification.nip}
                 <br />
                 {formatDateTimeID(selectedMember.verification.verifiedAt)}
                 {selectedMember.rejectedReason && (

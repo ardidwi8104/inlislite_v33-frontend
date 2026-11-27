@@ -113,7 +113,7 @@ export default function KeanggotaanMandiri() {
       <div className="container-fluid" style={{ maxWidth: '1200px' }}>
         
         <div className="mb-4 mb-lg-5" style={{ maxWidth: '70ch' }}>
-          <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+          <p className="fw-semibold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}>
                          Keanggotaan Mandiri
           </p>
           <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
@@ -147,7 +147,7 @@ export default function KeanggotaanMandiri() {
                 >
                   <i className="fa-solid fa-user-check"></i>
                 </div>
-                <div className={`small fw-bold ${currentStep >= 1 ? 'text-primary' : 'text-muted'}`}>
+                <div className={`small fw-semibold ${currentStep >= 1 ? 'text-primary' : 'text-muted'}`}>
                   1. Verifikasi
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function KeanggotaanMandiri() {
                 >
                   <i className="fa-solid fa-file-pen"></i>
                 </div>
-                <div className={`small fw-bold ${currentStep >= 2 ? 'text-primary' : 'text-muted'}`}>
+                <div className={`small fw-semibold ${currentStep >= 2 ? 'text-primary' : 'text-muted'}`}>
                   2. Data Diri
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function KeanggotaanMandiri() {
                 >
                   <i className="fa-solid fa-circle-check"></i>
                 </div>
-                <div className={`small fw-bold ${currentStep >= 3 ? 'text-primary' : 'text-muted'}`}>
+                <div className={`small fw-semibold ${currentStep >= 3 ? 'text-primary' : 'text-muted'}`}>
                   3. Selesai
                 </div>
               </div>
@@ -216,7 +216,7 @@ export default function KeanggotaanMandiri() {
             >
               <i className="fa-solid fa-circle-check"></i>
             </div>
-            <h3 className="fw-bold text-dark mb-2">Pendaftaran Berhasil!</h3>
+            <h3 className="fw-semibold text-dark mb-2">Pendaftaran Berhasil!</h3>
             <p className="text-muted mb-4" style={{ maxWidth: '540px', margin: '0 auto' }}>
               Selamat, berkas formulir pendaftaran anggota Anda telah kami terima. Silakan bawa bukti nomor identitas{' '}
               <strong>({formData.noIdentitas})</strong> ke meja petugas perpustakaan untuk verifikasi fisik dan cetak kartu.
@@ -267,14 +267,14 @@ export default function KeanggotaanMandiri() {
                   >
                     <i className="fa-solid fa-shield-halved"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>
                     Verifikasi Identitas
                   </h5>
                 </div>
 
                 <div className="row g-3 align-items-start">
                   <div className="col-12 col-md-6 col-xl-3">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       No. Identitas <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <div className="input-group">
@@ -297,7 +297,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-12 col-md-6 col-xl-3">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Jenis Identitas <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <select
@@ -315,7 +315,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-12 col-md-6 col-xl-3">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Email <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <div className="input-group">
@@ -338,7 +338,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-12 col-md-6 col-xl-3">
-                    <label className="form-label small fw-bold d-none d-xl-block" style={{ color: '#1E293B' }}>&nbsp;</label>
+                    <label className="form-label small fw-semibold d-none d-xl-block" style={{ color: '#1E293B' }}>&nbsp;</label>
                     <button
                       type="button"
                       className="btn fw-semibold w-100 d-inline-flex align-items-center justify-content-center gap-2 py-2"
@@ -365,7 +365,7 @@ export default function KeanggotaanMandiri() {
                   >
                     <i className="fa-solid fa-user"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>
                     Data Pribadi
                   </h5>
                 </div>
@@ -373,7 +373,7 @@ export default function KeanggotaanMandiri() {
                 <div className="row g-3">
                   {/* Baris 1: Nama Lengkap & No. HP */}
                   <div className="col-md-6">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Nama Lengkap <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <div className="input-group">
@@ -393,7 +393,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-md-6">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       No. HP <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <div className="input-group">
@@ -414,7 +414,7 @@ export default function KeanggotaanMandiri() {
 
                   {/* Baris 2: Tempat Lahir, Tanggal Lahir, Jenis Kelamin */}
                   <div className="col-md-4">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Tempat Lahir <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <input
@@ -429,7 +429,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-md-4">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Tanggal Lahir <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <div className="input-group">
@@ -449,7 +449,7 @@ export default function KeanggotaanMandiri() {
                   </div>
 
                   <div className="col-md-4">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Jenis Kelamin <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <select
@@ -476,14 +476,14 @@ export default function KeanggotaanMandiri() {
                   >
                     <i className="fa-solid fa-location-dot"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>
                     Alamat sesuai Identitas
                   </h5>
                 </div>
 
                 <div className="p-4 rounded-3 border" style={{ backgroundColor: '#F8FAFC' }}>
                   <div className="mb-3">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Alamat Lengkap <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <textarea
@@ -499,7 +499,7 @@ export default function KeanggotaanMandiri() {
 
                   <div className="row g-3">
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Provinsi <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -517,7 +517,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kota <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -534,7 +534,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kecamatan <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -552,7 +552,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kelurahan <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -581,7 +581,7 @@ export default function KeanggotaanMandiri() {
                   >
                     <i className="fa-solid fa-house"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>
                     Alamat Saat Ini
                   </h5>
                 </div>
@@ -604,7 +604,7 @@ export default function KeanggotaanMandiri() {
 
                 <div className="p-4 rounded-3 border" style={{ backgroundColor: '#F8FAFC' }}>
                   <div className="mb-3">
-                    <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                    <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                       Alamat Lengkap <span style={{ color: '#EF4444' }}>*</span>
                     </label>
                     <textarea
@@ -621,7 +621,7 @@ export default function KeanggotaanMandiri() {
 
                   <div className="row g-3">
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Provinsi <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -639,7 +639,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kota <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -657,7 +657,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kecamatan <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -676,7 +676,7 @@ export default function KeanggotaanMandiri() {
                     </div>
 
                     <div className="col-md-3">
-                      <label className="form-label small fw-bold" style={{ color: '#1E293B' }}>
+                      <label className="form-label small fw-semibold" style={{ color: '#1E293B' }}>
                         Kelurahan <span style={{ color: '#EF4444' }}>*</span>
                       </label>
                       <select
@@ -706,7 +706,7 @@ export default function KeanggotaanMandiri() {
                   >
                     <i className="fa-solid fa-file-contract"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>
                     Pernyataan
                   </h5>
                 </div>
@@ -734,7 +734,7 @@ export default function KeanggotaanMandiri() {
                   <span className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: '32px', height: '32px', backgroundColor: '#EFF6FF', color: '#2563EB' }}>
                     <i className="fa-solid fa-shield-halved"></i>
                   </span>
-                  <h5 className="fw-bold mb-0" style={{ color: '#2563EB' }}>Keamanan CAPTCHA</h5>
+                  <h5 className="fw-semibold mb-0" style={{ color: '#2563EB' }}>Keamanan CAPTCHA</h5>
                 </div>
                 <CaptchaField
                   id="captcha-daftar-anggota"
@@ -751,7 +751,7 @@ export default function KeanggotaanMandiri() {
               <div className="text-center pt-2">
                 <button
                   type="submit"
-                  className="btn text-white fw-bold px-5 py-3 shadow-sm d-inline-flex align-items-center gap-2"
+                  className="btn text-white fw-semibold px-5 py-3 shadow-sm d-inline-flex align-items-center gap-2"
                   style={{
                     backgroundColor: '#2563EB',
                     borderRadius: '8px',

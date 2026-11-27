@@ -19,7 +19,7 @@ export default function StatistikAnggota({ onPageChange }) {
       <div className="container-fluid px-3 px-md-5" style={{ maxWidth: '1240px' }}>
         
         <div className="mb-4" style={{ maxWidth: '70ch' }}>
-          <p className="text-uppercase fw-bold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.12em' }}>
+          <p className="fw-semibold mb-2" style={{ color: '#0e7490', fontSize: '0.78rem', letterSpacing: '0.02em' }}>
             Statistik
           </p>
           <h1 className="mb-2" style={{ color: '#1b3878', fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', lineHeight: 1.06 }}>
@@ -41,7 +41,7 @@ export default function StatistikAnggota({ onPageChange }) {
                 <i className="fa-solid fa-address-card"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">710</h4>
+                <h4 className="fw-semibold mb-0 text-dark">710</h4>
                 <div className="text-muted small">Total Anggota</div>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function StatistikAnggota({ onPageChange }) {
                 <i className="fa-solid fa-user-check"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">698</h4>
+                <h4 className="fw-semibold mb-0 text-dark">698</h4>
                 <div className="text-muted small">Anggota Aktif</div>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function StatistikAnggota({ onPageChange }) {
                 <i className="fa-solid fa-user-plus"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">24</h4>
+                <h4 className="fw-semibold mb-0 text-dark">24</h4>
                 <div className="text-muted small">Bulan Ini</div>
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function StatistikAnggota({ onPageChange }) {
                 <i className="fa-solid fa-user-xmark"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">12</h4>
+                <h4 className="fw-semibold mb-0 text-dark">12</h4>
                 <div className="text-muted small">Tidak Aktif</div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function StatistikAnggota({ onPageChange }) {
           {/* Panel Kiri: Berdasarkan Jenis Kelamin */}
           <div className="col-lg-6">
             <div className="bg-white rounded-3 p-4 shadow-sm border h-100">
-              <h5 className="fw-bold pb-2 mb-3 border-bottom" style={{ color: '#1E3A8A' }}>
+              <h5 className="fw-semibold pb-2 mb-3 border-bottom" style={{ color: '#1E3A8A' }}>
                 <i className="fa-solid fa-venus-mars text-primary me-2"></i> Berdasarkan Jenis Kelamin
               </h5>
 
@@ -106,8 +106,8 @@ export default function StatistikAnggota({ onPageChange }) {
                 {genderData.map((g, idx) => (
                   <div key={idx}>
                     <div className="d-flex justify-content-between align-items-center small mb-2">
-                      <span className="fw-bold text-dark fs-6">{g.label}</span>
-                      <span className="text-muted fw-bold font-monospace">
+                      <span className="fw-semibold text-dark fs-6">{g.label}</span>
+                      <span className="text-muted fw-semibold font-monospace">
                         {g.count} ({g.percent}%)
                       </span>
                     </div>
@@ -135,7 +135,7 @@ export default function StatistikAnggota({ onPageChange }) {
           {/* Panel Kanan: Berdasarkan Kategori Anggota */}
           <div className="col-lg-6">
             <div className="bg-white rounded-3 p-4 shadow-sm border h-100">
-              <h5 className="fw-bold pb-2 mb-3 border-bottom" style={{ color: '#1E3A8A' }}>
+              <h5 className="fw-semibold pb-2 mb-3 border-bottom" style={{ color: '#1E3A8A' }}>
                 <i className="fa-solid fa-id-badge text-success me-2"></i> Berdasarkan Kategori Anggota
               </h5>
 
@@ -151,7 +151,7 @@ export default function StatistikAnggota({ onPageChange }) {
                   <tbody>
                     {categoryData.map((c) => (
                       <tr key={c.no}>
-                        <td className="text-center fw-bold">{c.no}</td>
+                        <td className="text-center fw-semibold">{c.no}</td>
                         <td className="fw-semibold text-dark">{c.kategori}</td>
                         <td className="text-center">
                           <span className="badge bg-primary-subtle text-primary border font-monospace px-3 py-1">

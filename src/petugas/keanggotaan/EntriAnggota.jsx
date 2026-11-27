@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { loadAnggota, saveAnggota, nextNoAnggota, Topbar } from './store.jsx';
 
 const today = () => new Date().toISOString().slice(0, 10);
@@ -18,7 +18,7 @@ function Section({ title, icon, children, defaultOpen = true }) {
   return (
     <div className="border rounded-3 mb-2 overflow-hidden">
       <button type="button" className="w-100 d-flex align-items-center justify-content-between px-3 py-2 border-0 bg-light text-start" onClick={() => setOpen((o) => !o)}>
-        <span className="fw-semibold small text-uppercase" style={{ color: '#14245a' }}><i className={`${icon} me-2 text-primary`}></i>{title}</span>
+        <span className="fw-semibold small" style={{ color: '#14245a' }}><i className={`${icon} me-2 text-primary`}></i>{title}</span>
         <i className={`fa-solid fa-chevron-${open ? 'up' : 'down'} small text-muted`}></i>
       </button>
       {open && <div className="p-3">{children}</div>}

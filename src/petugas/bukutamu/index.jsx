@@ -1,5 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { findVisitByCode, listVisits, verifyVisit } from '../../lib/libraryStore';
+import {
+  findVisitByCode,
+  listVisits,
+  verifyVisit,
+  getActiveOfficer,
+  formatDateID,
+} from '../../lib/libraryStore';
 
 const STATUS = {
   pending: { label: 'Menunggu', cls: 'bg-warning text-dark' },
@@ -26,7 +32,6 @@ export default function PetugasBukuTamu() {
   }, []);
 
   const verified = useMemo(() => visits.filter((v) => v.status === 'verified'), [visits]);
-  const pendingCount = useMemo(() => visits.filter((v) => v.status === 'pending').length, [visits]);
 
   const handleFind = (e) => {
     e?.preventDefault();
@@ -37,7 +42,8 @@ export default function PetugasBukuTamu() {
 
   const handleVerify = () => {
     if (!found) return;
-    const res = verifyVisit(found.id, 'petugas');
+    const officer = getActiveOfficer('petugas');
+    const res = verifyVisit(found.id, officer);
     setMsg({ type: res.ok ? 'success' : 'danger', text: res.message });
     refresh();
     setFound(res.visit || findVisitByCode(code));
@@ -47,16 +53,18 @@ export default function PetugasBukuTamu() {
     <div style={{ backgroundColor: '#ffffff', minHeight: '100%' }}>
       <div className="berita-topbar">
         <div className="d-flex align-items-center gap-3">
-          <span className="berita-topbar-icon" aria-hidden="true"><i className="fa-solid fa-user"></i></span>
+          <span className="berita-topbar-icon" aria-hidden="true"><i className="fa-solid fa-user-check"></i></span>
           <div>
-            <h1 className="berita-topbar-title">Buku Tamu</h1>
-            <p className="berita-topbar-sub">Layanan harian</p>
+            <h1 className="berita-topbar-title">Buku Tamu - Validasi</h1>
+            <p className="berita-topbar-sub">Validasi Kode Booking & Verifikasi Kunjungan Tamu</p>
           </div>
         </div>
         <nav className="berita-breadcrumb" aria-label="breadcrumb">
           <a href="#home" onClick={(e) => e.preventDefault()}><i className="fa-solid fa-house" aria-hidden="true"></i> Beranda</a>
           <span aria-hidden="true">/</span>
-          <span className="is-active" aria-current="page">Buku Tamu</span>
+          <span>Buku Tamu</span>
+          <span aria-hidden="true">/</span>
+          <span className="is-active" aria-current="page">Validasi</span>
         </nav>
       </div>
 
@@ -64,7 +72,7 @@ export default function PetugasBukuTamu() {
         <div className="bo-panel-head">
           <div>
             <h2 id="verify-visit-title">Verifikasi kode booking / scan barcode</h2>
-            <p>Masukkan kode yang muncul di popup bukti kunjungan tamu, atau nilai barcode/ID kunjungan.</p>
+            <p>Masukkan kode yang muncul di bukti kunjungan tamu, atau scan barcode kunjungan.</p>
           </div>
         </div>
         <div className="bo-panel-body">
@@ -76,13 +84,14 @@ export default function PetugasBukuTamu() {
                 className="form-control"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="Contoh: A1B2C3 atau BT-20260501-A1B2C3"
+                placeholder="Contoh: 815645 atau BT-20261126-815645"
                 autoComplete="off"
+                autoFocus
               />
             </div>
             <div className="col-auto">
-              <button type="submit" className="btn btn-primary">
-                <i className="fa-solid fa-magnifying-glass me-1" aria-hidden="true"></i>Cari
+              <button type="submit" className="btn btn-primary fw-semibold">
+                <i className="fa-solid fa-magnifying-glass me-1" aria-hidden="true"></i> Cari
               </button>
             </div>
           </form>
@@ -92,18 +101,19 @@ export default function PetugasBukuTamu() {
           {found ? (
             <div className="border rounded-3 p-3 mt-3 bg-light">
               <div className="row g-2 small">
-                <div className="col-sm-6"><span className="text-muted">Nama:</span> <strong>{found.visitorName}</strong></div>
+                <div className="col-sm-6"><span className="text-muted">Nama:</span> <strong>{found.name || found.visitorName}</strong></div>
                 <div className="col-sm-6"><span className="text-muted">Status:</span>{' '}
                   <span className={`badge ${STATUS[found.status]?.cls || 'bg-secondary text-white'}`}>{STATUS[found.status]?.label || found.status}</span>
                 </div>
-                <div className="col-sm-6"><span className="text-muted">Kode booking:</span> <span className="font-monospace">{found.bookingCode}</span></div>
+                <div className="col-sm-6"><span className="text-muted">Kode booking:</span> <span className="font-monospace fw-semibold text-primary">{found.bookingCode}</span></div>
                 <div className="col-sm-6"><span className="text-muted">Barcode:</span> <span className="font-monospace">{found.barcode}</span></div>
-                <div className="col-sm-6"><span className="text-muted">Jenis:</span> {found.kind === 'member' ? 'Anggota' : found.kind === 'group' ? 'Rombongan' : 'Non-anggota'}</div>
-                <div className="col-sm-6"><span className="text-muted">Tanggal:</span> {found.visitDate}{found.visitTime ? ` ${found.visitTime}` : ''}</div>
+                <div className="col-sm-6"><span className="text-muted">Jenis:</span> {found.type === 'anggota' ? 'Anggota' : found.type === 'rombongan' ? 'Rombongan' : 'Non-anggota'}</div>
+                <div className="col-sm-6"><span className="text-muted">Tanggal:</span> {formatDateID(found.visitDate)}</div>
+                <div className="col-12"><span className="text-muted">Tujuan:</span> {found.purpose || '-'}</div>
               </div>
               {found.status === 'pending' ? (
-                <button type="button" className="btn btn-success btn-sm mt-3" onClick={handleVerify}>
-                  <i className="fa-solid fa-circle-check me-1" aria-hidden="true"></i>Verifikasi kunjungan
+                <button type="button" className="btn btn-success btn-sm mt-3 fw-semibold" onClick={handleVerify}>
+                  <i className="fa-solid fa-circle-check me-1" aria-hidden="true"></i> Verifikasi Kunjungan
                 </button>
               ) : null}
             </div>
@@ -124,24 +134,22 @@ export default function PetugasBukuTamu() {
               <thead className="table-light">
                 <tr>
                   <th style={{ width: '50px' }}>No.</th>
-                  <th>Tgl. Kunjungan</th>
+                  <th style={{ width: '130px' }}>Tgl. Kunjungan</th>
                   <th>Nama</th>
-                  <th>Kode Booking</th>
-                  <th>Jenis</th>
+                  <th style={{ width: '130px' }}>Kode Booking</th>
                   <th>Tujuan</th>
                 </tr>
               </thead>
               <tbody>
                 {verified.length === 0 ? (
-                  <tr><td colSpan={6} className="text-center text-muted py-4">Belum ada kunjungan terverifikasi.</td></tr>
+                  <tr><td colSpan={5} className="text-center text-muted py-4">Belum ada kunjungan terverifikasi.</td></tr>
                 ) : verified.map((row, i) => (
                   <tr key={row.id}>
                     <td className="fw-semibold">{i + 1}</td>
-                    <td>{row.visitDate}{row.visitTime ? ` ${row.visitTime}` : ''}</td>
-                    <td className="fw-semibold">{row.visitorName}</td>
-                    <td className="font-monospace small">{row.bookingCode}</td>
-                    <td>{row.kind === 'member' ? 'Anggota' : row.kind === 'group' ? 'Rombongan' : 'Non-anggota'}</td>
-                    <td>{row.visitPurpose || row.location || '-'}</td>
+                    <td>{formatDateID(row.visitDate)}</td>
+                    <td className="fw-semibold text-dark">{row.name || row.visitorName}</td>
+                    <td><span className="badge bg-light text-primary border font-monospace">{row.bookingCode}</span></td>
+                    <td>{row.purpose || row.visitPurpose || '-'}</td>
                   </tr>
                 ))}
               </tbody>

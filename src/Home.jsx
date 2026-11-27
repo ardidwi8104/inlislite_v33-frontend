@@ -20,7 +20,7 @@ export default function Home({ onPageChange }) {
               <div key={sl.src} className={`carousel-item${i===0?' active':''}`}>
                 <img src={sl.src} className="d-block w-100" alt={sl.title} style={{ height: 600, objectFit: 'cover' }} />
                 <div className="carousel-caption d-flex h-100 align-items-center justify-content-center">
-                  <h2 className="fw-bold text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,.6)', fontSize: '2rem' }}>{sl.title}</h2>
+                  <h2 className="fw-semibold text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,.6)', fontSize: '2rem' }}>{sl.title}</h2>
                 </div>
               </div>
             ))}
@@ -67,8 +67,8 @@ export default function Home({ onPageChange }) {
             <div key={s.label} className="col-12 col-md-3">
               <div className="bg-white rounded-4 shadow-sm p-3 text-center h-100" style={{  }}>
                 <i className={`${s.icon} mb-2`} style={{ fontSize: '2rem', color: s.color }}></i>
-                <div className="fw-bold" style={{ fontSize: '1.6rem', color: '#1E3A8A' }}>{s.value}</div>
-                <div className="text-muted text-uppercase" style={{ fontSize: '.8rem', letterSpacing: '.05em' }}>{s.label}</div>
+                <div className="fw-semibold" style={{ fontSize: '1.6rem', color: '#1E3A8A' }}>{s.value}</div>
+                <div className="text-muted" style={{ fontSize: '.8rem', letterSpacing: '.02em' }}>{s.label}</div>
               </div>
             </div>
           ))}
@@ -81,7 +81,7 @@ export default function Home({ onPageChange }) {
       </section>
 
       <section className="px-3 px-md-4 px-xl-5 py-4">
-        <h2 className="fw-bold mb-1" style={{ fontSize: '1.5rem', color: '#1E3A8A' }}>Koleksi Terbaru</h2>
+        <h2 className="fw-semibold mb-1" style={{ fontSize: '1.5rem', color: '#1E3A8A' }}>Koleksi Terbaru</h2>
         <p className="mb-3" style={{ color: '#475569', fontSize: '.95rem' }}>Buku-buku yang baru saja ditambahkan.</p>
         <div className="bg-white border rounded-4 shadow-sm d-flex flex-column align-items-center justify-content-center text-center p-5">
           <i className="fa-solid fa-book-open mb-3" style={{ fontSize: '3rem', color: '#94a3b8' }}></i>
@@ -93,7 +93,7 @@ export default function Home({ onPageChange }) {
       </section>
 
       <section className="px-3 px-md-4 px-xl-5 py-5" style={{ backgroundColor: '#f8fafc' }}>
-        <h2 className="fw-bold mb-4" style={{ fontSize: '1.5rem', color: '#1E3A8A' }}>Berita &amp; Pengumuman</h2>
+        <h2 className="fw-semibold mb-4" style={{ fontSize: '1.5rem', color: '#1E3A8A' }}>Berita &amp; Pengumuman</h2>
         <div className="row g-4 align-items-start">
           {/* Featured News (Kolom Kiri) */}
           <div className="col-12 col-lg-7">
@@ -116,7 +116,7 @@ export default function Home({ onPageChange }) {
               </button>
               <div className="position-absolute bottom-0 start-0 end-0 p-4" style={{ background: 'linear-gradient(transparent 0%, rgba(0,0,0,.75) 100%)' }}>
                 <span className="badge mb-2" style={{ backgroundColor: '#1E3A8A', color: '#ffffff', fontSize: '.7rem', padding: '4px 10px', borderRadius: '999px' }}>{newsData[0].date}</span>
-                <h3 className="fw-bold mb-2" style={{ color: '#ffffff', fontSize: '1.25rem', lineHeight: 1.35, margin: 0 }}>{newsData[0].title}</h3>
+                <h3 className="fw-semibold mb-2" style={{ color: '#ffffff', fontSize: '1.25rem', lineHeight: 1.35, margin: 0 }}>{newsData[0].title}</h3>
                 <p className="mb-0" style={{ color: 'rgba(255,255,255,.85)', fontSize: '.9rem', lineHeight: 1.5, maxWidth: '88%', margin: 0 }}>{newsData[0].desc}</p>
               </div>
             </a>

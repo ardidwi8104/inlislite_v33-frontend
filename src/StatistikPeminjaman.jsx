@@ -34,7 +34,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
                 <i className="fa-solid fa-book-bookmark"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">1.070</h4>
+                <h4 className="fw-semibold mb-0 text-dark">1.070</h4>
                 <div className="text-muted small">Total Dipinjam</div>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
                 <i className="fa-solid fa-rotate-left"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">1.008</h4>
+                <h4 className="fw-semibold mb-0 text-dark">1.008</h4>
                 <div className="text-muted small">Total Dikembalikan</div>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
                 <i className="fa-solid fa-clock"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">62</h4>
+                <h4 className="fw-semibold mb-0 text-dark">62</h4>
                 <div className="text-muted small">Sedang Dipinjam</div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
                 <i className="fa-solid fa-triangle-exclamation"></i>
               </span>
               <div>
-                <h4 className="fw-bold mb-0 text-dark">0</h4>
+                <h4 className="fw-semibold mb-0 text-dark">0</h4>
                 <div className="text-muted small">Terlambat</div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
         {/* 3.3 Tabel Rekap Peminjaman Per Bulan */}
         <div className="bg-white rounded-3 shadow-sm border overflow-hidden">
           <div className="p-3 bg-light border-bottom d-flex align-items-center justify-content-between">
-            <h5 className="fw-bold mb-0 text-dark" style={{ fontSize: '1rem' }}>
+            <h5 className="fw-semibold mb-0 text-dark" style={{ fontSize: '1rem' }}>
               <i className="fa-solid fa-table me-2 text-primary"></i> Rekap Peminjaman Per Bulan
             </h5>
             <span className="badge bg-primary">Tahun 2026</span>
@@ -109,7 +109,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
               <tbody>
                 {dataBulan.map((r) => (
                   <tr key={r.no}>
-                    <td className="text-center fw-bold">{r.no}</td>
+                    <td className="text-center fw-semibold">{r.no}</td>
                     <td className="fw-semibold text-dark">{r.bulan}</td>
                     <td className="text-center">
                       <span className="badge bg-primary-subtle text-primary border font-monospace px-3 py-2">
@@ -121,7 +121,7 @@ export default function StatistikPeminjaman({ onPageChange }) {
                         {r.dikembalikan} Buku
                       </span>
                     </td>
-                    <td className="text-center fw-bold text-warning-emphasis font-monospace">
+                    <td className="text-center fw-semibold text-warning-emphasis font-monospace">
                       {r.sisa} Buku
                     </td>
                   </tr>

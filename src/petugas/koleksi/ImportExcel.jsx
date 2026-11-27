@@ -85,7 +85,7 @@ export default function ImportExcel() {
             e.preventDefault();
             alert('File template template_eksemplar_inlislite.xlsx sedang diunduh.');
           }}
-          className="btn btn-info btn-sm text-white fw-bold d-inline-flex align-items-center gap-1 shadow-sm"
+          className="btn btn-info btn-sm text-white fw-semibold d-inline-flex align-items-center gap-1 shadow-sm"
           style={{ backgroundColor: '#0ea5e9', border: '0', borderRadius: '8px', padding: '0.45rem 0.95rem' }}
         >
           <i className="fa-solid fa-download"></i> Unduh Format Excel
@@ -110,12 +110,12 @@ export default function ImportExcel() {
 
         {/* Drag & Drop Card */}
         <div className="card border shadow-sm mb-4">
-          <div className="card-header bg-light py-2 fw-bold text-dark">
+          <div className="card-header bg-light py-2 fw-semibold text-dark">
             <i className="fa-solid fa-upload me-2 text-primary"></i> Upload Berkas Spreadsheet
           </div>
           <div className="card-body p-4">
             <div
-              className={`p-5 text-center border-2 border-dashed rounded-3 transition-all ${
+              className={`p-5 text-center border-2 border-dashed rounded-3 transition-colors ${
                 isDragging ? 'border-primary bg-primary-subtle' : 'border-secondary-subtle bg-light'
               }`}
               style={{ borderStyle: 'dashed' }}
@@ -124,7 +124,7 @@ export default function ImportExcel() {
               onDrop={handleDrop}
             >
               <i className="fa-solid fa-cloud-arrow-up fa-3x text-primary mb-3"></i>
-              <h5 className="fw-bold mb-1">Tarik & Letakkan Berkas Excel ke Sini</h5>
+              <h5 className="fw-semibold mb-1">Tarik & Letakkan Berkas Excel ke Sini</h5>
               <p className="text-muted small mb-3">
                 Mendukung format <strong>.xlsx</strong> atau <strong>.xls</strong> (Maksimal 10 MB)
               </p>
@@ -160,7 +160,7 @@ export default function ImportExcel() {
               <div className="text-center mt-3">
                 <button
                   type="button"
-                  className="btn btn-success fw-bold px-4"
+                  className="btn btn-success fw-semibold px-4"
                   onClick={handleUpload}
                 >
                   <i className="fa-solid fa-magnifying-glass me-1"></i> Baca & Preview Data
@@ -174,12 +174,12 @@ export default function ImportExcel() {
         {previewRows.length > 0 && (
           <div className="card border shadow-sm mb-4">
             <div className="card-header bg-success text-white d-flex align-items-center justify-content-between py-2">
-              <span className="fw-bold">
+              <span className="fw-semibold">
                 <i className="fa-solid fa-table me-2"></i> Preview Data Excel ({previewRows.length} Eksemplar Ditemukan)
               </span>
               <button
                 type="button"
-                className="btn btn-light btn-sm fw-bold px-3 text-success shadow-sm"
+                className="btn btn-light btn-sm fw-semibold px-3 text-success shadow-sm"
                 onClick={handleFinalImport}
               >
                 <i className="fa-solid fa-cloud-arrow-down me-1"></i> Konfirmasi & Masukkan ke Eksemplar
@@ -203,10 +203,10 @@ export default function ImportExcel() {
                   <tbody>
                     {previewRows.map((r, i) => (
                       <tr key={i}>
-                        <td className="text-center fw-bold">{i + 1}</td>
+                        <td className="text-center fw-semibold">{i + 1}</td>
                         <td><span className="badge bg-light text-primary border font-monospace">{r.barcode}</span></td>
                         <td><span className="badge bg-light text-dark border font-monospace">{r.no_induk}</span></td>
-                        <td className="fw-bold text-dark">{r.judul}</td>
+                        <td className="fw-semibold text-dark">{r.judul}</td>
                         <td>{r.pengarang}</td>
                         <td className="small text-muted">{r.penerbit}</td>
                         <td className="text-center">{r.tahun}</td>
@@ -222,14 +222,14 @@ export default function ImportExcel() {
 
         {/* Petunjuk Format & Kolom Data */}
         <div className="card border shadow-sm">
-          <div className="card-header bg-light py-2 fw-bold text-dark">
+          <div className="card-header bg-light py-2 fw-semibold text-dark">
             <i className="fa-solid fa-circle-question me-2 text-info"></i> Petunjuk & Aturan Struktur Kolom
           </div>
           <div className="card-body p-4">
             <div className="row g-4">
               <div className="col-md-6">
                 <div className="p-3 bg-light rounded border h-100">
-                  <h6 className="fw-bold text-primary mb-2">
+                  <h6 className="fw-semibold text-primary mb-2">
                     <i className="fa-solid fa-book-bookmark me-2"></i> 1. Kolom Data Katalog (Bibliografis)
                   </h6>
                   <ul className="small text-muted mb-0 ps-3">
@@ -245,7 +245,7 @@ export default function ImportExcel() {
 
               <div className="col-md-6">
                 <div className="p-3 bg-light rounded border h-100">
-                  <h6 className="fw-bold text-success mb-2">
+                  <h6 className="fw-semibold text-success mb-2">
                     <i className="fa-solid fa-barcode me-2"></i> 2. Kolom Data Fisik Eksemplar
                   </h6>
                   <ul className="small text-muted mb-0 ps-3">

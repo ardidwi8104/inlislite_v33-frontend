@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { downloadStrukPeminjamanPdf } from '../../lib/pdfDocs';
 
 export default function EntriPeminjaman() {
   const [step, setStep] = useState(1);
@@ -8,6 +9,7 @@ export default function EntriPeminjaman() {
   const [scannedBooks, setScannedBooks] = useState([]);
   const [durasiHari, setDurasiHari] = useState(7);
   const [successMsg, setSuccessMsg] = useState(false);
+  const [lastTransaction, setLastTransaction] = useState(null);
 
   // Validasi Anggota
   const handleValidasiAnggota = (e) => {
@@ -16,7 +18,6 @@ export default function EntriPeminjaman() {
       alert('Masukkan nomor anggota terlebih dahulu.');
       return;
     }
-    // Dummy check or localstorage check
     setAnggotaData({
       no_anggota: noAnggota.trim(),
       nama: 'Ahmad Fauzi Rahman',
@@ -63,7 +64,13 @@ export default function EntriPeminjaman() {
       return;
     }
 
-    // Save to localstorage for sirkulasi peminjaman
+    const transactionData = {
+      no_anggota: anggotaData.no_anggota,
+      nama_peminjam: anggotaData.nama,
+      books: scannedBooks,
+    };
+    setLastTransaction(transactionData);
+
     try {
       const raw = window.localStorage.getItem('inlislite.sirkulasi.peminjaman');
       const list = raw ? JSON.parse(raw) : [];
@@ -86,6 +93,15 @@ export default function EntriPeminjaman() {
     setStep(3);
   };
 
+  const handleDownloadPdf = async () => {
+    if (!lastTransaction) return;
+    try {
+      await downloadStrukPeminjamanPdf(lastTransaction);
+    } catch (err) {
+      alert('Gagal mengunduh struk peminjaman PDF.');
+    }
+  };
+
   const handleReset = () => {
     setStep(1);
     setNoAnggota('');
@@ -93,6 +109,7 @@ export default function EntriPeminjaman() {
     setBarcodeInput('');
     setScannedBooks([]);
     setSuccessMsg(false);
+    setLastTransaction(null);
   };
 
   return (
@@ -119,14 +136,13 @@ export default function EntriPeminjaman() {
       </div>
 
       <div className="bo-panel-body p-0">
-        {/* Wizard Step Indicator */}
         <div className="card border shadow-sm mb-3">
           <div className="card-body py-2 px-3">
             <div className="row text-center g-2">
               <div className="col-4">
                 <div
                   className={`p-2 rounded d-flex align-items-center justify-content-center gap-2 ${
-                    step >= 1 ? 'bg-primary text-white fw-bold' : 'bg-light text-muted'
+                    step >= 1 ? 'bg-primary text-white fw-semibold' : 'bg-light text-muted'
                   }`}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -136,7 +152,7 @@ export default function EntriPeminjaman() {
               <div className="col-4">
                 <div
                   className={`p-2 rounded d-flex align-items-center justify-content-center gap-2 ${
-                    step >= 2 ? 'bg-primary text-white fw-bold' : 'bg-light text-muted'
+                    step >= 2 ? 'bg-primary text-white fw-semibold' : 'bg-light text-muted'
                   }`}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -146,7 +162,7 @@ export default function EntriPeminjaman() {
               <div className="col-4">
                 <div
                   className={`p-2 rounded d-flex align-items-center justify-content-center gap-2 ${
-                    step >= 3 ? 'bg-primary text-white fw-bold' : 'bg-light text-muted'
+                    step >= 3 ? 'bg-primary text-white fw-semibold' : 'bg-light text-muted'
                   }`}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -157,7 +173,6 @@ export default function EntriPeminjaman() {
           </div>
         </div>
 
-        {/* Step 1: Input & Validasi Anggota */}
         {step === 1 && (
           <div className="card border shadow-sm mb-3">
             <div className="card-body p-4 text-center">
@@ -167,7 +182,7 @@ export default function EntriPeminjaman() {
               >
                 <i className="fa-solid fa-id-card"></i>
               </div>
-              <h5 className="fw-bold mb-1" style={{ color: '#1E293B' }}>
+              <h5 className="fw-semibold mb-1" style={{ color: '#1E293B' }}>
                 Masukkan Nomor Anggota
               </h5>
               <p className="text-muted small mb-3">
@@ -182,7 +197,7 @@ export default function EntriPeminjaman() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Contoh: 64.09.26.00001 / Nomor KTP"
+                    placeholder="Contoh: 202609001 / Nomor KTP"
                     value={noAnggota}
                     onChange={(e) => setNoAnggota(e.target.value)}
                     autoFocus
@@ -199,12 +214,11 @@ export default function EntriPeminjaman() {
           </div>
         )}
 
-        {/* Step 2: Scan Buku */}
         {step === 2 && anggotaData && (
           <>
             <div className="card border shadow-sm mb-3">
               <div className="card-header bg-light py-2 d-flex align-items-center justify-content-between">
-                <span className="fw-bold small text-dark">
+                <span className="fw-semibold small text-dark">
                   <i className="fa-solid fa-user-check text-success me-2"></i> Data Anggota Peminjam
                 </span>
                 <button
@@ -227,7 +241,7 @@ export default function EntriPeminjaman() {
 
             <div className="card border shadow-sm mb-3">
               <div className="card-header bg-dark text-white py-2 d-flex align-items-center justify-content-between">
-                <span className="fw-bold">
+                <span className="fw-semibold">
                   <i className="fa-solid fa-barcode me-2"></i> Scan Barcode Buku Koleksi
                 </span>
                 <div className="d-flex align-items-center gap-2">
@@ -255,7 +269,7 @@ export default function EntriPeminjaman() {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Scan atau ketik No. Barcode Buku (contoh: PPU-2026-00101)"
+                        placeholder="Scan atau ketik No. Barcode Buku (contoh: BC-202600101)"
                         value={barcodeInput}
                         onChange={(e) => setBarcodeInput(e.target.value)}
                         autoFocus
@@ -272,7 +286,6 @@ export default function EntriPeminjaman() {
                   </div>
                 </form>
 
-                {/* Scanned Books Table */}
                 <div className="table-responsive">
                   <table className="table table-bordered table-sm align-middle mb-0">
                     <thead className="table-light">
@@ -292,7 +305,7 @@ export default function EntriPeminjaman() {
                           <td><span className="badge bg-light text-primary border font-monospace">{b.barcode}</span></td>
                           <td className="fw-semibold text-dark">{b.judul} <span className="small text-muted">/ {b.pengarang}</span></td>
                           <td className="small">{b.tgl_pinjam}</td>
-                          <td className="small text-danger fw-bold">{b.jatuh_tempo}</td>
+                          <td className="small text-danger fw-semibold">{b.jatuh_tempo}</td>
                           <td className="text-center">
                             <button
                               type="button"
@@ -319,7 +332,7 @@ export default function EntriPeminjaman() {
                   <div className="d-flex justify-content-end mt-3">
                     <button
                       type="button"
-                      className="btn btn-primary fw-bold px-4 d-inline-flex align-items-center gap-2 shadow-sm"
+                      className="btn btn-primary fw-semibold px-4 d-inline-flex align-items-center gap-2 shadow-sm"
                       onClick={handleKonfirmasiPinjam}
                     >
                       <i className="fa-solid fa-circle-check"></i> Selesaikan & Konfirmasi Peminjaman
@@ -331,7 +344,6 @@ export default function EntriPeminjaman() {
           </>
         )}
 
-        {/* Step 3: Success Confirmation */}
         {step === 3 && (
           <div className="card border shadow-sm mb-3 text-center p-4">
             <div
@@ -340,21 +352,21 @@ export default function EntriPeminjaman() {
             >
               <i className="fa-solid fa-circle-check"></i>
             </div>
-            <h5 className="fw-bold text-dark mb-1">Transaksi Peminjaman Berhasil!</h5>
+            <h5 className="fw-semibold text-dark mb-1">Transaksi Peminjaman Berhasil!</h5>
             <p className="text-muted small mb-3">
               Koleksi buku telah berhasil dipinjamkan ke <strong>{anggotaData?.nama}</strong> ({anggotaData?.no_anggota}).
             </p>
-            <div className="d-flex justify-content-center gap-2">
+            <div className="d-flex justify-content-center gap-2 flex-wrap">
               <button
                 type="button"
-                className="btn btn-outline-primary btn-sm fw-semibold"
-                onClick={() => window.print()}
+                className="btn btn-primary btn-sm fw-semibold d-inline-flex align-items-center gap-1 shadow-sm"
+                onClick={handleDownloadPdf}
               >
-                <i className="fa-solid fa-print me-1"></i> Cetak Struk Bukti Pinjam
+                <i className="fa-solid fa-file-pdf"></i> Unduh Struk Peminjaman (PDF)
               </button>
               <button
                 type="button"
-                className="btn btn-primary btn-sm fw-semibold"
+                className="btn btn-outline-secondary btn-sm fw-semibold"
                 onClick={handleReset}
               >
                 <i className="fa-solid fa-plus me-1"></i> Transaksi Baru
@@ -363,11 +375,10 @@ export default function EntriPeminjaman() {
           </div>
         )}
 
-        {/* Bottom Info Grid (3 Columns) */}
         <div className="row g-3">
           <div className="col-md-4">
             <div className="p-3 bg-white rounded border shadow-sm h-100">
-              <h6 className="fw-bold small text-primary mb-2">
+              <h6 className="fw-semibold small text-primary mb-2">
                 <i className="fa-solid fa-list-check me-2"></i> Langkah-langkah Penggunaan
               </h6>
               <ul className="small text-muted mb-0 ps-3">
@@ -381,7 +392,7 @@ export default function EntriPeminjaman() {
 
           <div className="col-md-4">
             <div className="p-3 bg-white rounded border shadow-sm h-100">
-              <h6 className="fw-bold small text-success mb-2">
+              <h6 className="fw-semibold small text-success mb-2">
                 <i className="fa-solid fa-lightbulb me-2"></i> Tips Penggunaan
               </h6>
               <ul className="small text-muted mb-0 ps-3">
@@ -394,7 +405,7 @@ export default function EntriPeminjaman() {
 
           <div className="col-md-4">
             <div className="p-3 bg-white rounded border shadow-sm h-100">
-              <h6 className="fw-bold small text-warning mb-2">
+              <h6 className="fw-semibold small text-warning mb-2">
                 <i className="fa-solid fa-triangle-exclamation me-2"></i> Perhatian
               </h6>
               <ul className="small text-muted mb-0 ps-3">
